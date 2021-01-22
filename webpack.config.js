@@ -2,7 +2,10 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = env => {
+  console.log(env.NODE_ENV)
+  //const plugins = env.NODE_ENV ?
+  const config = {
   entry: './src/index.js',
   module: {
     rules: [
@@ -49,5 +52,9 @@ module.exports = {
     }),
     new Dotenv(),
   ],
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  mode: process.env.NODE_ENV,
+  }
+
+  if (env.NODE_ENV !== 'development') config.plugins.pop()
+  return config;
 };

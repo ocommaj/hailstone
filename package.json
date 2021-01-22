@@ -6,7 +6,9 @@
     "pretest": "eslint --ignore-path .gitignore .",
     "test": "jest --coverage --passWithNoTests",
     "start": "webpack serve",
-    "build": "NODE_ENV='production' webpack"
+    "devStart": "webpack serve --env NODE_ENV=development",
+    "devBuild": "webpack --env NODE_ENV=development",
+    "build": "webpack --env NODE_ENV='production'"
   },
   "keywords": [],
   "author": "",
