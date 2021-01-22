@@ -50,7 +50,9 @@ module.exports = env => {
       filename: './index.html',
       favicon: './src/assets/icons/favicon/fav.ico'
     }),
-    new Dotenv(),
+    new Dotenv({
+      systemvars: true
+    }),
   ],
   mode: process.env.NODE_ENV,
   }
