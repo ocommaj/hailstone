@@ -3,14 +3,6 @@ const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = env => {
-  console.log(env.NODE_ENV)
-  const htmlWebpackPlugin = new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      favicon: './src/assets/icons/favicon/fav.ico'
-    })
-  const plugins = env.NODE_ENV === 'development'
-    ? [htmlWebpackPlugin, new Dotenv()] : [htmlWebpackPlugin]
   const config = {
   entry: './src/index.js',
   module: {
@@ -50,9 +42,7 @@ module.exports = env => {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
   },
-  plugins
-}
-  /*plugins: [
+  plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html',
@@ -61,7 +51,7 @@ module.exports = env => {
     new Dotenv(),
   ],
   mode: process.env.NODE_ENV,
-}*/
+}
   //console.dir(config.plugins)
   //if (env.NODE_ENV !== 'development') config.plugins.pop()
   return config;

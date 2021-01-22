@@ -42,6 +42,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
     "mapbox-gl": "^2.0.1"
   }
 }
