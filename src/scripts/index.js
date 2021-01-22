@@ -1,3 +1,5 @@
-export default function() {
-  console.log('hello from an export');
+import { Map } from './mapbox';
+
+export default function main() {
+  Map()
 }

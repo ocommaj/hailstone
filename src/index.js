@@ -1,4 +1,6 @@
+//import 'dotenv/config';
 import './styles/main.scss';
-import helloLogger from './scripts';
+import 'mapbox-gl/dist/mapbox-gl.css';
+import main from './scripts';
 
-helloLogger();
+main();
