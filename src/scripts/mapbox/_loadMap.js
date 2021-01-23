@@ -5,11 +5,11 @@ export default function Map() {
   const container = document.getElementById('mainMap');
   const map = new mapboxgl.Map({
     container,
-    zoom: 14,
-    center: [151.825, 7.415],
-    pitch: 80,
-    bearing: 70,
-    style: 'mapbox://styles/mapbox-map-design/ckhqrf2tz0dt119ny6azh975y'
+    zoom: 13.25,
+    center: [151.83, 7.427],
+    pitch: 75,
+    bearing: 125,
+    style: 'mapbox://styles/jfo713/ckk94gdif1zcb17n3m19wats4'
   })
 
   map.on('load', function () {
@@ -26,12 +26,23 @@ export default function Map() {
            'id': 'sky',
            'type': 'sky',
            'paint': {
-               'sky-atmosphere-color': 'blue',
-               'sky-atmosphere-halo-color': 'white',
-               'sky-type': 'atmosphere',
-               'sky-atmosphere-sun': [270, 65],
-               'sky-opacity': .5,
-               'sky-atmosphere-sun-intensity': 75
+             'sky-opacity': [
+               'interpolate',
+               ['linear'],
+               ['zoom'],
+               0,
+               0,
+               5,
+               0.3,
+               8,
+               1
+             ],
+            'sky-atmosphere-color': '#4589ff',
+            //'sky-atmosphere-halo-color': '#f1c21b',
+            'sky-type': 'atmosphere',
+            'sky-atmosphere-sun': [270, 65],
+               //'sky-opacity': .75,
+            //'sky-atmosphere-sun-intensity': 75
            }
        });
   });
