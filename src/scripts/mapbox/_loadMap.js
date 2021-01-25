@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
+import { restyleCursor, showMarkerPopup } from './_mapMarkerEvents';
 mapboxgl.accessToken = process.env.MB_TOKEN;
 
 export default function Map() {
@@ -44,16 +45,7 @@ export default function Map() {
        });
   });
 
-  map.on('click', (e) => {
-    const features = map.queryRenderedFeatures(e.point, {
-      layers: [ 'wreckLocations' ]
-    });
+  map.on('click', ({ point }) => showMarkerPopup(point, map))
+  map.on('mousemove', ({ point }) => restyleCursor(point, map))
 
-    if (!features.length) return;
-    const feature = features[0];
-    const popup = new mapboxgl.Popup({ offset: [0, -15] })
-      .setLngLat(feature.geometry.coordinates)
-      .setHTML(`<h2>${feature.properties.title}</h2>`)
-      .addTo(map)
-  })
 }
