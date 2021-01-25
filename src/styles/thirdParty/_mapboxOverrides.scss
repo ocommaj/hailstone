@@ -1,0 +1,17 @@
+.mapboxgl-popup {
+  .mapboxgl-popup-content {
+    background-color: $gray-90-30;
+    backdrop-filter: blur(4px);
+    border: solid 2px $gray-90;
+    h2 {
+      font-family: 'Big Shoulders Stencil Text', 'Helvetica';
+      color: $gray-10;
+    }
+
+  }
+
+  .mapboxgl-popup-tip {
+    border-top-color: $gray-90 !important;
+  }
+
+}

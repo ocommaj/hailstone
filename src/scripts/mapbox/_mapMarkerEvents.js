@@ -7,7 +7,11 @@ export function showMarkerPopup(point, map) {
 
   if (!features.length) return;
   const feature = features[0];
-  const popup = new Popup({ offset: [0, -15] })
+  const popup = new Popup({
+    offset: [0, -15],
+    focusAfterOpen: false,
+    closeButton: false,
+  })
     .setLngLat(feature.geometry.coordinates)
     .setHTML(`<h2>${feature.properties.title}</h2>`)
     .addTo(map)

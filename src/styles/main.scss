@@ -1,5 +1,7 @@
 @import './thirdParty/includeMedia';
+@import './abstracts/colors';
 @import './base/resets';
+@import './thirdParty/mapboxOverrides';
 
 body {
   background-color: grey;
@@ -14,8 +16,4 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-}
-
-h2 {
-  font-family: 'Big Shoulders Stencil Text', 'Helvetica';
 }
