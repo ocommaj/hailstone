@@ -9,7 +9,7 @@ export default function Map() {
     center: [151.83, 7.427],
     pitch: 75,
     bearing: 125,
-    style: 'mapbox://styles/jfo713/ckk94gdif1zcb17n3m19wats4'
+    style: 'mapbox://styles/jfo713/ckkcya24511r717ry3ok8vr9h'
   })
 
   map.on('load', function () {
@@ -43,4 +43,17 @@ export default function Map() {
            }
        });
   });
+
+  map.on('click', (e) => {
+    const features = map.queryRenderedFeatures(e.point, {
+      layers: [ 'wreckLocations' ]
+    });
+
+    if (!features.length) return;
+    const feature = features[0];
+    const popup = new mapboxgl.Popup({ offset: [0, -15] })
+      .setLngLat(feature.geometry.coordinates)
+      .setHTML(`<h2>${feature.properties.title}</h2>`)
+      .addTo(map)
+  })
 }
