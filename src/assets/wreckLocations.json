@@ -1,0 +1,533 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.856400,
+          7.385094
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "heianMaru",
+        "title": "Heian Maru",
+        "Average Depth": "15m",
+        "Max Depth": "20m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.840564,
+          7.392414
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "shinoharaSubmarine",
+        "title": "IJN Shinohara Submarine I-169",
+        "Average Depth": "35m",
+        "Max Depth": "43m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.820994,
+          7.391818
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "yamagiriMaru",
+        "title": "Yamagiri Maru",
+        "Average Depth": "25m",
+        "Max Depth": "33m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.848374,
+          7.386626
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "kenshoMaru",
+        "title": "Kensho Maru",
+        "Average Depth": "25m",
+        "Max Depth": "33m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.844255,
+          7.373518
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "kiyozumiMaru",
+        "title": "Kiyozumi Maru",
+        "Average Depth": "24m",
+        "Max Depth": "30m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.844255,
+          7.373518
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "patrolBoat34",
+        "title": "IJN Sutsuki Patrol Boat 34",
+        "Average Depth": "9m",
+        "Max Depth": "14m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.765891,
+          7.407735
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "shinkokuMaru",
+        "title": "Shinkoku Maru",
+        "Average Depth": "24m",
+        "Max Depth": "38m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.719543,
+          7.448503
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "fumizukiDestroyer",
+        "title": "IJN Fumizuki Destroyer",
+        "Average Depth": "35m",
+        "Max Depth": "43m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.644012,
+          7.338532
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "hanakawaMaru",
+        "title": "Hanakawa Maru",
+        "Average Depth": "33m",
+        "Max Depth": "25m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.857987,
+          7.373305
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "futagamiTug",
+        "title": "Futagami Hashima Tug",
+        "Average Depth": "20m",
+        "Max Depth": "33m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.859833,
+          7.374837
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "eissen761",
+        "title": "Eissen 761 Tug",
+        "Average Depth": "8m",
+        "Max Depth": "12m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.873094,
+          7.361558
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "emilyFlyingBoat",
+        "title": "Emily Flying Boat",
+        "Average Depth": "15m",
+        "Max Depth": "15m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.881033,
+          7.356663
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "a6mZeroFighter",
+        "title": "A6M Zero Fighter",
+        "Average Depth": "6m",
+        "Max Depth": "6m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.880260,
+          7.351088
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "bettyBomber",
+        "title": "Betty Bomber",
+        "Average Depth": "16m",
+        "Max Depth": "18m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.888157,
+          7.346363
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "fujikawaMaru",
+        "title": "Fujikawa Maru",
+        "Average Depth": "20m",
+        "Max Depth": "37m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.881248,
+          7.321037
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "unkaiMaru",
+        "title": "Unkai Maru",
+        "Average Depth": "30m",
+        "Max Depth": "40m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.868115,
+          7.312397
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "yubaeMaru",
+        "title": "Yubae Maru",
+        "Average Depth": "24m",
+        "Max Depth": "33m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.886312,
+          7.311886
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "goseiMaru",
+        "title": "Gosei Maru",
+        "Average Depth": "15m",
+        "Max Depth": "30m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.868802,
+          7.296902
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "sankisanMaru",
+        "title": "Sankisan Maru",
+        "Average Depth": "12m",
+        "Max Depth": "27m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.866742,
+          7.295881
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "amagisanMaru",
+        "title": "Amagisan Maru",
+        "Average Depth": "40m",
+        "Max Depth": "58m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.899787,
+          7.305075
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "rioDeJaneiroMaru",
+        "title": "Rio de Janeiro Maru",
+        "Average Depth": "22m",
+        "Max Depth": "30m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.914193,
+          7.386682
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "nippoMaru",
+        "title": "Nippo Maru",
+        "Average Depth": "33m",
+        "Max Depth": "47m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.913163,
+          7.375787
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "aikokuMaru",
+        "title": "Aikoku Maru",
+        "Average Depth": "45m",
+        "Max Depth": "64m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.909987,
+          7.372978
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "momokawaMaru",
+        "title": "Momokawa Maru",
+        "Average Depth": "33m",
+        "Max Depth": "43m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.912133,
+          7.372808
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "naganoMaru",
+        "title": "Nagano Maru",
+        "Average Depth": "50m",
+        "Max Depth": "64m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.914021,
+          7.371616
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "shotanMaru",
+        "title": "Shotan Maru",
+        "Average Depth": "45m",
+        "Max Depth": "58m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.910588,
+          7.370595
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "seikoMaru",
+        "title": "Seiko Maru",
+        "Average Depth": "35m",
+        "Max Depth": "50m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.908528,
+          7.369148
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "sanFranciscoMaru",
+        "title": "San Francisco Maru",
+        "Average Depth": "45m",
+        "Max Depth": "58m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.908528,
+          7.369148
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "hokuyoMaru",
+        "title": "Hokuyo Maru",
+        "Average Depth": "52m",
+        "Max Depth": "64m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.907927,
+          7.365998
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "hokiMaru",
+        "title": "Hoki Maru",
+        "Average Depth": "32m",
+        "Max Depth": "43m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.824755,
+          7.646626
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "ijnOite",
+        "title": "IJN Oite Destroyer",
+        "Average Depth": "58m",
+        "Max Depth": "62m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.850161,
+          7.306563
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "taihoMaru",
+        "title": "Taiho Maru",
+        "Average Depth": "35m",
+        "Max Depth": "44m"
+      }
+    },
+    {
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.892466,
+          7.409601
+        ]
+      },
+      "type": "Feature",
+      "properties": {
+        "id": "fujisanMaru",
+        "title": "Fujisan Maru",
+        "Average Depth": "45m",
+        "Max Depth": "60m"
+      }
+    }
+  ]
+}

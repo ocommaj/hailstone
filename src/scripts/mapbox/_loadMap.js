@@ -38,11 +38,8 @@ export default function Map() {
                1
              ],
             'sky-atmosphere-color': '#4589ff',
-            //'sky-atmosphere-halo-color': '#f1c21b',
             'sky-type': 'atmosphere',
             'sky-atmosphere-sun': [270, 65],
-               //'sky-opacity': .75,
-            //'sky-atmosphere-sun-intensity': 75
            }
        });
   });
