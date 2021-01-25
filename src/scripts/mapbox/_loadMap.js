@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
+import SunCalc from 'suncalc';
 import { restyleCursor, showMarkerPopup } from './_mapMarkerEvents';
 mapboxgl.accessToken = process.env.MB_TOKEN;
 
@@ -40,12 +41,21 @@ export default function Map() {
              ],
             'sky-atmosphere-color': '#4589ff',
             'sky-type': 'atmosphere',
-            'sky-atmosphere-sun': [270, 65],
+            'sky-atmosphere-sun': setSunPosition()
            }
        });
   });
 
   map.on('click', ({ point }) => showMarkerPopup(point, map))
   map.on('mousemove', ({ point }) => restyleCursor(point, map))
+
+  function setSunPosition() {
+    const { lat, lng } = map.getCenter()
+    const { sunrise } = SunCalc.getTimes( Date.now(), lat, lng );
+    const sunPos = SunCalc.getPosition(sunrise, lat, lng);
+    const sunAzimuth = 180 + (sunPos.azimuth * 180) / Math.PI;
+    const sunAltitude = 90 - (sunPos.altitude * 180) / Math.PI;
+    return [sunAzimuth, sunAltitude];
+  }
 
 }
