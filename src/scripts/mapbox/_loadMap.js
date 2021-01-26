@@ -11,7 +11,7 @@ export default function Map() {
     center: [151.83, 7.427],
     pitch: 75,
     bearing: 125,
-    style: 'mapbox://styles/jfo713/ckkcya24511r717ry3ok8vr9h'
+    style: 'mapbox://styles/jfo713/ckkddvzci04es17tej19qwxt7'
   })
 
   map.on('load', function () {

@@ -13,8 +13,8 @@
       "properties": {
         "id": "heianMaru",
         "title": "Heian Maru",
-        "Average Depth": "15m",
-        "Max Depth": "20m"
+        "averageDepth": "15m",
+        "maxDepth": "20m"
       }
     },
     {
@@ -29,8 +29,8 @@
       "properties": {
         "id": "shinoharaSubmarine",
         "title": "IJN Shinohara Submarine I-169",
-        "Average Depth": "35m",
-        "Max Depth": "43m"
+        "averageDepth": "35m",
+        "maxDepth": "43m"
       }
     },
     {
@@ -45,8 +45,8 @@
       "properties": {
         "id": "yamagiriMaru",
         "title": "Yamagiri Maru",
-        "Average Depth": "25m",
-        "Max Depth": "33m"
+        "averageDepth": "25m",
+        "maxDepth": "33m"
       }
     },
     {
@@ -61,8 +61,8 @@
       "properties": {
         "id": "kenshoMaru",
         "title": "Kensho Maru",
-        "Average Depth": "25m",
-        "Max Depth": "33m"
+        "averageDepth": "25m",
+        "maxDepth": "33m"
       }
     },
     {
@@ -77,8 +77,8 @@
       "properties": {
         "id": "kiyozumiMaru",
         "title": "Kiyozumi Maru",
-        "Average Depth": "24m",
-        "Max Depth": "30m"
+        "averageDepth": "24m",
+        "maxDepth": "30m"
       }
     },
     {
@@ -93,8 +93,8 @@
       "properties": {
         "id": "patrolBoat34",
         "title": "IJN Sutsuki Patrol Boat 34",
-        "Average Depth": "9m",
-        "Max Depth": "14m"
+        "averageDepth": "9m",
+        "maxDepth": "14m"
       }
     },
     {
@@ -109,8 +109,8 @@
       "properties": {
         "id": "shinkokuMaru",
         "title": "Shinkoku Maru",
-        "Average Depth": "24m",
-        "Max Depth": "38m"
+        "averageDepth": "24m",
+        "maxDepth": "38m"
       }
     },
     {
@@ -125,8 +125,8 @@
       "properties": {
         "id": "fumizukiDestroyer",
         "title": "IJN Fumizuki Destroyer",
-        "Average Depth": "35m",
-        "Max Depth": "43m"
+        "averageDepth": "35m",
+        "maxDepth": "43m"
       }
     },
     {
@@ -141,8 +141,8 @@
       "properties": {
         "id": "hanakawaMaru",
         "title": "Hanakawa Maru",
-        "Average Depth": "33m",
-        "Max Depth": "25m"
+        "averageDepth": "33m",
+        "maxDepth": "25m"
       }
     },
     {
@@ -157,8 +157,8 @@
       "properties": {
         "id": "futagamiTug",
         "title": "Futagami Hashima Tug",
-        "Average Depth": "20m",
-        "Max Depth": "33m"
+        "averageDepth": "20m",
+        "maxDepth": "33m"
       }
     },
     {
@@ -173,8 +173,8 @@
       "properties": {
         "id": "eissen761",
         "title": "Eissen 761 Tug",
-        "Average Depth": "8m",
-        "Max Depth": "12m"
+        "averageDepth": "8m",
+        "maxDepth": "12m"
       }
     },
     {
@@ -189,8 +189,8 @@
       "properties": {
         "id": "emilyFlyingBoat",
         "title": "Emily Flying Boat",
-        "Average Depth": "15m",
-        "Max Depth": "15m"
+        "averageDepth": "15m",
+        "maxDepth": "15m"
       }
     },
     {
@@ -205,8 +205,8 @@
       "properties": {
         "id": "a6mZeroFighter",
         "title": "A6M Zero Fighter",
-        "Average Depth": "6m",
-        "Max Depth": "6m"
+        "averageDepth": "6m",
+        "maxDepth": "6m"
       }
     },
     {
@@ -221,8 +221,8 @@
       "properties": {
         "id": "bettyBomber",
         "title": "Betty Bomber",
-        "Average Depth": "16m",
-        "Max Depth": "18m"
+        "averageDepth": "16m",
+        "maxDepth": "18m"
       }
     },
     {
@@ -237,8 +237,8 @@
       "properties": {
         "id": "fujikawaMaru",
         "title": "Fujikawa Maru",
-        "Average Depth": "20m",
-        "Max Depth": "37m"
+        "averageDepth": "20m",
+        "maxDepth": "37m"
       }
     },
     {
@@ -253,8 +253,8 @@
       "properties": {
         "id": "unkaiMaru",
         "title": "Unkai Maru",
-        "Average Depth": "30m",
-        "Max Depth": "40m"
+        "averageDepth": "30m",
+        "maxDepth": "40m"
       }
     },
     {
@@ -269,8 +269,8 @@
       "properties": {
         "id": "yubaeMaru",
         "title": "Yubae Maru",
-        "Average Depth": "24m",
-        "Max Depth": "33m"
+        "averageDepth": "24m",
+        "maxDepth": "33m"
       }
     },
     {
@@ -285,8 +285,8 @@
       "properties": {
         "id": "goseiMaru",
         "title": "Gosei Maru",
-        "Average Depth": "15m",
-        "Max Depth": "30m"
+        "averageDepth": "15m",
+        "maxDepth": "30m"
       }
     },
     {
@@ -301,8 +301,8 @@
       "properties": {
         "id": "sankisanMaru",
         "title": "Sankisan Maru",
-        "Average Depth": "12m",
-        "Max Depth": "27m"
+        "averageDepth": "12m",
+        "maxDepth": "27m"
       }
     },
     {
@@ -317,8 +317,8 @@
       "properties": {
         "id": "amagisanMaru",
         "title": "Amagisan Maru",
-        "Average Depth": "40m",
-        "Max Depth": "58m"
+        "averageDepth": "40m",
+        "maxDepth": "58m"
       }
     },
     {
@@ -333,8 +333,8 @@
       "properties": {
         "id": "rioDeJaneiroMaru",
         "title": "Rio de Janeiro Maru",
-        "Average Depth": "22m",
-        "Max Depth": "30m"
+        "averageDepth": "22m",
+        "maxDepth": "30m"
       }
     },
     {
@@ -349,8 +349,8 @@
       "properties": {
         "id": "nippoMaru",
         "title": "Nippo Maru",
-        "Average Depth": "33m",
-        "Max Depth": "47m"
+        "averageDepth": "33m",
+        "maxDepth": "47m"
       }
     },
     {
@@ -365,8 +365,8 @@
       "properties": {
         "id": "aikokuMaru",
         "title": "Aikoku Maru",
-        "Average Depth": "45m",
-        "Max Depth": "64m"
+        "averageDepth": "45m",
+        "maxDepth": "64m"
       }
     },
     {
@@ -381,8 +381,8 @@
       "properties": {
         "id": "momokawaMaru",
         "title": "Momokawa Maru",
-        "Average Depth": "33m",
-        "Max Depth": "43m"
+        "averageDepth": "33m",
+        "maxDepth": "43m"
       }
     },
     {
@@ -397,8 +397,8 @@
       "properties": {
         "id": "naganoMaru",
         "title": "Nagano Maru",
-        "Average Depth": "50m",
-        "Max Depth": "64m"
+        "averageDepth": "50m",
+        "maxDepth": "64m"
       }
     },
     {
@@ -413,8 +413,8 @@
       "properties": {
         "id": "shotanMaru",
         "title": "Shotan Maru",
-        "Average Depth": "45m",
-        "Max Depth": "58m"
+        "averageDepth": "45m",
+        "maxDepth": "58m"
       }
     },
     {
@@ -429,8 +429,8 @@
       "properties": {
         "id": "seikoMaru",
         "title": "Seiko Maru",
-        "Average Depth": "35m",
-        "Max Depth": "50m"
+        "averageDepth": "35m",
+        "maxDepth": "50m"
       }
     },
     {
@@ -445,8 +445,8 @@
       "properties": {
         "id": "sanFranciscoMaru",
         "title": "San Francisco Maru",
-        "Average Depth": "45m",
-        "Max Depth": "58m"
+        "averageDepth": "45m",
+        "maxDepth": "58m"
       }
     },
     {
@@ -461,8 +461,8 @@
       "properties": {
         "id": "hokuyoMaru",
         "title": "Hokuyo Maru",
-        "Average Depth": "52m",
-        "Max Depth": "64m"
+        "averageDepth": "52m",
+        "maxDepth": "64m"
       }
     },
     {
@@ -477,8 +477,8 @@
       "properties": {
         "id": "hokiMaru",
         "title": "Hoki Maru",
-        "Average Depth": "32m",
-        "Max Depth": "43m"
+        "averageDepth": "32m",
+        "maxDepth": "43m"
       }
     },
     {
@@ -493,8 +493,8 @@
       "properties": {
         "id": "ijnOite",
         "title": "IJN Oite Destroyer",
-        "Average Depth": "58m",
-        "Max Depth": "62m"
+        "averageDepth": "58m",
+        "maxDepth": "62m"
       }
     },
     {
@@ -509,8 +509,8 @@
       "properties": {
         "id": "taihoMaru",
         "title": "Taiho Maru",
-        "Average Depth": "35m",
-        "Max Depth": "44m"
+        "averageDepth": "35m",
+        "maxDepth": "44m"
       }
     },
     {
@@ -525,8 +525,8 @@
       "properties": {
         "id": "fujisanMaru",
         "title": "Fujisan Maru",
-        "Average Depth": "45m",
-        "Max Depth": "60m"
+        "averageDepth": "45m",
+        "maxDepth": "60m"
       }
     }
   ]

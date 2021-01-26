@@ -13,7 +13,9 @@ export function showMarkerPopup(point, map) {
     closeButton: false,
   })
     .setLngLat(feature.geometry.coordinates)
-    .setHTML(`<h2>${feature.properties.title}</h2>`)
+    .setHTML(`
+      <h2>${feature.properties.title}</h2>
+      `)
     .addTo(map)
 }
 
