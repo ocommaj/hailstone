@@ -15,6 +15,7 @@ export function showMarkerPopup(point, map) {
     .setLngLat(feature.geometry.coordinates)
     .setHTML(`
       <h2>${feature.properties.title}</h2>
+      <h3>Max Depth: ${feature.properties.maxDepth}</h3>
       `)
     .addTo(map)
 }
