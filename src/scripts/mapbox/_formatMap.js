@@ -28,7 +28,6 @@ function addTerrainSource(map) {
         url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
         tileSize: 512,
         maxzoom: 16,
-        minzoom: 11,
     })
     map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 }
