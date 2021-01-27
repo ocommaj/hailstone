@@ -14,7 +14,9 @@
         "id": "heianMaru",
         "title": "Heian Maru",
         "averageDepth": "15m",
-        "maxDepth": "20m"
+        "maxDepth": "20m",
+        "length": 155,
+        "isGreatestHit": true
       }
     },
     {
@@ -30,7 +32,9 @@
         "id": "shinoharaSubmarine",
         "title": "IJN Shinohara Submarine I-169",
         "averageDepth": "35m",
-        "maxDepth": "43m"
+        "maxDepth": "43m",
+        "length": 98,
+        "isGreatestHit": false
       }
     },
     {
@@ -46,7 +50,9 @@
         "id": "yamagiriMaru",
         "title": "Yamagiri Maru",
         "averageDepth": "25m",
-        "maxDepth": "33m"
+        "maxDepth": "33m",
+        "length": 133,
+        "isGreatestHit": false
       }
     },
     {
@@ -62,7 +68,9 @@
         "id": "kenshoMaru",
         "title": "Kensho Maru",
         "averageDepth": "25m",
-        "maxDepth": "33m"
+        "maxDepth": "33m",
+        "length": 117,
+        "isGreatestHit": true
       }
     },
     {
@@ -78,7 +86,9 @@
         "id": "kiyozumiMaru",
         "title": "Kiyozumi Maru",
         "averageDepth": "24m",
-        "maxDepth": "30m"
+        "maxDepth": "30m",
+        "length": 138,
+        "isGreatestHit": false
       }
     },
     {
@@ -94,7 +104,9 @@
         "id": "patrolBoat34",
         "title": "IJN Sutsuki Patrol Boat 34",
         "averageDepth": "9m",
-        "maxDepth": "14m"
+        "maxDepth": "14m",
+        "length": 84,
+        "isGreatestHit": false
       }
     },
     {
@@ -110,7 +122,9 @@
         "id": "shinkokuMaru",
         "title": "Shinkoku Maru",
         "averageDepth": "24m",
-        "maxDepth": "38m"
+        "maxDepth": "38m",
+        "length": 152,
+        "isGreatestHit": true
       }
     },
     {
@@ -126,7 +140,9 @@
         "id": "fumizukiDestroyer",
         "title": "IJN Fumizuki Destroyer",
         "averageDepth": "35m",
-        "maxDepth": "43m"
+        "maxDepth": "43m",
+        "length": 97,
+        "isGreatestHit": false
       }
     },
     {
@@ -142,7 +158,9 @@
         "id": "hanakawaMaru",
         "title": "Hanakawa Maru",
         "averageDepth": "33m",
-        "maxDepth": "25m"
+        "maxDepth": "25m",
+        "length": 112,
+        "isGreatestHit": false
       }
     },
     {
@@ -158,7 +176,9 @@
         "id": "futagamiTug",
         "title": "Futagami Hashima Tug",
         "averageDepth": "20m",
-        "maxDepth": "33m"
+        "maxDepth": "33m",
+        "length": 26,
+        "isGreatestHit": false
       }
     },
     {
@@ -174,7 +194,9 @@
         "id": "eissen761",
         "title": "Eissen 761 Tug",
         "averageDepth": "8m",
-        "maxDepth": "12m"
+        "maxDepth": "12m",
+        "length": 24,
+        "isGreatestHit": false
       }
     },
     {
@@ -190,7 +212,10 @@
         "id": "emilyFlyingBoat",
         "title": "Emily Flying Boat",
         "averageDepth": "15m",
-        "maxDepth": "15m"
+        "maxDepth": "15m",
+        "isGreatestHit": false,
+        "type": "aircraft",
+        "wingspan": 38
       }
     },
     {
@@ -206,7 +231,10 @@
         "id": "a6mZeroFighter",
         "title": "A6M Zero Fighter",
         "averageDepth": "6m",
-        "maxDepth": "6m"
+        "maxDepth": "6m",
+        "isGreatestHit": false,
+        "type": "aircraft",
+        "wingspan": 12
       }
     },
     {
@@ -222,7 +250,10 @@
         "id": "bettyBomber",
         "title": "Betty Bomber",
         "averageDepth": "16m",
-        "maxDepth": "18m"
+        "maxDepth": "18m",
+        "isGreatestHit": false,
+        "type": "aircraft",
+        "wingspan": 25
       }
     },
     {
@@ -238,7 +269,9 @@
         "id": "fujikawaMaru",
         "title": "Fujikawa Maru",
         "averageDepth": "20m",
-        "maxDepth": "37m"
+        "maxDepth": "37m",
+        "length": 133,
+        "isGreatestHit": true
       }
     },
     {
@@ -254,7 +287,9 @@
         "id": "unkaiMaru",
         "title": "Unkai Maru",
         "averageDepth": "30m",
-        "maxDepth": "40m"
+        "maxDepth": "40m",
+        "length": 101,
+        "isGreatestHit": false
       }
     },
     {
@@ -270,7 +305,9 @@
         "id": "yubaeMaru",
         "title": "Yubae Maru",
         "averageDepth": "24m",
-        "maxDepth": "33m"
+        "maxDepth": "33m",
+        "length": 93,
+        "isGreatestHit": false
       }
     },
     {
@@ -286,7 +323,9 @@
         "id": "goseiMaru",
         "title": "Gosei Maru",
         "averageDepth": "15m",
-        "maxDepth": "30m"
+        "maxDepth": "30m",
+        "length": 83,
+        "isGreatestHit": false
       }
     },
     {
@@ -302,7 +341,9 @@
         "id": "sankisanMaru",
         "title": "Sankisan Maru",
         "averageDepth": "12m",
-        "maxDepth": "27m"
+        "maxDepth": "27m",
+        "length": 115,
+        "isGreatestHit": true
       }
     },
     {
@@ -318,7 +359,9 @@
         "id": "amagisanMaru",
         "title": "Amagisan Maru",
         "averageDepth": "40m",
-        "maxDepth": "58m"
+        "maxDepth": "58m",
+        "length": 137,
+        "isGreatestHit": false
       }
     },
     {
@@ -334,7 +377,9 @@
         "id": "rioDeJaneiroMaru",
         "title": "Rio de Janeiro Maru",
         "averageDepth": "22m",
-        "maxDepth": "30m"
+        "maxDepth": "30m",
+        "length": 141,
+        "isGreatestHit": true
       }
     },
     {
@@ -350,7 +395,9 @@
         "id": "nippoMaru",
         "title": "Nippo Maru",
         "averageDepth": "33m",
-        "maxDepth": "47m"
+        "maxDepth": "47m",
+        "length": 107,
+        "isGreatestHit": true
       }
     },
     {
@@ -366,7 +413,9 @@
         "id": "aikokuMaru",
         "title": "Aikoku Maru",
         "averageDepth": "45m",
-        "maxDepth": "64m"
+        "maxDepth": "64m",
+        "length": 161,
+        "isGreatestHit": false
       }
     },
     {
@@ -382,7 +431,9 @@
         "id": "momokawaMaru",
         "title": "Momokawa Maru",
         "averageDepth": "33m",
-        "maxDepth": "43m"
+        "maxDepth": "43m",
+        "length": 107,
+        "isGreatestHit": false
       }
     },
     {
@@ -398,7 +449,9 @@
         "id": "naganoMaru",
         "title": "Nagano Maru",
         "averageDepth": "50m",
-        "maxDepth": "64m"
+        "maxDepth": "64m",
+        "length": 105,
+        "isGreatestHit": false
       }
     },
     {
@@ -414,7 +467,9 @@
         "id": "shotanMaru",
         "title": "Shotan Maru",
         "averageDepth": "45m",
-        "maxDepth": "58m"
+        "maxDepth": "58m",
+        "length": 86,
+        "isGreatestHit": false
       }
     },
     {
@@ -430,7 +485,9 @@
         "id": "seikoMaru",
         "title": "Seiko Maru",
         "averageDepth": "35m",
-        "maxDepth": "50m"
+        "maxDepth": "50m",
+        "length": 120,
+        "isGreatestHit": false
       }
     },
     {
@@ -446,7 +503,9 @@
         "id": "sanFranciscoMaru",
         "title": "San Francisco Maru",
         "averageDepth": "45m",
-        "maxDepth": "58m"
+        "maxDepth": "58m",
+        "length": 117,
+        "isGreatestHit": true
       }
     },
     {
@@ -462,7 +521,9 @@
         "id": "hokuyoMaru",
         "title": "Hokuyo Maru",
         "averageDepth": "52m",
-        "maxDepth": "64m"
+        "maxDepth": "64m",
+        "length":109,
+        "isGreatestHit": false
       }
     },
     {
@@ -478,7 +539,9 @@
         "id": "hokiMaru",
         "title": "Hoki Maru",
         "averageDepth": "32m",
-        "maxDepth": "43m"
+        "maxDepth": "43m",
+        "length": 137,
+        "isGreatestHit": false
       }
     },
     {
@@ -494,7 +557,9 @@
         "id": "ijnOite",
         "title": "IJN Oite Destroyer",
         "averageDepth": "58m",
-        "maxDepth": "62m"
+        "maxDepth": "62m",
+        "length": 99,
+        "isGreatestHit": false
       }
     },
     {
@@ -510,7 +575,9 @@
         "id": "taihoMaru",
         "title": "Taiho Maru",
         "averageDepth": "35m",
-        "maxDepth": "44m"
+        "maxDepth": "44m",
+        "length": 99,
+        "isGreatestHit": false
       }
     },
     {
@@ -526,7 +593,9 @@
         "id": "fujisanMaru",
         "title": "Fujisan Maru",
         "averageDepth": "45m",
-        "maxDepth": "60m"
+        "maxDepth": "60m",
+        "length": 149,
+        "isGreatestHit": false
       }
     }
   ]
