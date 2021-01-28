@@ -7,8 +7,7 @@ export const initialConfigs = {
   bearing: 125,
   maxZoom: 16,
   minZoom: 11,
-  //style: 'mapbox://styles/jfo713/ckkddvzci04es17tej19qwxt7'
-  style: 'mapbox://styles/jfo713/ckkfsmkjx01jw17qgzc3kypdh',
+  style: 'mapbox://styles/jfo713/ckkhci2wy17ls17o1mk9aj34d',
 }
 
 const Config = {

@@ -16,7 +16,8 @@
         "averageDepth": "15m",
         "maxDepth": "20m",
         "length": 155,
-        "isGreatestHit": true
+        "isGreatestHit": true,
+        "vesselType": "Submarine Tender"
       }
     },
     {
@@ -34,7 +35,8 @@
         "averageDepth": "35m",
         "maxDepth": "43m",
         "length": 98,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Type KD6a Submarine"
       }
     },
     {
@@ -52,7 +54,9 @@
         "averageDepth": "25m",
         "maxDepth": "33m",
         "length": 133,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "14\" Shells & building materials"
       }
     },
     {
@@ -70,7 +74,9 @@
         "averageDepth": "25m",
         "maxDepth": "33m",
         "length": 117,
-        "isGreatestHit": true
+        "isGreatestHit": true,
+        "vesselType": "Cargo",
+        "cargo": "Unladen, under repair"
       }
     },
     {
@@ -88,7 +94,9 @@
         "averageDepth": "24m",
         "maxDepth": "30m",
         "length": 138,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Unladen, under repair"
       }
     },
     {
@@ -106,7 +114,8 @@
         "averageDepth": "9m",
         "maxDepth": "14m",
         "length": 84,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Patrol Boat"
       }
     },
     {
@@ -124,7 +133,8 @@
         "averageDepth": "24m",
         "maxDepth": "38m",
         "length": 152,
-        "isGreatestHit": true
+        "isGreatestHit": true,
+        "vesselType": "Fleet Oiler"
       }
     },
     {
@@ -142,7 +152,8 @@
         "averageDepth": "35m",
         "maxDepth": "43m",
         "length": 97,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Destroyer"
       }
     },
     {
@@ -160,7 +171,9 @@
         "averageDepth": "33m",
         "maxDepth": "25m",
         "length": 112,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Cement, troop transport"
       }
     },
     {
@@ -178,7 +191,8 @@
         "averageDepth": "20m",
         "maxDepth": "33m",
         "length": 26,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "625 Ton Salvage Tug"
       }
     },
     {
@@ -196,7 +210,8 @@
         "averageDepth": "8m",
         "maxDepth": "12m",
         "length": 24,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "300 Ton Harbor Tug"
       }
     },
     {
@@ -214,7 +229,7 @@
         "averageDepth": "15m",
         "maxDepth": "15m",
         "isGreatestHit": false,
-        "type": "aircraft",
+        "vesselType": "Aircraft",
         "wingspan": 38
       }
     },
@@ -233,7 +248,7 @@
         "averageDepth": "6m",
         "maxDepth": "6m",
         "isGreatestHit": false,
-        "type": "aircraft",
+        "vesselType": "Aircraft",
         "wingspan": 12
       }
     },
@@ -252,7 +267,7 @@
         "averageDepth": "16m",
         "maxDepth": "18m",
         "isGreatestHit": false,
-        "type": "aircraft",
+        "vesselType": "Aircraft",
         "wingspan": 25
       }
     },
@@ -271,7 +286,9 @@
         "averageDepth": "20m",
         "maxDepth": "37m",
         "length": 133,
-        "isGreatestHit": true
+        "isGreatestHit": true,
+        "vesselType": "Cargo",
+        "cargo": "Aircraft parts & ordnance"
       }
     },
     {
@@ -289,7 +306,9 @@
         "averageDepth": "30m",
         "maxDepth": "40m",
         "length": 101,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Infantry baggage"
       }
     },
     {
@@ -307,7 +326,9 @@
         "averageDepth": "24m",
         "maxDepth": "33m",
         "length": 93,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Naval parts & garrison supplies"
       }
     },
     {
@@ -325,7 +346,9 @@
         "averageDepth": "15m",
         "maxDepth": "30m",
         "length": 83,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Torpedos, shells, fuel drums"
       }
     },
     {
@@ -343,7 +366,9 @@
         "averageDepth": "12m",
         "maxDepth": "27m",
         "length": 115,
-        "isGreatestHit": true
+        "isGreatestHit": true,
+        "vesselType": "Cargo",
+        "cargo": "Truck frames & aircraft parts"
       }
     },
     {
@@ -361,7 +386,9 @@
         "averageDepth": "40m",
         "maxDepth": "58m",
         "length": 137,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Trucks, aircraft parts"
       }
     },
     {
@@ -379,7 +406,8 @@
         "averageDepth": "22m",
         "maxDepth": "30m",
         "length": 141,
-        "isGreatestHit": true
+        "isGreatestHit": true,
+        "vesselType": "Troop Transport"
       }
     },
     {
@@ -397,7 +425,9 @@
         "averageDepth": "33m",
         "maxDepth": "47m",
         "length": 107,
-        "isGreatestHit": true
+        "isGreatestHit": true,
+        "vesselType": "Cargo",
+        "cargo": "Field artillery & ammunition"
       }
     },
     {
@@ -415,7 +445,8 @@
         "averageDepth": "45m",
         "maxDepth": "64m",
         "length": 161,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Troop Transport"
       }
     },
     {
@@ -433,7 +464,9 @@
         "averageDepth": "33m",
         "maxDepth": "43m",
         "length": 107,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Trucks & aircraft parts"
       }
     },
     {
@@ -451,7 +484,9 @@
         "averageDepth": "50m",
         "maxDepth": "64m",
         "length": 105,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Trucks, bulldozer, tarmac roller"
       }
     },
     {
@@ -469,7 +504,9 @@
         "averageDepth": "45m",
         "maxDepth": "58m",
         "length": 86,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Trucks, ammunition, fuel drums"
       }
     },
     {
@@ -487,7 +524,9 @@
         "averageDepth": "35m",
         "maxDepth": "50m",
         "length": 120,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Torpedos, feild artillery"
       }
     },
     {
@@ -505,7 +544,9 @@
         "averageDepth": "45m",
         "maxDepth": "58m",
         "length": 117,
-        "isGreatestHit": true
+        "isGreatestHit": true,
+        "vesselType": "Cargo",
+        "cargo": "Trucks, tanks, munitions"
       }
     },
     {
@@ -523,7 +564,9 @@
         "averageDepth": "52m",
         "maxDepth": "64m",
         "length":109,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Building supplies"
       }
     },
     {
@@ -541,7 +584,9 @@
         "averageDepth": "32m",
         "maxDepth": "43m",
         "length": 137,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Trucks, tractor, bulldozer"
       }
     },
     {
@@ -559,7 +604,8 @@
         "averageDepth": "58m",
         "maxDepth": "62m",
         "length": 99,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Destroyer"
       }
     },
     {
@@ -577,7 +623,9 @@
         "averageDepth": "35m",
         "maxDepth": "44m",
         "length": 99,
-        "isGreatestHit": false
+        "isGreatestHit": false,
+        "vesselType": "Cargo",
+        "cargo": "Fuel drums & landing craft"
       }
     },
     {
@@ -595,7 +643,8 @@
         "averageDepth": "45m",
         "maxDepth": "60m",
         "length": 149,
-        "isGreatestHit": false
+        "isGreatestHit": true,
+        "vesselType": "Fuel Tanker",
       }
     }
   ]
