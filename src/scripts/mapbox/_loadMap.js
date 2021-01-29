@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl/dist/mapbox-gl';
 import { initialConfigs, render3D } from './_formatMap';
-import { restyleCursor, showMarkerPopup } from './_mapMarkerEvents';
+import { restyleCursor, showMarkerModal } from './_mapMarkerEvents';
 mapboxgl.accessToken = process.env.MB_TOKEN;
 
 export default function Map() {
@@ -8,7 +8,7 @@ export default function Map() {
   const map = new mapboxgl.Map({ container, ...initialConfigs })
 
   map.on('load', () => render3D(map));
-  map.on('click', ({ point }) => showMarkerPopup(point, map))
+  map.on('click', ({ point }) => showMarkerModal(point, map))
   map.on('mousemove', ({ point }) => restyleCursor(point, map))
 
 }

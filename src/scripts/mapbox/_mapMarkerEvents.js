@@ -1,28 +1,26 @@
-import { Popup } from 'mapbox-gl/dist/mapbox-gl';
+import WreckModal from '../modals';
 
-export function showMarkerPopup(point, map) {
-  const features = map.queryRenderedFeatures(point, {
-    layers: [ 'wreckLocations' ]
-  });
+const wreckLabels = [
+  'wreckLocations',
+  'wreckNames',
+  'depths_avg',
+  'depths_max',
+  'vesselLength',
+  'vesselType'
+]
+
+export function showMarkerModal(point, map) {
+  const features = map.queryRenderedFeatures(point, { layers: wreckLabels });
 
   if (!features.length) return;
   const feature = features[0];
-  const popup = new Popup({
-    offset: [0, -15],
-    focusAfterOpen: false,
-    closeButton: false,
-  })
-    .setLngLat(feature.geometry.coordinates)
-    .setHTML(`
-      <h2>${feature.properties.title}</h2>
-      <h3>Max Depth: ${feature.properties.maxDepth}</h3>
-      `)
-    .addTo(map)
+  const wreck = feature.properties;
+
+  console.dir(point)
+  WreckModal(wreck, point);
 }
 
 export function restyleCursor(point, map) {
-  const features = map.queryRenderedFeatures(point, {
-    layers: [ 'wreckLocations' ]
-  });
+  const features = map.queryRenderedFeatures(point, { layers: wreckLabels });
   map.getCanvas().style.cursor = features.length ? 'pointer' : '';
 }

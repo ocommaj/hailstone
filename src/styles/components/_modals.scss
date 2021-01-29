@@ -1,0 +1,26 @@
+.modal {
+  background-color: $gray-90-30;
+  backdrop-filter: blur(1rem);
+  -webkit-backdrop-filter: blur(1rem);
+  border: outset .2rem $gray-90;
+  border-radius: 1rem;
+  padding: 1rem;
+  padding-top: 0;
+
+  position: absolute;
+  height: calc(100vh - 6rem);
+  width: calc(25vw);
+  top: 3rem;
+  left: 3rem;
+
+  pointer-events: all;
+
+  * {
+    opacity: 0;
+  }
+
+  p {
+    font-size: 1rem;
+    color: $gray-30;
+  }
+}
