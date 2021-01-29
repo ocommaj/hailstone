@@ -43,6 +43,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "firebase": "^8.2.4",
     "gsap": "^3.6.0",
     "mapbox-gl": "^2.0.1",
     "suncalc": "^1.8.0"

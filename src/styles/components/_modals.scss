@@ -13,6 +13,9 @@
   top: 3rem;
   left: 3rem;
 
+  display: flex;
+  flex-direction: column;
+
   pointer-events: all;
 
   * {
