@@ -1,26 +1,10 @@
-.mapboxgl-popup {
-  .mapboxgl-popup-content {
-    background-color: $gray-90-30;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(.5rem);
-    border: outset 2px $gray-90;
-    padding: .5rem;
-    h2, h3 {
-      font-family: 'Big Shoulders Stencil Text', 'Helvetica';
-      color: $gray-10;
-      margin: 0;
-      margin-bottom: .5rem;
-    }
-  }
-
-  .mapboxgl-popup-tip {
-    border-top-color: $gray-90 !important;
-  }
-}
-
 .mapboxgl-ctrl.mapboxgl-ctrl-attrib {
   background-color: hsla(0,0%,100%,0) !important;
   * {
     color: $gray-30 !important;
+  }
+
+  svg {
+    fill: $gray-30 !important;
   }
 }

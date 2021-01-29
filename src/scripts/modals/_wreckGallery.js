@@ -1,4 +1,4 @@
-import { revealModal } from '../animations'
+import { modalAnimations } from '../animations'
 
 export default function wreckGallery(vessel, fromPoint) {
   const { id, title } = vessel;
@@ -17,7 +17,7 @@ export default function wreckGallery(vessel, fromPoint) {
   modal.id = modalId;
 
   modalWrapper.appendChild(modal);
-  revealModal(modal, fromPoint)
+  modalAnimations.reveal(modal, fromPoint);
 
   document.addEventListener('click', removeModal, true);
 
@@ -25,6 +25,12 @@ export default function wreckGallery(vessel, fromPoint) {
     if (!modal.contains(e.target)) {
       modalWrapper.removeChild(modal);
       document.removeEventListener('click', removeModal, true);
+
+      /*modalAnimations.collapse(modal, onComplete)
+      function onComplete() {
+        modalWrapper.removeChild(modal);
+        document.removeEventListener('click', removeModal, true);
+      }*/
     }
   }
 }

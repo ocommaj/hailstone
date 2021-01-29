@@ -15,8 +15,6 @@ export function showMarkerModal(point, map) {
   if (!features.length) return;
   const feature = features[0];
   const wreck = feature.properties;
-
-  console.dir(point)
   WreckModal(wreck, point);
 }
 

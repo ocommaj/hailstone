@@ -1,2 +1,2 @@
-import revealModal from './_revealModal';
-export { revealModal }
+import modalAnimations from './_modal';
+export { modalAnimations }
