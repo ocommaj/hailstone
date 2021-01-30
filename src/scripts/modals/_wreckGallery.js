@@ -11,10 +11,16 @@ export default function wreckGallery(vessel, fromPoint) {
 
   loadGalleryFiles(id, (url) => createImageElement(url))
 
-  modalWrapper.appendChild(modal);
-  modalAnimations.reveal(modal, fromPoint);
+  this.id = modalId;
+  this.reveal = revealModal;
 
   document.addEventListener('click', removeModal, true);
+
+  function revealModal() {
+    modalWrapper.appendChild(modal);
+    modalAnimations.reveal(modal, fromPoint);
+    window.activeModalId = modal.id;
+  }
 
   function removeModal(e) {
     if (!modal.contains(e.target)) {

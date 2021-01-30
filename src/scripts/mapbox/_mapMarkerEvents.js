@@ -15,7 +15,8 @@ export function showMarkerModal(point, map) {
   if (!features.length) return;
   const feature = features[0];
   const wreck = feature.properties;
-  WreckModal(wreck, point);
+  const modal = new WreckModal(wreck, point);
+  modal.reveal()
 }
 
 export function restyleCursor(point, map) {
