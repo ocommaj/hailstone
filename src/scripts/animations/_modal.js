@@ -20,7 +20,7 @@ function reveal(element, fromPoint) {
 
   const tl = gsap.timeline({ defaults: tlDefaults })
     .from(element, { x: deltaX, y: deltaY, height: 0, width: 0, opacity: 0 })
-    .to(element.children, { opacity: 1 });
+    .from(element.children, { opacity: 0 });
 }
 
 function collapse(element, onComplete) {

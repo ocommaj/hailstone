@@ -1,22 +1,13 @@
 import { modalAnimations } from '../animations'
 
 export default function wreckGallery(vessel, fromPoint) {
-  const { id, title } = vessel;
-  const modalId = `${id}_modal`;
+  const { id } = vessel;
   const modalWrapper = document.getElementById("modalWrapper");
+  const modalId = `${id}_modal`;
   const modal = document.createElement("div");
-  const titleLine = document.createElement("h1");
-  const titleText = document.createTextNode(title);
-
-  titleLine.appendChild(titleText);
-  modal.appendChild(titleLine);
   modal.classList.add('modal');
   modal.id = modalId;
-
-  //const testContent = document.createElement("p");
-  //const contentText = document.createTextNode('This is some text')
-  //testContent.appendChild(contentText);
-  //modal.appendChild(testContent);
+  modal.appendChild( ModalHeader(vessel) );
 
   loadGalleryFiles(id, (url) => createImageElement(url))
 
@@ -43,8 +34,32 @@ export default function wreckGallery(vessel, fromPoint) {
     img.classList.add('modalGalleryImg');
     img.src = url;
     img.style.opacity = 1;
-    modal.appendChild(img)
+    modal.appendChild(img);
   }
+}
+
+function ModalHeader(vessel) {
+  const { title, maxDepth, length=null, wingspan=null } = vessel;
+  const header = document.createElement("div");
+  const subheadWrapper = document.createElement("div");
+  const headline = document.createElement("h1");
+  const depthSubhead = document.createElement("h2");
+  const lengthSubhead = document.createElement("h2");
+  const titleText = document.createTextNode(title);
+  const depthSubtext = document.createTextNode(`Depth: 10-${maxDepth}`);
+  const lengthSubtext = document
+    .createTextNode(`Length: ${length || wingspan}m`)
+
+  header.classList.add('modalHeader');
+  subheadWrapper.classList.add('subheadWrapper');
+  headline.appendChild(titleText);
+  depthSubhead.appendChild(depthSubtext);
+  lengthSubhead.appendChild(lengthSubtext);
+  subheadWrapper.appendChild(depthSubhead);
+  subheadWrapper.appendChild(lengthSubhead);
+  header.appendChild(headline);
+  header.appendChild(subheadWrapper);
+  return header;
 }
 
 function loadGalleryFiles(id, domCallback) {

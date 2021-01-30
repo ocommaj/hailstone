@@ -10,8 +10,6 @@ const wreckLabels = [
 ]
 
 export function showMarkerModal(point, map) {
-  const directoryName = 'yamagiriMaru'
-  window.firebaseClient.loadGallery({ directoryName })
   const features = map.queryRenderedFeatures(point, { layers: wreckLabels });
 
   if (!features.length) return;

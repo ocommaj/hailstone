@@ -71,10 +71,8 @@ function loadGallery({ directoryName, domCallback, refRoot='publicAssets' }) {
   listRef.list()
     .then((res) => {
       res.items.forEach((itemRef) => {
-        itemRef.getDownloadURL().then((url) => {
-          console.log(url)
-          domCallback(url) 
-        })
+        itemRef.getDownloadURL()
+          .then((url) => domCallback(url))
       })
     }).catch((error) => console.error(error))
 }
