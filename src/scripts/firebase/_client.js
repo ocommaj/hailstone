@@ -24,7 +24,7 @@ export default function FirebaseClient() {
 function anonymousLogin() {
   firebase.auth().signInAnonymously()
     .then(() => {
-      console.log('anonymous user signed in ok')
+      //console.log('anonymous user signed in ok')
     })
     .catch((error) => {
       const errorCode = error.code;

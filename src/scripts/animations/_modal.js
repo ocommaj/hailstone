@@ -7,7 +7,8 @@ const tlDefaults = {
 
 const animations = {
   reveal,
-  collapse
+  collapse,
+  replace
 }
 
 export default animations;
@@ -26,5 +27,12 @@ function reveal(element, fromPoint) {
 function collapse(element, onComplete) {
   const tl = gsap.timeline({ onComplete, defaults: tlDefaults })
     .to(element.children, { opacity: 0, duration: .4 })
-    .to(element, { height: 0 }, '<.3' );
+    .to(element, { height: 0 }, '<.3' )
+    .to(element, { opacity: 0, duration: .6 }, '<');
+}
+
+function replace(incoming, outgoing) {
+  const tl = gsap.timeline({ defaults: tlDefaults })
+    .to(outgoing, { opacity: 0, duration: .4 })
+    .from(incoming, { opacity: 0, duration: .4 }, '<.2')
 }

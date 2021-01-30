@@ -45,13 +45,15 @@
   }
 
   .modalHeader {
-    //display: flex;
-    //justify-content: space-between;
     margin-bottom: 1.25rem;
   }
 
   .subheadWrapper {
     display: flex;
+
+    .label {
+      color: $gray-50;
+    }
   }
 
 }
