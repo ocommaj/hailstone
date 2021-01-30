@@ -40,7 +40,6 @@ export default function wreckGallery(vessel) {
     const img = document.createElement('img');
     img.classList.add('modalGalleryImg');
     img.src = url;
-    img.style.opacity = 1;
     modal.appendChild(img);
   }
 }
