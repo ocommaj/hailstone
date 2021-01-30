@@ -6,10 +6,13 @@ export default function wreckGallery(vessel) {
   const modalWrapper = document.getElementById("modalWrapper");
   const modalId = `${id}_modal`;
   const modal = document.createElement("div");
+  const gallery = document.createElement("div");
 
+  gallery.classList.add('gallery');
   modal.classList.add('modal');
   modal.id = modalId;
   modal.appendChild( HeadlineElements(vessel) );
+  modal.appendChild( gallery );
 
   loadGalleryFiles(id, (url) => createImageElement(url))
 
@@ -40,7 +43,7 @@ export default function wreckGallery(vessel) {
     const img = document.createElement('img');
     img.classList.add('modalGalleryImg');
     img.src = url;
-    modal.appendChild(img);
+    gallery.appendChild(img);
   }
 }
 

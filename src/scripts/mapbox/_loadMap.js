@@ -10,5 +10,4 @@ export default function Map() {
   map.on('load', () => config.render3D(map));
   map.on('click', ({ point }) => mapEvents.clickHandler(point, map));
   map.on('mousemove', ({ point }) => mapEvents.moveHandler(point, map));
-
 }
