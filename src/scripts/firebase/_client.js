@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
+import { getGalleryImageRecords } from './_firestoreQueries';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -20,8 +21,8 @@ export default function FirebaseClient() {
 
   this.db = firebase.firestore();
   this.uploader = uploader;
-  this.loadGallery = loadGallery;
-  this.queryGalleryDB = queryGalleryDB;
+  this.getGalleryImageRecords = getGalleryImageRecords;
+  this.loadImagesFromDB = loadImagesFromDB;
 }
 
 function anonymousLogin() {
@@ -68,31 +69,16 @@ function uploader(e) {
   )
 }
 
-function queryGalleryDB({ gallery, domCallback, rootDB='wreckGalleries' }) {
-  const dbRef = this.db.collection(rootDB).doc(gallery).collection('images');
+async function loadImagesFromDB({ gallery, domCallback }) {
+  const imageRecords = await this.getGalleryImageRecords({ gallery })
+  for (const [imgId, imgRecord] of Object.entries(imageRecords)) {
+    loadImageElement({ imgId, imgRecord, domCallback })
+  }
 
-  dbRef.get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-        const imgPath = doc.data().fullPath;
-        loadImage({ imgPath, domCallback })
-      })
-    })
-}
-
-function loadImage({ imgPath, domCallback }) {
-  const storageRef = firebase.storage().ref(imgPath);
-  storageRef.getDownloadURL().then(url => domCallback(url))
-}
-
-function loadGallery({ directoryName, domCallback, refRoot='publicAssets' }) {
-  const storageRef = firebase.storage().ref(refRoot)
-  const listRef = storageRef.child(directoryName)
-  listRef.list()
-    .then((res) => {
-      res.items.forEach((itemRef) => {
-        itemRef.getDownloadURL()
-          .then((url) => domCallback(url))
-      })
-    }).catch((error) => console.error(error))
+  function loadImageElement({ imgId, imgRecord, domCallback }) {
+    const { imgPath, upvotes } = imgRecord;
+    const storageRef = firebase.storage().ref(imgPath);
+    storageRef.getDownloadURL()
+      .then(url => domCallback({ imgId, url, upvotes }));
+  }
 }

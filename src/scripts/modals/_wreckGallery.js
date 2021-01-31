@@ -17,7 +17,7 @@ export default function wreckGallery(vessel) {
   modal.appendChild(galleryWrapper);
   galleryWrapper.appendChild(gallery);
 
-  loadGalleryFiles(id, (url) => createImageElement(url))
+  loadGalleryFiles(id, (config) => createImageElement(config))
 
   this.id = id;
   this.element = modal;
@@ -42,19 +42,19 @@ export default function wreckGallery(vessel) {
     modalAnimations.replace(modal, outgoing)
   }
 
-  function createImageElement(url) {
+  function createImageElement({ url, imgId=null, upvotes=null }) {
     const img = document.createElement('img');
     img.classList.add('modalGalleryImg');
     img.src = url;
+    if (imgId !== null) img.dataset.imgId = imgId;
+    if (upvotes !== null) img.dataset.upvotes = upvotes;
     gallery.appendChild(img);
   }
 }
 
-function loadGalleryFiles(id, domCallback) {
-  const directoryName = `wrecks/${id}`;
-  if (id === 'yamagiriMaru' || id === 'nippoMaru') {
-    window.firebaseClient.queryGalleryDB({ domCallback, gallery: id })
+function loadGalleryFiles(gallery, domCallback) {
+  if (gallery === 'yamagiriMaru' || gallery === 'nippoMaru') {
+    window.firebaseClient.loadImagesFromDB({ domCallback, gallery })
     return
   }
-  window.firebaseClient.loadGallery({ directoryName, domCallback })
 }
