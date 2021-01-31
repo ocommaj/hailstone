@@ -1,5 +1,7 @@
 import SunCalc from 'suncalc';
 
+const bounds = [ [151.382659, 7.118231], [152.072039, 7.727652] ];
+
 export const initialConfigs = {
   zoom: 13.25,
   center: [151.83, 7.427],
@@ -7,7 +9,8 @@ export const initialConfigs = {
   bearing: 125,
   maxZoom: 16,
   minZoom: 11,
-  style: 'mapbox://styles/jfo713/ckkhci2wy17ls17o1mk9aj34d',
+  maxBounds: bounds,
+  style: process.env.MB_STYLE,
 }
 
 const Config = {
