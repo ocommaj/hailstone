@@ -68,14 +68,16 @@ function uploader(e) {
   )
 }
 
-function queryGalleryDB({ gallery, domCallback,rootDB='wreckGalleries' }) {
+function queryGalleryDB({ gallery, domCallback, rootDB='wreckGalleries' }) {
   const dbRef = this.db.collection(rootDB).doc(gallery).collection('images');
 
   dbRef.get()
-    .then(snapshot => snapshot.forEach(doc => {
-      const imgPath = doc.data().fullPath;
-      loadImage({ imgPath, domCallback })
-    }))
+    .then(snapshot => {
+      snapshot.forEach(doc => {
+        const imgPath = doc.data().fullPath;
+        loadImage({ imgPath, domCallback })
+      })
+    })
 }
 
 function loadImage({ imgPath, domCallback }) {
