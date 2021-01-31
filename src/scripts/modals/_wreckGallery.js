@@ -1,5 +1,6 @@
 import { modalAnimations } from '../animations';
 import HeadlineElements from './_modalHeadline';
+import svgIcon from '../../assets/icons/shaka.svg';
 
 export default function wreckGallery(vessel) {
   const { id } = vessel;
@@ -18,6 +19,8 @@ export default function wreckGallery(vessel) {
   galleryWrapper.appendChild(gallery);
 
   loadGalleryFiles(id, (config) => createImageElement(config))
+
+  //modal.appendChild( applauseButton() )
 
   this.id = id;
   this.element = modal;
@@ -49,6 +52,19 @@ export default function wreckGallery(vessel) {
     if (imgId !== null) img.dataset.imgId = imgId;
     if (upvotes !== null) img.dataset.upvotes = upvotes;
     gallery.appendChild(img);
+  }
+
+  function applauseButton() {
+    const button = document.createElement("button");
+    const buttonIcon = document.createElement("object");
+
+    button.classList.add("postApplauseButton");
+    buttonIcon.classList.add("postApplauseButtonIcon");
+    buttonIcon.type = "image/svg+xml";
+    buttonIcon.data = svgIcon;
+
+    button.appendChild(buttonIcon);
+    return button;
   }
 }
 

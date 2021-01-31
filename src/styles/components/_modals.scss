@@ -72,6 +72,31 @@
   }
 }
 
+.postApplauseButton {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+  border-width: 0px;
+  background-color: $gray-80-50;
+  transition: filter .7s ease;
+
+  .postApplauseButtonIcon {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: .5rem;
+  }
+}
+
+.postApplauseButton:hover {
+  filter: grayscale(75%) brightness(2) contrast(200%);
+}
+
 @media only screen and (max-width: 428px) {
   .modal {
     width: calc(100vw - 3rem);

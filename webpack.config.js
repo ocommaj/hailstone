@@ -54,7 +54,6 @@ module.exports = env => {
   ],
   mode: process.env.NODE_ENV,
 }
-  //console.dir(config.plugins)
-  //if (env.NODE_ENV !== 'development') config.plugins.pop()
+
   return config;
 };
