@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/firestore';
 import 'firebase/storage';
 
 const firebaseConfig = {
@@ -17,8 +18,10 @@ export default function FirebaseClient() {
   anonymousLogin();
   listenForUser();
 
+  this.db = firebase.firestore();
   this.uploader = uploader;
   this.loadGallery = loadGallery;
+  this.queryGalleryDB = queryGalleryDB;
 }
 
 function anonymousLogin() {
@@ -63,6 +66,21 @@ function uploader(e) {
       console.log('file uploaded!')
     }
   )
+}
+
+function queryGalleryDB({ gallery, domCallback,rootDB='wreckGalleries' }) {
+  const dbRef = this.db.collection(rootDB).doc(gallery).collection('images');
+
+  dbRef.get()
+    .then(snapshot => snapshot.forEach(doc => {
+      const imgPath = doc.data().fullPath;
+      loadImage({ imgPath, domCallback })
+    }))
+}
+
+function loadImage({ imgPath, domCallback }) {
+  const storageRef = firebase.storage().ref(imgPath);
+  storageRef.getDownloadURL().then(url => domCallback(url))
 }
 
 function loadGallery({ directoryName, domCallback, refRoot='publicAssets' }) {

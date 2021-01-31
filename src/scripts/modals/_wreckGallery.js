@@ -52,5 +52,9 @@ export default function wreckGallery(vessel) {
 
 function loadGalleryFiles(id, domCallback) {
   const directoryName = `wrecks/${id}`;
+  if (id === 'yamagiriMaru') {
+    window.firebaseClient.queryGalleryDB({ domCallback, gallery: id })
+    return
+  }
   window.firebaseClient.loadGallery({ directoryName, domCallback })
 }
