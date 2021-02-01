@@ -1,6 +1,7 @@
 import { modalAnimations } from '../animations';
 import HeadlineElements from './_modalHeadline';
-import svgIcon from '../../assets/icons/shaka.svg';
+import GalleryImage from './_galleryImage';
+
 
 export default function wreckGallery(vessel) {
   const { id } = vessel;
@@ -18,9 +19,7 @@ export default function wreckGallery(vessel) {
   modal.appendChild(galleryWrapper);
   galleryWrapper.appendChild(gallery);
 
-  loadGalleryFiles(id, (config) => createImageElement(config))
-
-  //modal.appendChild( applauseButton() )
+  loadGalleryFiles(id, (config) => { gallery.append(GalleryImage(config)) });
 
   this.id = id;
   this.element = modal;
@@ -34,10 +33,10 @@ export default function wreckGallery(vessel) {
   }
 
   function removeModal() {
-      modalAnimations.collapse(modal, () => {
-        modalWrapper.removeChild(modal);
-        window.activeModal = null;
-      })
+    modalAnimations.collapse(modal, () => {
+      modalWrapper.removeChild(modal);
+      window.activeModal = null;
+    })
   }
 
   function replaceModal(outgoing) {
@@ -45,27 +44,6 @@ export default function wreckGallery(vessel) {
     modalAnimations.replace(modal, outgoing)
   }
 
-  function createImageElement({ url, imgId=null, upvotes=null }) {
-    const img = document.createElement('img');
-    img.classList.add('modalGalleryImg');
-    img.src = url;
-    if (imgId !== null) img.dataset.imgId = imgId;
-    if (upvotes !== null) img.dataset.upvotes = upvotes;
-    gallery.appendChild(img);
-  }
-
-  function applauseButton() {
-    const button = document.createElement("button");
-    const buttonIcon = document.createElement("object");
-
-    button.classList.add("postApplauseButton");
-    buttonIcon.classList.add("postApplauseButtonIcon");
-    buttonIcon.type = "image/svg+xml";
-    buttonIcon.data = svgIcon;
-
-    button.appendChild(buttonIcon);
-    return button;
-  }
 }
 
 function loadGalleryFiles(gallery, domCallback) {
