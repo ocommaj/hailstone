@@ -2,7 +2,11 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
-import { getGalleryImageRecords } from './_firestoreQueries';
+import {
+  getGalleryImageRecords,
+  getImageById,
+  upvoteRecord
+} from './_firestoreQueries';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -19,10 +23,12 @@ export default function FirebaseClient() {
   anonymousLogin();
   listenForUser();
 
-  this.db = firebase.firestore();
+  this._db = firebase.firestore();
+  this._getGalleryImageRecords = getGalleryImageRecords;
+  this._getImageById = getImageById;
   this.uploader = uploader;
-  this.getGalleryImageRecords = getGalleryImageRecords;
   this.loadImagesFromDB = loadImagesFromDB;
+  this.upvoteImage = upvoteImage;
 }
 
 function anonymousLogin() {
@@ -70,7 +76,7 @@ function uploader(e) {
 }
 
 async function loadImagesFromDB({ gallery, domCallback }) {
-  const imageRecords = await this.getGalleryImageRecords({ gallery })
+  const imageRecords = await this._getGalleryImageRecords({ gallery })
   for (const [imgId, imgRecord] of Object.entries(imageRecords)) {
     loadImageElement({ imgId, imgRecord, domCallback })
   }
@@ -81,4 +87,9 @@ async function loadImagesFromDB({ gallery, domCallback }) {
     storageRef.getDownloadURL()
       .then(url => domCallback({ imgId, url, upvotes }));
   }
+}
+
+function upvoteImage({ gallery, id }) {
+  this._getImageById({ gallery, id })
+    .then(({ docRef, imgData }) => upvoteRecord(docRef, imgData))
 }
