@@ -4,6 +4,7 @@ import 'firebase/firestore';
 import 'firebase/storage';
 import {
   getGalleryImageRecords,
+  getVesselIconRecord,
   getImageById,
   upvoteRecord
 } from './_firestoreQueries';
@@ -26,8 +27,10 @@ export default function FirebaseClient() {
   this._db = firebase.firestore();
   this._getGalleryImageRecords = getGalleryImageRecords;
   this._getImageById = getImageById;
+  this._getVesselIconRecord = getVesselIconRecord;
   this.uploader = uploader;
   this.loadImagesFromDB = loadImagesFromDB;
+  this.loadVesselIcon = loadVesselIcon;
   this.upvoteImage = upvoteImage;
 }
 
@@ -91,5 +94,14 @@ async function loadImagesFromDB({ gallery, domCallback }) {
 
 function upvoteImage({ gallery, id }) {
   this._getImageById({ gallery, id })
-    .then(({ docRef, imgData }) => upvoteRecord(docRef, imgData))
+    .then(({ docRef, imgData }) => upvoteRecord(docRef, imgData));
+}
+
+function loadVesselIcon(vessel, domCallback=null) {
+  this._getVesselIconRecord({ vessel })
+    .then((iconPath) => {
+      const storageRef = firebase.storage().ref(iconPath);
+      storageRef.getDownloadURL()
+        .then((url) => domCallback(url))
+    });
 }

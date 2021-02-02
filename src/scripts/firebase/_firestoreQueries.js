@@ -1,4 +1,9 @@
-export { getGalleryImageRecords, getImageById, upvoteRecord };
+export {
+  getGalleryImageRecords,
+  getImageById,
+  getVesselIconRecord,
+  upvoteRecord
+};
 
 async function getGalleryImageRecords({ gallery, rootDB='wreckGalleries' }) {
   const dbRef = this._db
@@ -29,6 +34,16 @@ function getImageById({ gallery, id, rootDB='wreckGalleries' }, resolve) {
           const imgData = imageDoc.data()
           resolve({ docRef, imgData })
         }
+    })
+  })
+}
+
+async function getVesselIconRecord({ vessel }) {
+  return new Promise((resolve) => {
+    const docRef = this._db.collection('wreckGalleries').doc(vessel)
+    docRef.get().then(doc => {
+      const { iconPath } = doc.data()
+      resolve(iconPath)
     })
   })
 }
