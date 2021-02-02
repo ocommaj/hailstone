@@ -1,4 +1,5 @@
 @import './addImageButton';
+@import './postApplauseButton';
 @import './imageUploadForm';
 
 .modal {
@@ -20,7 +21,6 @@
   top: 3rem;
   left: 3rem;
 
-  //overflow: hidden;
   display: flex;
   flex-direction: column;
 
@@ -93,11 +93,13 @@
     margin: 0;
     margin-bottom: .75rem;
     padding-left: .5rem;
+    user-select: none;
   }
 
   h2 {
     margin: 0;
     margin-left: .5rem;
+    user-select: none;
   }
 
   .modalHeader {
@@ -115,66 +117,6 @@
     .label {
       color: $gray-50;
     }
-  }
-}
-
-.postApplauseButton {
-  position: absolute;
-  bottom: .66rem;
-  right: .66rem;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 1.5rem;
-  border-width: 0px;
-  background-color: $gray-80-50;
-  transition:
-    filter .7s ease,
-    opacity 1s ease,
-    background-color .7s ease,
-    transform .7s ease;
-  transform: rotateZ(-15deg);
-  box-shadow: .125rem .125rem .5rem $gray-90-30;
-  cursor: pointer;
-
-  .postApplauseButtonIcon {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: .5rem;
-    pointer-events: none;
-  }
-}
-
-.postApplauseButton:hover {
-  filter: grayscale(75%) brightness(2) contrast(200%);
-  animation: buttonJiggle .8s ease-in-out;
-}
-
-@keyframes buttonJiggle {
-  0% {
-    transform: rotateZ(-15deg);
-  }
-
-  25% {
-    transform: rotateZ(15deg) rotateY(15deg);
-  }
-
-  50% {
-    transform: rotateZ(-15deg);
-  }
-
-  70% {
-    transform: rotateZ(15deg) rotateY(-15deg);
-  }
-
-  90% {
-    transform: rotateZ(-25deg) rotateY(-15deg);
-  }
-
-  100% {
-    transform: rotateZ(-15deg) rotateY(0deg);
   }
 }
 

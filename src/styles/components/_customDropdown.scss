@@ -6,6 +6,13 @@
   color: $gray-10;
 }
 
+.custom-select-container:focus {
+  outline: none;
+  .custom-select-value {
+    border: solid 1px $gray-20;
+  }
+}
+
 .custom-select-value {
   background-color: $gray-70;
   width: 100%;
@@ -15,7 +22,7 @@
   font-size: 1rem;
   padding: .5rem;
   border-radius: .5rem;
-  border: 0px;
+  border: solid 1px rgba(0,0,0,0);
 
   user-select: none;
   cursor: pointer;
@@ -40,6 +47,7 @@
   position: absolute;
   padding: 0;
   margin: 0;
+  transition: display .7s ease;
 }
 
 .custom-select-options.show {
