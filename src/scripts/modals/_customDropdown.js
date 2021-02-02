@@ -1,10 +1,4 @@
-export default function CustomDropdown({
-  id, labelText, options, required=false
-}) {
-  if (!required) {
-    options.unshift({ ref: null, display: '(Optional)' })
-  }
-
+export default function CustomDropdown({ id, labelText, options }) {
   const hiddenSelect = htmlSelectElement();
   const formattedOptions = getFormattedOptions();
   const fragment = document.createDocumentFragment();

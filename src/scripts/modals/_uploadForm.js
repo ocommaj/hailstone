@@ -20,6 +20,7 @@ const diveOperators = {
   id: 'diveOperators',
   labelText: 'Dive Operator',
   options: [
+    { ref: 'notGiven', display: '(Optional)' },
     { ref: 'blueLagoon', display: 'Blue Lagoon' },
     { ref: 'odyssey', display: 'M/V Odyssey' },
     { ref: 'trukMaster', display: 'M/Y Truk Master' },
