@@ -1,67 +1,99 @@
+import CustomDropdown from './_customDropdown';
+
+const cameraDetails = {
+  id: 'cameraDetails',
+  labelText: 'Camera Details'
+}
+
+const captionInput = {
+  id: 'captionInput',
+  labelText: 'Image Caption',
+  isTextArea: true
+}
+
+const submitButton = {
+  id: 'submitButton',
+  labelText: 'Upload Image'
+}
+
+const diveOperators = {
+  id: 'diveOperators',
+  labelText: 'Dive Operator',
+  options: [
+    { ref: 'blueLagoon', display: 'Blue Lagoon' },
+    { ref: 'odyssey', display: 'M/V Odyssey' },
+    { ref: 'trukMaster', display: 'M/Y Truk Master' },
+    { ref: 'thorfinn', display: 'SS Thorfinn' },
+    { ref: 'trukStop', display: 'Truk Stop'}
+  ],
+}
+
 export default function UploadForm() {
   const uploader = document.createElement('div');
   const uploadForm = document.createElement('form');
-
-  const selectFileButton = document.createElement('input');
-  const selectFileLabel = document.createElement('h3');
-
-  const captionInput = document.createElement('textarea');
-  const captionInputLabel = document.createElement('h3');
-
-  const cameraDetails = document.createElement('input');
-  const cameraDetailsLabel = document.createElement('h3');
-
-  const submitButton = document.createElement('button');
-  const submitButtonLabel = document.createElement('h3');
-
   uploader.classList.add('modalUploader');
-
   uploadForm.id = "imageUploadDetails";
 
-  selectFileButton.classList.add('fileUploadButton');
+  uploadForm.appendChild( SelectFileButton() );
+  uploadForm.appendChild( TextInput(cameraDetails) );
+  uploadForm.appendChild( TextInput(captionInput) );
+  uploadForm.appendChild( CustomDropdown(diveOperators) );
+  uploadForm.appendChild( SubmitButton(submitButton) );
+
+  uploader.appendChild(uploadForm)
+  return uploader;
+}
+
+function SelectFileButton() {
+  const fragment = document.createDocumentFragment()
+  const selectFileButton = document.createElement('input');
+  const selectFileLabel = document.createElement('h3');
+  selectFileButton.classList.add('selectFileInput');
   selectFileButton.type = 'file';
   selectFileButton.name = "Image File";
   selectFileButton.accept= "image/png, image/jpeg";
   selectFileButton.required="true";
 
   selectFileLabel.classList.add('fileUploadFormLabel');
-  selectFileLabel.innerHTML='Select Image';
+  selectFileLabel.innerHTML='Select File';
 
-  captionInput.classList.add('imageCaptionInput');
-  captionInput.placeholder = '(Optional)';
-  captionInputLabel.classList.add('fileUploadFormInput');
-  captionInputLabel.innerHTML='Image Caption'
+  fragment.appendChild(selectFileLabel)
+  fragment.appendChild(selectFileButton)
+  return fragment;
+}
 
-  cameraDetailsLabel.classList.add('cameraDetailsLabel');
-  cameraDetailsLabel.innerHTML='Camera Details'
+function TextInput({ id, labelText, isTextArea=false, optional=true }) {
+  const fragment = document.createDocumentFragment()
+  const input = document.createElement(!isTextArea ? 'input' : 'textarea');
+  const label = document.createElement('h3');
 
-  cameraDetails.classList.add('cameraSettingsInput');
-  cameraDetails.type = 'text';
-  cameraDetails.placeholder = '(Optional)';
+  label.classList.add('fileUploadFormLabel');
+  label.id = `${id}Label`;
+  label.innerHTML = labelText;
 
-  submitButton.classList.add('fileUploadButton', 'submitButton')
-  submitButton.innerHTML = 'Submit Upload';
-  submitButton.id="submitButton"
+  if (!isTextArea) input.type = 'text';
+  input.id = `${id}Input`;
+  input.placeholder = !!optional ? '(Optional)' : required;
 
-  submitButtonLabel.classList.add('fileUploadFormLabel')
-  submitButtonLabel.innerHTML='Upload File'
+  fragment.appendChild(label);
+  fragment.appendChild(input);
+  return fragment;
+}
 
-  uploadForm.appendChild(selectFileLabel)
-  uploadForm.appendChild(selectFileButton)
+function SubmitButton({ id, labelText }) {
+  const fragment = document.createDocumentFragment();
+  const button = document.createElement('button');
+  const label = document.createElement('h3');
 
-  uploadForm.appendChild(cameraDetailsLabel)
-  uploadForm.appendChild(cameraDetails)
+  label.classList.add('fileUploadFormLabel');
+  label.id = `${id}Label`;
+  label.innerHTML = labelText;
 
-  uploadForm.appendChild(captionInputLabel)
-  uploadForm.appendChild(captionInput)
+  button.classList.add(id);
+  button.id=id;
+  button.innerHTML = labelText;
 
-  uploadForm.appendChild(submitButtonLabel)
-  uploadForm.appendChild(submitButton)
-
-  uploader.appendChild(uploadForm)
-  //uploadForm.appendChild(caption)
-  //uploadForm.appendChild(cameraDetails)
-  //uploadForm.style.visibility = 'hidden';
-  return uploader;
-
+  fragment.appendChild(label);
+  fragment.appendChild(button);
+  return fragment;
 }
