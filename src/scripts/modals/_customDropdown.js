@@ -122,6 +122,9 @@ export default function CustomDropdown({ id, labelText, options }) {
     newOption.selected = true;
     newOption.element.selected = true;
     optionLabel.innerText = newOption.label;
+    optionLabel.style.color = newOption.label === '(Optional)'
+      ? 'rgba(244,244,244,.7)'
+      : 'rgba(244,244,244,1)';
     selectedOption = newOption;
     selectedOptionIdx = newIdx;
   }
