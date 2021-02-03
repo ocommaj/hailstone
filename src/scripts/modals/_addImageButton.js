@@ -21,26 +21,33 @@ export default function AddImageButton() {
   button.addEventListener('click', clickHandler)
 
   function clickHandler() {
-    addImage()
-    flipButton(button)
+    flipModalContent(button)
   }
-  
+
   return button
 }
 
-function addImage() {
+function flipModalContent(button) {
   const activeModal = window.activeModal.element;
   const contentWrapper = activeModal.querySelector('.contentWrapper')
-  const galleryWrapper = contentWrapper.childNodes[0]
-  const uploadForm = contentWrapper.childNodes[1]
-  contentWrapper.scrollTop = 0;
-  contentWrapper.style.overflowY = 'hidden';
-  galleryWrapper.style.transform = 'rotateY(180deg)';
-  uploadForm.style.transform = 'rotateY(0deg)';
-  uploadForm.style.opacity = 1;
+  const frontContent = contentWrapper.childNodes[0];
+  const backContent = contentWrapper.childNodes[1];
+  const showsBack = [...contentWrapper.classList].includes('backfaceShows');
+
+  if (showsBack) {
+    frontContent.style.transform = 'rotateY(0deg)';
+    backContent.style.transform = 'rotateY(180deg)';
+  } else {
+    frontContent.style.transform = 'rotateY(180deg)';
+    backContent.style.transform = 'rotateY(0deg)';
+  }
+
+  contentWrapper.classList.toggle('backfaceShows');
+  flipButton(button, showsBack);
+
 }
 
-function flipButton(button) {
+function flipButton(button, backfaceShows=true) {
   const frontIcon = button.childNodes[0];
   const backIcon = button.childNodes[1];
 
@@ -50,7 +57,13 @@ function flipButton(button) {
     backSvgPaths[i].style.fill = "#e0e0e0"
   }
 
-  frontIcon.style.opacity = 0;
-  backIcon.style.opacity = 1;
-  button.style.boxShadow = ".25rem .25rem .5rem rgba(38,38,38,.3)"
+  if (backfaceShows) {
+    frontIcon.style.opacity = 1;
+    backIcon.style.opacity = 0;
+    button.style.boxShadow = ".25rem .25rem .5rem rgba(218,30,40,.3)"
+  } else {
+    frontIcon.style.opacity = 0;
+    backIcon.style.opacity = 1;
+    button.style.boxShadow = ".25rem .25rem .5rem rgba(38,38,38,.3)"
+  }
 }
