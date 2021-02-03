@@ -29,11 +29,10 @@
     left: 0;
     width: 4rem;
     height: 4rem;
-    padding: 0;
+    padding: .5rem;
     opacity: 0;
     transition: opacity .4s ease;
     border-radius: 2rem;
-    //backface-visibility: hidden;
-    //transform: rotateY(180deg);
+    pointer-events: none;
   }
 }

@@ -56,7 +56,7 @@ function SelectFileButton() {
   selectFileButton.required="true";
 
   selectFileLabel.classList.add('fileUploadFormLabel');
-  selectFileLabel.innerHTML='Select File';
+  selectFileLabel.innerText='Choose File';
 
   fragment.appendChild(selectFileLabel)
   fragment.appendChild(selectFileButton)
