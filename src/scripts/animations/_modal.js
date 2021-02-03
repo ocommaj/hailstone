@@ -32,7 +32,9 @@ function collapse(element, onComplete) {
 }
 
 function replace(incoming, outgoing) {
+  const uploader = incoming.querySelector('.modalUploader')
   const tl = gsap.timeline({ defaults: tlDefaults })
     .to(outgoing, { opacity: 0, duration: .4 })
-    .from(incoming, { opacity: 0, duration: .4 }, '<.2')
+    .from(incoming, { height: 0, opacity: 0, duration: .4 }, '<.2')
+    .call(() => outgoing.remove())
 }

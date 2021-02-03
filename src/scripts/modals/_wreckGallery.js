@@ -20,10 +20,11 @@ export default function wreckGallery(vessel) {
   modal.classList.add('modal');
   modal.id = modalId;
   modal.appendChild( HeadlineElements(vessel) );
-  modal.appendChild(contentWrapper);
+
   contentWrapper.appendChild(galleryWrapper);
   galleryWrapper.appendChild(gallery);
-  contentWrapper.appendChild( UploadForm() )
+  contentWrapper.appendChild( UploadForm() );
+  modal.appendChild(contentWrapper);
 
   loadGalleryFiles(id, (config) => { gallery.append(GalleryImage(config)) });
 

@@ -23,6 +23,7 @@
 
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
 
   pointer-events: all;
 
@@ -30,6 +31,9 @@
     flex-grow: 1;
     overflow: hidden;
     overflow-y: scroll;
+    display: flex;
+    overflow: hidden;
+    position: relative;
   }
 
   .galleryWrapper {
@@ -37,6 +41,8 @@
     width: 100%;
     padding: 0;
     padding-bottom: .75rem;
+    border-radius: .5rem;
+    overflow-y: scroll;
 
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
@@ -44,18 +50,18 @@
   }
 
   .modalUploader {
-    opacity: 0;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    display: flex;
+
     background-color: $gray-80-30;
     border-radius: .5rem;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transition: transform 0.7s ease;
+    height: inherit;
 
     transform: rotateY(180deg);
   }
@@ -106,6 +112,7 @@
     max-width: 80%;
     margin-bottom: .5rem;
     position: sticky;
+    display: block;
     top: .5rem;
     flex-grow: 0;
   }
