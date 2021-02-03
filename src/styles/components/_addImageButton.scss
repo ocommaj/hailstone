@@ -1,6 +1,6 @@
 .addImageButton {
   position: absolute;
-  top: 1.5rem;
+  top: 1.25rem;
   right: 1rem;
   display: block;
   width: 4rem;
@@ -17,6 +17,23 @@
     right: 0;
     width: 100%;
     padding: 0;
+    transition: opacity .4s ease;
     pointer-events: none;
+  }
+
+  .backfaceButtonIcon {
+    background-color: $gray-80;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    opacity: 0;
+    transition: opacity .4s ease;
+    border-radius: 2rem;
+    //backface-visibility: hidden;
+    //transform: rotateY(180deg);
   }
 }
