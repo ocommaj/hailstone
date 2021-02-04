@@ -6,7 +6,8 @@ import {
   getGalleryImageRecords,
   getVesselIconRecord,
   getImageById,
-  upvoteRecord
+  upvoteRecord,
+  createImageRecord
 } from './_firestoreQueries';
 
 const firebaseConfig = {
@@ -25,6 +26,7 @@ export default function FirebaseClient() {
   listenForUser();
 
   this._db = firebase.firestore();
+  this._createImageRecord = createImageRecord;
   this._getGalleryImageRecords = getGalleryImageRecords;
   this._getImageById = getImageById;
   this._getVesselIconRecord = getVesselIconRecord;
@@ -57,24 +59,28 @@ function listenForUser() {
   })
 }
 
-function uploader({ file, parentGallery }) {
-  const rootRef = `publicAssets/wrecks/${parentGallery}`
-  const storageRef = firebase.storage().ref(`${rootRef}/${file.name}`);
+function uploader({ newStorageRecord, newDbRecord }) {
+  const { storagePath, userFile } = newStorageRecord;
+  const storageRef = firebase.storage().ref(storagePath)
+  const task = storageRef.put(userFile);
 
-  const task = storageRef.put(file);
-  // update progress bar
   task.on('state_changed',
-    function progress(snapshot) {
+    (snapshot) => {
       const percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       console.log(percent)
     },
 
-    function error(err) {
+    (err) => {
       console.error(err)
     },
 
-    function complete() {
+    () => {
       console.log('file uploaded!')
+      task.snapshot.ref.getMetadata().then(({ timeCreated }) => {
+        newDbRecord.dbFields.timeCreated = timeCreated;
+        newDbRecord.dbFields.uploadedBy = window.user.uid;
+        this._createImageRecord(newDbRecord)
+       })
     }
   )
 }
@@ -89,8 +95,9 @@ async function loadImagesFromDB({ gallery, domCallback }) {
     const { imgPath, upvotes } = imgRecord;
     const storageRef = firebase.storage().ref(imgPath);
     storageRef.getDownloadURL()
-      .then(url => domCallback({ imgId, url, upvotes }));
-  }
+      .then((url) => domCallback({ imgId, url, upvotes }))
+      .catch((error) => console.log(`file does not exist at ${imgPath}`));
+    }
 }
 
 function upvoteImage({ gallery, id }) {

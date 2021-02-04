@@ -4,12 +4,12 @@ const selectImageInput = {
   id: 'userImageFile',
 }
 const cameraDetails = {
-  id: 'cameraDetails',
+  id: 'inputCameraDetails',
   labelText: 'Camera Details',
 }
 
 const captionInput = {
-  id: 'imageCaption',
+  id: 'inputImageCaption',
   labelText: 'Image Caption',
   isTextArea: true,
 }
@@ -20,7 +20,7 @@ const submitButton = {
 }
 
 const diveOperators = {
-  id: 'diveOperators',
+  id: 'inputDiveOperators',
   labelText: 'Dive Operator',
   options: [
     { ref: '', display: '(Optional)' },
@@ -76,7 +76,7 @@ function TextInput({ id, labelText, isTextArea=false, optional=true }) {
   label.innerHTML = labelText;
 
   if (!isTextArea) input.type = 'text';
-  input.id = `${id}UserInput`;
+  input.id = `${id}`;
   input.placeholder = !!optional ? '(Optional)' : required;
 
   fragment.appendChild(label);
@@ -106,18 +106,28 @@ function SubmitButton({ id, labelText }) {
 }
 
 function submitClickHandler(e) {
-  const { id: wreckId } = window.activeModal;
+  // parse input values
+  const { id: wreckId, element: modal } = window.activeModal;
+  const storagePathRoot = `publicAssets/wrecks/${wreckId}`
   const fileInput = e.target.parentElement.querySelector('[type=file]');
-  const userFile = fileInput.files[0];
-  //const inputs = [...button.parentElement.querySelectorAll('input')]
-  //inputs.push(...button.parentElement.querySelectorAll('textarea'))
-  //inputs.push(...button.parentElement.querySelectorAll('select'))
-  //const { form } = button;
-  /*const values = inputs.map(element => {
-    const { value, id } = element;
-    return { value, id }
-  })*/
 
-  window.firebaseClient.uploader({ file: userFile, parentGallery: wreckId })
+  if (fileInput.files.length) {
+    const userFile = fileInput.files[0];
+    const storagePath = `${storagePathRoot}/${userFile.name}`
+    const newStorageRecord = { userFile, storagePath }
 
+    // create db record
+    const dbCollection = `wreckGalleries/${wreckId}/images/`;
+    const dbFields = {
+      storagePath,
+      imageCaption: modal.querySelector('#inputImageCaption').value,
+      cameraDetails: modal.querySelector('#inputCameraDetails').value,
+      diveOperators: modal.querySelector('#inputDiveOperators').value,
+      upvotes: 0
+    }
+
+    const newDbRecord = { dbCollection, dbFields }
+    // upload file
+    window.firebaseClient.uploader({ newStorageRecord, newDbRecord })
+  }
 }

@@ -2,7 +2,8 @@ export {
   getGalleryImageRecords,
   getImageById,
   getVesselIconRecord,
-  upvoteRecord
+  upvoteRecord,
+  createImageRecord,
 };
 
 async function getGalleryImageRecords({ gallery, rootDB='wreckGalleries' }) {
@@ -12,7 +13,7 @@ async function getGalleryImageRecords({ gallery, rootDB='wreckGalleries' }) {
     .then(snapshot => {
       return snapshot.docs.reduce((accumulator, doc) => {
         const { id } = doc;
-        const { upvotes, fullPath: imgPath } = doc.data();
+        const { upvotes, storagePath: imgPath } = doc.data();
         if (imgPath) {
           accumulator[id] = { imgPath, upvotes }
         }
@@ -54,4 +55,10 @@ function upvoteRecord(docRef, docData) {
   docRef.update({ upvotes: updatedCount })
     .then(() => console.log('successful update!'))
     .catch((error) => console.error(error))
+}
+
+function createImageRecord({ dbCollection, dbFields }) {
+  this._db.collection(dbCollection).add({ ...dbFields })
+    .then((docRef) => console.log(`doc written with id: ${docRef.id}`))
+    .catch(error => console.error(error))
 }
