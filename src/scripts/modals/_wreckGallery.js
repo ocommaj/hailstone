@@ -5,7 +5,7 @@ import AddImageButton from './_addImageButton';
 import UploadForm from './_uploadForm';
 
 
-export default function wreckGallery(vessel) {
+export default function WreckGalleryModal(vessel) {
   const { id } = vessel;
   const modalWrapper = document.getElementById("modalWrapper");
   const modalId = `${id}_modal`;
@@ -13,22 +13,24 @@ export default function wreckGallery(vessel) {
   const contentWrapper = document.createElement("div");
   const galleryWrapper = document.createElement("div");
   const gallery = document.createElement("div");
+  const switchModalContentButton = AddImageButton()
 
-  gallery.classList.add('gallery');
-  galleryWrapper.classList.add('galleryWrapper');
-  contentWrapper.classList.add('contentWrapper');
-  modal.classList.add('modal');
   modal.id = modalId;
-  modal.appendChild( HeadlineElements(vessel) );
+  modal.classList.add('modal');
+  contentWrapper.classList.add('contentWrapper');
+  galleryWrapper.classList.add('galleryWrapper');
+  gallery.classList.add('gallery');
 
   contentWrapper.appendChild(galleryWrapper);
   galleryWrapper.appendChild(gallery);
   contentWrapper.appendChild( UploadForm() );
+
+  modal.appendChild( HeadlineElements(vessel) );
   modal.appendChild(contentWrapper);
 
-  loadGalleryFiles(id, (config) => { gallery.append(GalleryImage(config)) });
+  loadGalleryFiles(id, (config) => gallery.append(GalleryImage(config)));
 
-  modal.appendChild( AddImageButton() )
+  modal.appendChild( switchModalContentButton )
 
   this.id = id;
   this.element = modal;

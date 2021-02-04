@@ -57,9 +57,10 @@ function listenForUser() {
   })
 }
 
-function uploader(e) {
-  const file = e.target.files[0];
-  const storageRef = firebase.storage().ref(`publicAssets/tests/${file.name}`);
+function uploader({ file, parentGallery }) {
+  const rootRef = `publicAssets/wrecks/${parentGallery}`
+  const storageRef = firebase.storage().ref(`${rootRef}/${file.name}`);
+
   const task = storageRef.put(file);
   // update progress bar
   task.on('state_changed',

@@ -1,26 +1,29 @@
 import CustomDropdown from './_customDropdown';
 
+const selectImageInput = {
+  id: 'userImageFile',
+}
 const cameraDetails = {
   id: 'cameraDetails',
-  labelText: 'Camera Details'
+  labelText: 'Camera Details',
 }
 
 const captionInput = {
-  id: 'captionInput',
+  id: 'imageCaption',
   labelText: 'Image Caption',
-  isTextArea: true
+  isTextArea: true,
 }
 
 const submitButton = {
   id: 'submitButton',
-  labelText: 'Upload Image'
+  labelText: 'Upload Image',
 }
 
 const diveOperators = {
   id: 'diveOperators',
   labelText: 'Dive Operator',
   options: [
-    { ref: 'notGiven', display: '(Optional)' },
+    { ref: '', display: '(Optional)' },
     { ref: 'blueLagoon', display: 'Blue Lagoon' },
     { ref: 'odyssey', display: 'M/V Odyssey' },
     { ref: 'trukMaster', display: 'M/Y Truk Master' },
@@ -31,21 +34,19 @@ const diveOperators = {
 
 export default function UploadForm() {
   const uploader = document.createElement('div');
-  const uploadForm = document.createElement('form');
   uploader.classList.add('modalUploader');
-  uploadForm.id = "imageUploadDetails";
 
-  uploadForm.appendChild( SelectFileButton() );
-  uploadForm.appendChild( TextInput(cameraDetails) );
-  uploadForm.appendChild( TextInput(captionInput) );
-  uploadForm.appendChild( CustomDropdown(diveOperators) );
-  uploadForm.appendChild( SubmitButton(submitButton) );
 
-  uploader.appendChild(uploadForm)
+  uploader.appendChild( SelectFileButton(selectImageInput) );
+  uploader.appendChild( TextInput(cameraDetails) );
+  uploader.appendChild( TextInput(captionInput) );
+  uploader.appendChild( CustomDropdown(diveOperators) );
+  uploader.appendChild( SubmitButton(submitButton) );
+
   return uploader;
 }
 
-function SelectFileButton() {
+function SelectFileButton({ id }) {
   const fragment = document.createDocumentFragment()
   const selectFileButton = document.createElement('input');
   const selectFileLabel = document.createElement('h3');
@@ -54,6 +55,8 @@ function SelectFileButton() {
   selectFileButton.name = "Image File";
   selectFileButton.accept= "image/png, image/jpeg";
   selectFileButton.required="true";
+  selectFileButton.id=id;
+  selectFileButton.setAttribute('form', null);
 
   selectFileLabel.classList.add('fileUploadFormLabel');
   selectFileLabel.innerText='Choose File';
@@ -73,7 +76,7 @@ function TextInput({ id, labelText, isTextArea=false, optional=true }) {
   label.innerHTML = labelText;
 
   if (!isTextArea) input.type = 'text';
-  input.id = `${id}Input`;
+  input.id = `${id}UserInput`;
   input.placeholder = !!optional ? '(Optional)' : required;
 
   fragment.appendChild(label);
@@ -91,10 +94,30 @@ function SubmitButton({ id, labelText }) {
   label.innerHTML = labelText;
 
   button.classList.add(id);
-  button.id=id;
+  button.id = id;
+  button.type = "submit";
   button.innerHTML = labelText;
+
+  button.addEventListener('click', submitClickHandler)
 
   fragment.appendChild(label);
   fragment.appendChild(button);
   return fragment;
+}
+
+function submitClickHandler(e) {
+  const { id: wreckId } = window.activeModal;
+  const fileInput = e.target.parentElement.querySelector('[type=file]');
+  const userFile = fileInput.files[0];
+  //const inputs = [...button.parentElement.querySelectorAll('input')]
+  //inputs.push(...button.parentElement.querySelectorAll('textarea'))
+  //inputs.push(...button.parentElement.querySelectorAll('select'))
+  //const { form } = button;
+  /*const values = inputs.map(element => {
+    const { value, id } = element;
+    return { value, id }
+  })*/
+
+  window.firebaseClient.uploader({ file: userFile, parentGallery: wreckId })
+
 }

@@ -51,7 +51,9 @@ export default function CustomDropdown({ id, labelText, options }) {
 
   function htmlSelectElement() {
     const hiddenSelect = document.createElement('select');
+    hiddenSelect.id = id;
     hiddenSelect.classList.add('hiddenSelect');
+    //hiddenSelect.setAttribute('form', form);
     options.forEach(option => {
       const selectOption = document.createElement('option');
       selectOption.value = option.ref;
