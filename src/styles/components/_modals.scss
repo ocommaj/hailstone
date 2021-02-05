@@ -85,6 +85,7 @@
 
     .modalGalleryImgWrapper {
       overflow: hidden;
+      position: relative;
       pointer-events: all;
       background-color: $gray-90;
       height: auto;
