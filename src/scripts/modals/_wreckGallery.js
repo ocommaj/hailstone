@@ -40,19 +40,22 @@ export default function WreckGalleryModal(vessel) {
   this.refreshModal = refreshModal;
 
   function revealModal(fromPoint) {
-    modalWrapper.appendChild(modal);
+    //modalWrapper.appendChild(modal);
+    document.body.appendChild(modal)
     modalAnimations.reveal(modal, fromPoint);
   }
 
   function removeModal() {
     modalAnimations.collapse(modal, () => {
-      modalWrapper.removeChild(modal);
+      //modalWrapper.removeChild(modal);
+      document.body.removeChild(modal);
       window.activeModal = null;
     })
   }
 
   function replaceModal(outgoing) {
-    modalWrapper.appendChild(modal)
+    //modalWrapper.appendChild(modal)
+    document.body.appendChild(modal)
     modalAnimations.replace(modal, outgoing)
   }
 
