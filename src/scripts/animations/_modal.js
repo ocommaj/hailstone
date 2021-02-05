@@ -1,5 +1,7 @@
 import { gsap } from 'gsap';
 
+const REM_VALUE = 16;
+
 const tlDefaults = {
   transformOrigin: 'center center',
   duration: .8
@@ -19,8 +21,11 @@ function reveal(element, fromPoint) {
   const deltaX = x - left;
   const deltaY = y - top;
 
+  const windowHeight = window.innerHeight;
+
   const tl = gsap.timeline({ defaults: tlDefaults })
-    .from(element, { x: deltaX, y: deltaY, height: 0, width: 0, opacity: 0 })
+    .from(element, { x: deltaX, y: deltaY, width: 0 })
+    .to(element, { height: windowHeight - (6*REM_VALUE), opacity: 1 }, '<')
     .from(element.children, { opacity: 0 });
 }
 
@@ -32,9 +37,10 @@ function collapse(element, onComplete) {
 }
 
 function replace(incoming, outgoing) {
-  const uploader = incoming.querySelector('.modalUploader')
+  const windowHeight = window.innerHeight;
   const tl = gsap.timeline({ defaults: tlDefaults })
     .to(outgoing, { opacity: 0, duration: .4 })
-    .from(incoming, { opacity: 0, duration: .4 }, '<.2')
+    .set(incoming, { height: windowHeight - (6*REM_VALUE) }, '<.2')
+    .to(incoming, { opacity: 1, duration: .4 }, '<')
     .call(() => outgoing.remove())
 }
