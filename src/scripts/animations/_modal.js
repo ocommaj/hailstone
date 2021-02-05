@@ -22,7 +22,7 @@ function reveal(element, fromPoint) {
   const deltaY = y - top;
 
   const windowHeight = window.innerHeight;
-  const offsetCount = window.isMobileUser ? 4 : 6;
+  const offsetCount = windowHeight < 720 ? 3 : 6;
   const offset = REM_VALUE * offsetCount
 
   const tl = gsap.timeline({ defaults: tlDefaults })
@@ -40,9 +40,9 @@ function collapse(element, onComplete) {
 
 function replace(incoming, outgoing) {
   const windowHeight = window.innerHeight;
-  const offsetCount = window.isMobileUser ? 4 : 6;
-  const offset = REM_VALUE * offsetCount;
-  
+  const offsetCount = windowHeight < 720 ? 3 : 6;
+  const offset = REM_VALUE * offsetCount
+
   const tl = gsap.timeline({ defaults: tlDefaults })
     .to(outgoing, { opacity: 0, duration: .4 })
     .set(incoming, { height: windowHeight - offset }, '<.2')
