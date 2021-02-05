@@ -59,15 +59,15 @@ function listenForUser() {
   })
 }
 
-function uploader({ newStorageRecord, newDbRecord }) {
-  const { storagePath, userFile } = newStorageRecord;
+function uploader({ storageRecord, dbRecord, progressBar, onComplete }) {
+  const { storagePath, userFile } = storageRecord;
   const storageRef = firebase.storage().ref(storagePath)
   const task = storageRef.put(userFile);
 
   task.on('state_changed',
     (snapshot) => {
       const percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      console.log(percent)
+      progressBar.value = percent;
     },
 
     (err) => {
@@ -75,11 +75,13 @@ function uploader({ newStorageRecord, newDbRecord }) {
     },
 
     () => {
-      console.log('file uploaded!')
       task.snapshot.ref.getMetadata().then(({ timeCreated }) => {
-        newDbRecord.dbFields.timeCreated = timeCreated;
-        newDbRecord.dbFields.uploadedBy = window.user.uid;
-        this._createImageRecord(newDbRecord)
+        dbRecord.dbFields.timeCreated = timeCreated;
+        dbRecord.dbFields.uploadedBy = window.user.uid;
+        this._createImageRecord(dbRecord)
+          .then(({ imgId, imgRecord }) => {
+            loadImageElement({ imgId, imgRecord, domCallback: onComplete })
+          })
        })
     }
   )
@@ -90,15 +92,15 @@ async function loadImagesFromDB({ gallery, domCallback }) {
   for (const [imgId, imgRecord] of Object.entries(imageRecords)) {
     loadImageElement({ imgId, imgRecord, domCallback })
   }
-
-  function loadImageElement({ imgId, imgRecord, domCallback }) {
-    const { imgPath, upvotes } = imgRecord;
-    const storageRef = firebase.storage().ref(imgPath);
-    storageRef.getDownloadURL()
-      .then((url) => domCallback({ imgId, url, upvotes }))
-      .catch((error) => console.log(`file does not exist at ${imgPath}`));
-    }
 }
+
+function loadImageElement({ imgId, imgRecord, domCallback }) {
+  const { storagePath, upvotes } = imgRecord;
+  const storageRef = firebase.storage().ref(storagePath);
+  storageRef.getDownloadURL()
+    .then((url) => domCallback({ imgId, url, upvotes }))
+    .catch((error) => console.log(`file does not exist at ${storagePath}`));
+  }
 
 function upvoteImage({ gallery, id }) {
   this._getImageById({ gallery, id })

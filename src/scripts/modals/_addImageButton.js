@@ -24,7 +24,8 @@ export default function AddImageButton() {
     flipModalContent(button)
   }
 
-  return button
+  this.button = button;
+  this.flipModalContent = () => flipModalContent(button);
 }
 
 function flipModalContent(button) {
@@ -37,14 +38,16 @@ function flipModalContent(button) {
   if (showsBack) {
     frontContent.style.transform = 'rotateY(0deg)';
     backContent.style.transform = 'rotateY(180deg)';
+    backContent.style.opacity = 0;
   } else {
     frontContent.style.transform = 'rotateY(180deg)';
     backContent.style.transform = 'rotateY(0deg)';
+    backContent.style.opacity = 1;
   }
 
   contentWrapper.classList.toggle('backfaceShows');
   flipButton(button, showsBack);
-
+  return
 }
 
 function flipButton(button, backfaceShows=true) {

@@ -13,7 +13,7 @@ export default function WreckGalleryModal(vessel) {
   const contentWrapper = document.createElement("div");
   const galleryWrapper = document.createElement("div");
   const gallery = document.createElement("div");
-  const switchModalContentButton = AddImageButton()
+  const switchModalContentButton = new AddImageButton()
 
   modal.id = modalId;
   modal.classList.add('modal');
@@ -30,13 +30,14 @@ export default function WreckGalleryModal(vessel) {
 
   loadGalleryFiles(id, (config) => gallery.append(GalleryImage(config)));
 
-  modal.appendChild( switchModalContentButton )
+  modal.appendChild( switchModalContentButton.button )
 
   this.id = id;
   this.element = modal;
   this.reveal = revealModal;
   this.remove = removeModal;
   this.replace = replaceModal;
+  this.refreshModal = refreshModal;
 
   function revealModal(fromPoint) {
     modalWrapper.appendChild(modal);
@@ -54,11 +55,17 @@ export default function WreckGalleryModal(vessel) {
     modalWrapper.appendChild(modal)
     modalAnimations.replace(modal, outgoing)
   }
+
+  function refreshModal(docToAdd, resolve) {
+    return new Promise(resolve => {
+      //gallery.insertBefore(GalleryImage(docToAdd), gallery.firstChild)
+      gallery.append(GalleryImage(docToAdd))
+      switchModalContentButton.flipModalContent()
+      resolve()
+    })
+  }
 }
 
 function loadGalleryFiles(gallery, domCallback) {
-  if (gallery === 'yamagiriMaru' || gallery === 'nippoMaru') {
-    window.firebaseClient.loadImagesFromDB({ domCallback, gallery })
-    return
-  }
+  window.firebaseClient.loadImagesFromDB({ domCallback, gallery })
 }

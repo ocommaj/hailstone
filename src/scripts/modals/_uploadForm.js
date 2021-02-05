@@ -42,6 +42,7 @@ export default function UploadForm() {
   uploader.appendChild( TextInput(captionInput) );
   uploader.appendChild( CustomDropdown(diveOperators) );
   uploader.appendChild( SubmitButton(submitButton) );
+  //uploader.appendChild( ProgressBar() );
 
   return uploader;
 }
@@ -63,6 +64,7 @@ function SelectFileButton({ id }) {
 
   fragment.appendChild(selectFileLabel)
   fragment.appendChild(selectFileButton)
+
   return fragment;
 }
 
@@ -84,8 +86,17 @@ function TextInput({ id, labelText, isTextArea=false, optional=true }) {
   return fragment;
 }
 
+function ProgressBar() {
+  const progressBar = document.createElement('progress');
+  progressBar.value = 0;
+  progressBar.max = 100;
+  progressBar.id = 'uploadProgressBar';
+  return progressBar
+}
+
 function SubmitButton({ id, labelText }) {
   const fragment = document.createDocumentFragment();
+  const buttonWrapper = document.createElement('div');
   const button = document.createElement('button');
   const label = document.createElement('h3');
 
@@ -93,41 +104,87 @@ function SubmitButton({ id, labelText }) {
   label.id = `${id}Label`;
   label.innerHTML = labelText;
 
+  buttonWrapper.classList.add('submitButtonWrapper');
   button.classList.add(id);
   button.id = id;
   button.type = "submit";
   button.innerHTML = labelText;
 
-  button.addEventListener('click', submitClickHandler)
+  //button.addEventListener('click', submitClickHandler)
+  button.addEventListener('click', clickHandler)
 
+  buttonWrapper.appendChild(button)
+  buttonWrapper.appendChild( ProgressBar() )
   fragment.appendChild(label);
-  fragment.appendChild(button);
+  fragment.appendChild(buttonWrapper);
   return fragment;
+
+  function clickHandler(e) {
+    submitClickHandler(() => {
+      revealProgressBar()
+      e.target.removeEventListener('click', clickHandler);
+      e.target.style.cursor = 'auto';
+    })
+  }
+  function revealProgressBar() {
+    const progressBar = buttonWrapper.children[1]
+    progressBar.style.opacity = 1;
+  }
 }
 
-function submitClickHandler(e) {
+function submitClickHandler(restyleButton) {
   // parse input values
-  const { id: wreckId, element: modal } = window.activeModal;
+  const { refreshModal, id: wreckId, element: modal } = window.activeModal;
   const storagePathRoot = `publicAssets/wrecks/${wreckId}`
-  const fileInput = e.target.parentElement.querySelector('[type=file]');
+  const fileInput = modal.querySelector('[type=file]');
 
-  if (fileInput.files.length) {
+  const progressBar = modal.querySelector('progress');
+  const imageCaption = modal.querySelector('#inputImageCaption');
+  const cameraDetails = modal.querySelector('#inputCameraDetails');
+  const diveOperators = modal.querySelector('#inputDiveOperators');
+
+  if (fileInput.validity.valid) {
     const userFile = fileInput.files[0];
     const storagePath = `${storagePathRoot}/${userFile.name}`
-    const newStorageRecord = { userFile, storagePath }
+    const storageRecord = { userFile, storagePath }
 
     // create db record
     const dbCollection = `wreckGalleries/${wreckId}/images/`;
     const dbFields = {
       storagePath,
-      imageCaption: modal.querySelector('#inputImageCaption').value,
-      cameraDetails: modal.querySelector('#inputCameraDetails').value,
-      diveOperators: modal.querySelector('#inputDiveOperators').value,
+      imageCaption: imageCaption.value,
+      cameraDetails: cameraDetails.value,
+      diveOperators: diveOperators.value,
       upvotes: 0
     }
 
-    const newDbRecord = { dbCollection, dbFields }
+    const dbRecord = { dbCollection, dbFields }
+
+    const onComplete = (docToAdd) => {
+      refreshModal(docToAdd)
+        .then(() => {
+          const uploader = modal.querySelector('.modalUploader')
+          uploader.style.opacity = 0;
+          setTimeout(() => {
+            progressBar.style.opacity = 0;
+            progressBar.value = 0;
+          }, 700)
+
+
+          fileInput.value = ''
+          imageCaption.value = ''
+          cameraDetails.value = ''
+        })
+    }
+
+    // style progressBar & button
+    restyleButton()
     // upload file
-    window.firebaseClient.uploader({ newStorageRecord, newDbRecord })
+    window.firebaseClient.uploader({
+      storageRecord,
+      dbRecord,
+      progressBar,
+      onComplete
+     })
   }
 }

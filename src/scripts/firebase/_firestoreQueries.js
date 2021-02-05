@@ -13,9 +13,9 @@ async function getGalleryImageRecords({ gallery, rootDB='wreckGalleries' }) {
     .then(snapshot => {
       return snapshot.docs.reduce((accumulator, doc) => {
         const { id } = doc;
-        const { upvotes, storagePath: imgPath } = doc.data();
-        if (imgPath) {
-          accumulator[id] = { imgPath, upvotes }
+        const { upvotes, storagePath } = doc.data();
+        if (storagePath) {
+          accumulator[id] = { storagePath, upvotes }
         }
         return accumulator;
       }, {})
@@ -57,8 +57,17 @@ function upvoteRecord(docRef, docData) {
     .catch((error) => console.error(error))
 }
 
-function createImageRecord({ dbCollection, dbFields }) {
-  this._db.collection(dbCollection).add({ ...dbFields })
-    .then((docRef) => console.log(`doc written with id: ${docRef.id}`))
-    .catch(error => console.error(error))
+function createImageRecord({ dbCollection, dbFields }, resolve) {
+  return new Promise(resolve => {
+    this._db.collection(dbCollection).add({ ...dbFields })
+      .then((docRef) => {
+        console.log(`doc written with id: ${docRef.id}`)
+        docRef.get().then(doc => {
+          const imgId = docRef.id
+          const imgRecord = doc.data()
+          resolve({ imgId, imgRecord })
+        })
+      })
+      .catch(error => console.error(error))
+  })
 }
