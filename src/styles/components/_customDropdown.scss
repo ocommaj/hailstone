@@ -11,6 +11,10 @@
   .custom-select-value {
     border: solid 1px $gray-20;
   }
+
+  .custom-select-options {
+    border: solid 1px $gray-20;
+  }
 }
 
 .custom-select-value {
@@ -45,9 +49,11 @@
   font-size: 1rem;
   background-color: $gray-70;
   position: absolute;
-  padding: 0;
+  padding: .125rem 0;
   margin: 0;
   transition: display .7s ease;
+  top: 0;
+  border-radius: .5rem;
   z-index: 500;
 }
 
