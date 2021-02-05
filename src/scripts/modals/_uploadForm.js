@@ -110,7 +110,6 @@ function SubmitButton({ id, labelText }) {
   button.type = "submit";
   button.innerHTML = labelText;
 
-  //button.addEventListener('click', submitClickHandler)
   button.addEventListener('click', clickHandler)
 
   buttonWrapper.appendChild(button)

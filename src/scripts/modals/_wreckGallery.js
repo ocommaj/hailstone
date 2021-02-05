@@ -40,28 +40,26 @@ export default function WreckGalleryModal(vessel) {
   this.refreshModal = refreshModal;
 
   function revealModal(fromPoint) {
-    //modalWrapper.appendChild(modal);
-    document.body.appendChild(modal)
+    //document.body.appendChild(modal)
+    document.body.insertBefore(modal, document.body.firstChild)
     modalAnimations.reveal(modal, fromPoint);
   }
 
   function removeModal() {
     modalAnimations.collapse(modal, () => {
-      //modalWrapper.removeChild(modal);
       document.body.removeChild(modal);
       window.activeModal = null;
     })
   }
 
   function replaceModal(outgoing) {
-    //modalWrapper.appendChild(modal)
-    document.body.appendChild(modal)
+    //document.body.appendChild(modal)
+    document.body.insertBefore(modal, document.body.firstChild)
     modalAnimations.replace(modal, outgoing)
   }
 
   function refreshModal(docToAdd, resolve) {
     return new Promise(resolve => {
-      //gallery.insertBefore(GalleryImage(docToAdd), gallery.firstChild)
       gallery.append(GalleryImage(docToAdd))
       switchModalContentButton.flipModalContent()
       resolve()
