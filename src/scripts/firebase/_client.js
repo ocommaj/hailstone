@@ -3,6 +3,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
 import FirestoreQueries from './_firestoreQueries';
+import UserManager from './_userManager';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -16,38 +17,18 @@ const firebaseConfig = {
 
 export default function FirebaseClient() {
   firebase.initializeApp(firebaseConfig);
-  anonymousLogin();
-  listenForUser();
 
   const db = firebase.firestore();
   const queries = FirestoreQueries(db);
+  const authenticator = firebase.auth();
+  const userManager = UserManager(authenticator);
+
+  userManager.anonymousLogin();
+  userManager.listenForUserChange();
 
   this.uploader = (args) => uploader(queries, args);
   this.loadImagesFromDB = (args) => loadImagesFromDB(queries, args);
   this.upvoteImage = (args) => upvoteImage(queries, args);
-}
-
-function anonymousLogin() {
-  firebase.auth().signInAnonymously()
-    .then(() => {
-      //console.log('anonymous user signed in ok')
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(`Error ${errorCode}:\n${errorMessage}`)
-    })
-}
-
-function listenForUser() {
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      const uid = user.uid;
-      window.user = user;
-    } else {
-      window.user = null;
-    }
-  })
 }
 
 function uploader(
