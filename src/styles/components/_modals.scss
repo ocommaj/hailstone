@@ -144,13 +144,19 @@
 @media only screen and (max-width: 428px) {
   .modal {
     width: calc(100vw - 3rem);
-    height: calc(100vh - 8rem);
+    height: calc(100vh - 7rem);
     left: 1.5rem;
     top: 1rem;
 
     .gallery {
       .modalGalleryImgWrapper .postApplauseButton {
         opacity: 1;
+      }
+    }
+
+    .modalUploader {
+      textarea {
+        height: 3rem;
       }
     }
   }
