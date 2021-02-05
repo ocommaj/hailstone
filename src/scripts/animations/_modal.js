@@ -22,10 +22,12 @@ function reveal(element, fromPoint) {
   const deltaY = y - top;
 
   const windowHeight = window.innerHeight;
+  const offsetCount = window.isMobileUser ? 4 : 6;
+  const offset = REM_VALUE * offsetCount
 
   const tl = gsap.timeline({ defaults: tlDefaults })
     .from(element, { x: deltaX, y: deltaY, width: 0 })
-    .to(element, { height: windowHeight - (6*REM_VALUE), opacity: 1 }, '<')
+    .to(element, { height: windowHeight - offset, opacity: 1 }, '<')
     .from(element.children, { opacity: 0 });
 }
 
@@ -38,9 +40,12 @@ function collapse(element, onComplete) {
 
 function replace(incoming, outgoing) {
   const windowHeight = window.innerHeight;
+  const offsetCount = window.isMobileUser ? 4 : 6;
+  const offset = REM_VALUE * offsetCount;
+  
   const tl = gsap.timeline({ defaults: tlDefaults })
     .to(outgoing, { opacity: 0, duration: .4 })
-    .set(incoming, { height: windowHeight - (6*REM_VALUE) }, '<.2')
+    .set(incoming, { height: windowHeight - offset }, '<.2')
     .to(incoming, { opacity: 1, duration: .4 }, '<')
     .call(() => outgoing.remove())
 }
