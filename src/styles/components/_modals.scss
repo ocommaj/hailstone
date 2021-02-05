@@ -26,21 +26,23 @@
   flex-direction: column;
   justify-content: flex-end;
 
-  pointer-events: auto;
-  touch-action: auto;
+  //pointer-events: auto;
+  //touch-action: auto;
 
   .contentWrapper {
     flex-grow: 1;
     overflow: hidden;
-    overflow-y: scroll;
     display: flex;
-    overflow: hidden;
     position: relative;
   }
 
   .galleryWrapper {
-    flex-grow: 1;
-    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
     padding: 0;
     padding-bottom: .75rem;
     border-radius: .5rem;
@@ -88,7 +90,6 @@
     .modalGalleryImgWrapper {
       overflow: hidden;
       position: relative;
-      pointer-events: all;
       background-color: $gray-90;
       height: auto;
       box-shadow: -.125rem .125rem .5rem $gray-90-30;
@@ -142,9 +143,9 @@
 @media only screen and (max-width: 428px) {
   .modal {
     width: calc(100vw - 3rem);
-    height: calc(100% - 6rem);
+    height: calc(100vh - 8rem);
     left: 1.5rem;
-    top: 2rem;
+    top: 1rem;
 
     .gallery {
       .modalGalleryImgWrapper .postApplauseButton {

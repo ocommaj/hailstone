@@ -40,7 +40,6 @@ export default function WreckGalleryModal(vessel) {
   this.refreshModal = refreshModal;
 
   function revealModal(fromPoint) {
-    //document.body.appendChild(modal)
     document.body.insertBefore(modal, document.body.firstChild)
     modalAnimations.reveal(modal, fromPoint);
   }
@@ -53,7 +52,6 @@ export default function WreckGalleryModal(vessel) {
   }
 
   function replaceModal(outgoing) {
-    //document.body.appendChild(modal)
     document.body.insertBefore(modal, document.body.firstChild)
     modalAnimations.replace(modal, outgoing)
   }
