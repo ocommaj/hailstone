@@ -1,14 +1,19 @@
-export {
-  getGalleryImageRecords,
-  getImageById,
-  getVesselIconRecord,
-  upvoteRecord,
-  createImageRecord,
-};
+export default function FirestoreQueries(db) {
+  const upvoteRecord = _upvoteRecord;
+  const getImageRecords = (args) => _getImageRecords(db, args);
+  const getImageById = (args) => _getImageById(db, args);
+  const createImageRecord = (args) => _createImageRecord(db, args);
 
-async function getGalleryImageRecords({ gallery, rootDB='wreckGalleries' }) {
-  const dbRef = this._db
-    .collection(rootDB).doc(gallery).collection('images');
+  return {
+    upvoteRecord,
+    getImageRecords,
+    getImageById,
+    createImageRecord
+  }
+}
+
+async function _getImageRecords(db, { gallery, rootDB='wreckGalleries' }) {
+  const dbRef = db.collection(rootDB).doc(gallery).collection('images');
   const galleryRecords = await dbRef.get()
     .then(snapshot => {
       return snapshot.docs.reduce((accumulator, doc) => {
@@ -24,10 +29,9 @@ async function getGalleryImageRecords({ gallery, rootDB='wreckGalleries' }) {
   return galleryRecords;
 }
 
-function getImageById({ gallery, id, rootDB='wreckGalleries' }, resolve) {
+function _getImageById(db, { gallery, id, root='wreckGalleries' }) {
   return new Promise ((resolve) => {
-    const dbRef = this._db
-      .collection(rootDB).doc(gallery).collection('images');
+    const dbRef = db.collection(root).doc(gallery).collection('images');
     const docRef = dbRef.doc(id)
     docRef.get()
       .then(imageDoc => {
@@ -39,17 +43,7 @@ function getImageById({ gallery, id, rootDB='wreckGalleries' }, resolve) {
   })
 }
 
-async function getVesselIconRecord({ vessel }) {
-  return new Promise((resolve) => {
-    const docRef = this._db.collection('wreckGalleries').doc(vessel)
-    docRef.get().then(doc => {
-      const { iconPath } = doc.data()
-      resolve(iconPath)
-    })
-  })
-}
-
-function upvoteRecord(docRef, docData) {
+function _upvoteRecord(docRef, docData) {
   const { upvotes: prevCount } = docData;
   const updatedCount = prevCount+1;
   docRef.update({ upvotes: updatedCount })
@@ -57,9 +51,9 @@ function upvoteRecord(docRef, docData) {
     .catch((error) => console.error(error))
 }
 
-function createImageRecord({ dbCollection, dbFields }, resolve) {
+function _createImageRecord(db, { dbCollection, dbFields }) {
   return new Promise(resolve => {
-    this._db.collection(dbCollection).add({ ...dbFields })
+    db.collection(dbCollection).add({ ...dbFields })
       .then((docRef) => {
         console.log(`doc written with id: ${docRef.id}`)
         docRef.get().then(doc => {

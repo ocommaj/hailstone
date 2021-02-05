@@ -2,13 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
-import {
-  getGalleryImageRecords,
-  getVesselIconRecord,
-  getImageById,
-  upvoteRecord,
-  createImageRecord
-} from './_firestoreQueries';
+import FirestoreQueries from './_firestoreQueries';
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -25,15 +19,12 @@ export default function FirebaseClient() {
   anonymousLogin();
   listenForUser();
 
-  this._db = firebase.firestore();
-  this._createImageRecord = createImageRecord;
-  this._getGalleryImageRecords = getGalleryImageRecords;
-  this._getImageById = getImageById;
-  this._getVesselIconRecord = getVesselIconRecord;
-  this.uploader = uploader;
-  this.loadImagesFromDB = loadImagesFromDB;
-  this.loadVesselIcon = loadVesselIcon;
-  this.upvoteImage = upvoteImage;
+  const db = firebase.firestore();
+  const queries = FirestoreQueries(db);
+
+  this.uploader = (args) => uploader(queries, args);
+  this.loadImagesFromDB = (args) => loadImagesFromDB(queries, args);
+  this.upvoteImage = (args) => upvoteImage(queries, args);
 }
 
 function anonymousLogin() {
@@ -59,7 +50,11 @@ function listenForUser() {
   })
 }
 
-function uploader({ storageRecord, dbRecord, progressBar, onComplete }) {
+function uploader(
+  { createImageRecord },
+  { storageRecord, dbRecord, progressBar, onComplete }
+) {
+
   const { storagePath, userFile } = storageRecord;
   const storageRef = firebase.storage().ref(storagePath)
   const task = storageRef.put(userFile);
@@ -78,7 +73,7 @@ function uploader({ storageRecord, dbRecord, progressBar, onComplete }) {
       task.snapshot.ref.getMetadata().then(({ timeCreated }) => {
         dbRecord.dbFields.timeCreated = timeCreated;
         dbRecord.dbFields.uploadedBy = window.user.uid;
-        this._createImageRecord(dbRecord)
+        createImageRecord(dbRecord)
           .then(({ imgId, imgRecord }) => {
             loadImageElement({ imgId, imgRecord, domCallback: onComplete })
           })
@@ -87,8 +82,11 @@ function uploader({ storageRecord, dbRecord, progressBar, onComplete }) {
   )
 }
 
-async function loadImagesFromDB({ gallery, domCallback }) {
-  const imageRecords = await this._getGalleryImageRecords({ gallery })
+async function loadImagesFromDB(
+  { getImageRecords },
+  { gallery, domCallback }
+) {
+  const imageRecords = await getImageRecords({ gallery })
   for (const [imgId, imgRecord] of Object.entries(imageRecords)) {
     loadImageElement({ imgId, imgRecord, domCallback })
   }
@@ -102,16 +100,7 @@ function loadImageElement({ imgId, imgRecord, domCallback }) {
     .catch((error) => console.log(`file does not exist at ${storagePath}`));
   }
 
-function upvoteImage({ gallery, id }) {
-  this._getImageById({ gallery, id })
+function upvoteImage({ getImageById, upvoteRecord }, { gallery, id }) {
+  getImageById({ gallery, id })
     .then(({ docRef, imgData }) => upvoteRecord(docRef, imgData));
-}
-
-function loadVesselIcon(vessel, domCallback=null) {
-  this._getVesselIconRecord({ vessel })
-    .then((iconPath) => {
-      const storageRef = firebase.storage().ref(iconPath);
-      storageRef.getDownloadURL()
-        .then((url) => domCallback(url))
-    });
 }
