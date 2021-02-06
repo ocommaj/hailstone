@@ -17,7 +17,7 @@ function _loginUI(authenticator) {
   const loginUI = new firebaseui.auth.AuthUI(authenticator());
   const anonymousUser = authenticator().currentUser;
   const uiConfig = {
-        signInSuccessUrl: 'hailstone.ocommaj.com' //'localhost:8080',
+        signInSuccessUrl: 'hailstone.ocommaj.com', //'localhost:8080',
         signInFlow: 'popup',
         signInOptions: [
           authenticator.GoogleAuthProvider.PROVIDER_ID,
