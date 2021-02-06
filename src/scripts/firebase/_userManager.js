@@ -15,15 +15,26 @@ export default function UserManager(authenticator) {
 
 function _loginUI(authenticator) {
   const loginUI = new firebaseui.auth.AuthUI(authenticator());
-  const anonymousUser = authenticator().currentUser;
+  var anonymousUser = authenticator().currentUser;
   const uiConfig = {
-        signInSuccessUrl: 'hailstone.ocommaj.com', //'localhost:8080',
+        autoUpgradeAnonymousUsers: true,
+        signInSuccessUrl: '/', //'localhost:8080',
         signInFlow: 'popup',
         signInOptions: [
           authenticator.GoogleAuthProvider.PROVIDER_ID,
           authenticator.EmailAuthProvider.PROVIDER_ID,
         ],
-      };
+        callbacks: {
+          signInFailure: function(error) {
+            if (error.code != 'firebaseui/anonymous-upgrade-merge-conflict') {
+              return Promise.resolve();
+            }
+
+            var cred = error.credential;
+            return authenticator().signInWithCredential(cred);
+          }
+      }
+    };
 
   this.start = (containerId) => loginUI.start(containerId, uiConfig);
 }
