@@ -2,8 +2,7 @@ const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = env => {
-  const config = {
+module.exports = {
   entry: './src/index.js',
   module: {
     rules: [
@@ -52,8 +51,4 @@ module.exports = env => {
       systemvars: true
     }),
   ],
-  mode: process.env.NODE_ENV,
-}
-
-  return config;
 };

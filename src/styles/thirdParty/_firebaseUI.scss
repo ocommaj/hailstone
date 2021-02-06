@@ -1,0 +1,46 @@
+#firebaseui-auth-container {
+  position: absolute;
+  z-index: 600;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+
+  background-color: $gray-90-50;
+  backdrop-filter: blur(1rem);
+  -webkit-backdrop-filter: blur(1rem);
+  border-radius: .5rem;
+
+  //opacity: 0;
+  //transition: opacity .7s ease;
+
+  .firebaseui-container {
+    border-radius: .5rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .firebaseui-card-content {
+    margin-bottom: 4rem;
+  }
+
+  .firebaseui-list-item {
+    margin-bottom: .5rem;
+  }
+
+  .firebaseui-id-idp-button {
+    border-radius: .5rem;
+  }
+
+  //.firebaseui-idp-button.mdl-button.mdl-js-button.mdl-button--raised.firebaseui-idp-google
+
+  /*.firebaseui-id-idp-button[data-provider-id="google.com"] {
+    background-color: $blue-40;
+  }
+
+  .firebaseui-id-idp-button[data-upgraded=",MaterialButton"] {
+    background-color: $blue-40;
+  }*/
+}

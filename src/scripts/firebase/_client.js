@@ -20,12 +20,17 @@ export default function FirebaseClient() {
 
   const db = firebase.firestore();
   const queries = FirestoreQueries(db);
-  const authenticator = firebase.auth();
+  const authenticator = firebase.auth;
   const userManager = UserManager(authenticator);
+  const loginUI = userManager.loginUI();
 
-  userManager.anonymousLogin();
+  if (!authenticator().currentUser) {
+    userManager.anonymousLogin();
+  }
+
   userManager.listenForUserChange();
 
+  this.loginUI = loginUI;
   this.uploader = (args) => uploader(queries, args);
   this.loadImagesFromDB = (args) => loadImagesFromDB(queries, args);
   this.upvoteImage = (args) => upvoteImage(queries, args);

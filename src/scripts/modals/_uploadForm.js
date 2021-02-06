@@ -142,6 +142,15 @@ function submitClickHandler(restyleButton) {
   const cameraDetails = modal.querySelector('#inputCameraDetails');
   const diveOperators = modal.querySelector('#inputDiveOperators');
 
+  if (window.user.isAnonymous) {
+    const contentWrapper = modal.querySelector('.contentWrapper');
+    const firebaseAuthUIContainer = document.createElement('div');
+    firebaseAuthUIContainer.id = "firebaseui-auth-container";
+    contentWrapper.appendChild(firebaseAuthUIContainer);
+    window.firebaseClient.loginUI.start(firebaseAuthUIContainer);
+    return
+  }
+
   if (fileInput.validity.valid) {
     const userFile = fileInput.files[0];
     const storagePath = `${storagePathRoot}/${userFile.name}`

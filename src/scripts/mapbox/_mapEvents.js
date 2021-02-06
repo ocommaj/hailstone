@@ -22,6 +22,7 @@ export function restyleCursor(point, map) {
 }
 
 export function clickHandler(point, map) {
+  console.dir(window.user)
   const activeModal = window.activeModal;
   const features = map.queryRenderedFeatures(point, { layers: wreckLabels });
   if (!features.length && !activeModal) return;
