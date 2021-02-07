@@ -1,5 +1,6 @@
-import * as firebaseui from 'firebaseui'
-import 'firebaseui/dist/firebaseui.css'
+import * as firebaseui from 'firebaseui';
+import 'firebaseui/dist/firebaseui.css';
+import googleIcon from '../../assets/icons/google_alt.svg';
 
 export default function UserManager(authenticator) {
   const anonymousLogin = () => _anonymousLogin(authenticator);
@@ -21,7 +22,12 @@ function _loginUI(authenticator) {
         signInSuccessUrl: '/', //'localhost:8080',
         signInFlow: 'popup',
         signInOptions: [
-          authenticator.GoogleAuthProvider.PROVIDER_ID,
+          {
+            provider: 'google.com',
+            providerName: 'Google',
+            buttonColor: '#24a148',
+            iconUrl: googleIcon
+          },
           authenticator.EmailAuthProvider.PROVIDER_ID,
         ],
         callbacks: {
@@ -32,11 +38,15 @@ function _loginUI(authenticator) {
 
             var cred = error.credential;
             return authenticator().signInWithCredential(cred);
+          },
+          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+            return true;
           }
-      }
+        }
     };
 
   this.start = (containerId) => loginUI.start(containerId, uiConfig);
+
 }
 
 function _anonymousLogin(authenticator) {

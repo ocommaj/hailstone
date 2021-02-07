@@ -50,12 +50,21 @@
     backdrop-filter: blur(1rem);
   }
 
+  .firebaseui-idp-google > .firebaseui-idp-text {
+    color: $gray-10;
+  }
+
+  .firebaseui-idp-text {
+    font-size: 1.25rem;
+  }
+
   h1 {
     color: $gray-10;
   }
 
   label {
     color: $gray-20;
+    font-size: 1rem;
   }
 
   input {
