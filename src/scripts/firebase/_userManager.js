@@ -28,6 +28,7 @@ function _loginUI(authenticator) {
             buttonColor: '#24a148',
             iconUrl: googleIcon
           },
+          authenticator.TwitterAuthProvider.PROVIDER_ID,
           authenticator.EmailAuthProvider.PROVIDER_ID,
         ],
         callbacks: {
