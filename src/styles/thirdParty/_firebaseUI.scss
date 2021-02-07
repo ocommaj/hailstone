@@ -5,12 +5,14 @@
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
 
   background-color: $gray-90-50;
   backdrop-filter: blur(1rem);
   -webkit-backdrop-filter: blur(1rem);
   border-radius: .5rem;
+
+  display: flex;
+  //display: none;
 
   * {
     font-family: 'Cabin Condensed'
@@ -25,6 +27,7 @@
 
   .firebaseui-card-content {
     margin-bottom: 4rem;
+    padding: 0 1rem;
   }
 
   .firebaseui-list-item {
@@ -33,6 +36,7 @@
 
   .firebaseui-id-idp-button {
     border-radius: .5rem;
+    max-width: 80%;
   }
 
   .firebaseui-id-page-sign-in {

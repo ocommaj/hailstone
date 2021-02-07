@@ -142,11 +142,7 @@ function submitClickHandler(restyleButton) {
   const diveOperators = modal.querySelector('#inputDiveOperators');
 
   if (window.user.isAnonymous) {
-    const contentWrapper = modal.querySelector('.contentWrapper');
-    const firebaseAuthUIContainer = document.createElement('div');
-    firebaseAuthUIContainer.id = "firebaseui-auth-container";
-    contentWrapper.appendChild(firebaseAuthUIContainer);
-    window.firebaseClient.loginUI.start(firebaseAuthUIContainer);
+    window.launchAuthUI()
     return
   }
 

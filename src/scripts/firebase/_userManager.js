@@ -29,6 +29,7 @@ function _loginUI(authenticator) {
             iconUrl: googleIcon
           },
           authenticator.TwitterAuthProvider.PROVIDER_ID,
+          //authenticator.FacebookAuthProvider.PROVIDER_ID,
           authenticator.EmailAuthProvider.PROVIDER_ID,
         ],
         callbacks: {
@@ -40,9 +41,6 @@ function _loginUI(authenticator) {
             var cred = error.credential;
             return authenticator().signInWithCredential(cred);
           },
-          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-            return true;
-          }
         }
     };
 
@@ -67,7 +65,10 @@ function _listenForUserChange(authenticator) {
       if (!user.isAnonymous) {
         const containerId = 'firebaseui-auth-container';
         const container = document.getElementById(containerId);
-        if (container) container.style.display = 'none';
+        if (container && container.style.display !== 'none') {
+          window.hideAuthUI()
+          return
+        }
       }
     } else {
       window.user = null;

@@ -1,4 +1,5 @@
 import { modalAnimations } from '../animations';
+import FirebaseAuthUIContainer from './_firebaseAuthUIContainer';
 import GalleryImage from './_galleryImage';
 import HeadlineElements from './_modalHeadline';
 import ModalContentSwitcher from './_modalContentSwitcher';
@@ -13,7 +14,8 @@ export default function WreckGalleryModal(vessel) {
   const contentWrapper = document.createElement("div");
   const galleryWrapper = document.createElement("div");
   const gallery = document.createElement("div");
-  const switchModalContent = new ModalContentSwitcher()
+  const switchModalContent = new ModalContentSwitcher();
+  const firebaseAuthUI = new FirebaseAuthUIContainer();
 
   modal.id = modalId;
   modal.classList.add('modal');
@@ -21,10 +23,12 @@ export default function WreckGalleryModal(vessel) {
   galleryWrapper.classList.add('wrappedModalContent');
   galleryWrapper.classList.add('galleryWrapper');
   gallery.classList.add('gallery');
+  firebaseAuthUI.element.classList.add('tertiaryContent')
 
   contentWrapper.appendChild(galleryWrapper);
   galleryWrapper.appendChild(gallery);
   contentWrapper.appendChild( UploadForm() );
+  contentWrapper.appendChild( firebaseAuthUI.element );
 
   modal.appendChild( HeadlineElements(vessel) );
   modal.appendChild(contentWrapper);
@@ -39,6 +43,8 @@ export default function WreckGalleryModal(vessel) {
   this.remove = removeModal;
   this.replace = replaceModal;
   this.refreshModal = refreshModal;
+  window.launchAuthUI = launchAuthUI;
+  window.hideAuthUI = hideAuthUI;
 
   function revealModal(fromPoint) {
     document.body.insertBefore(modal, document.body.firstChild)
@@ -63,6 +69,16 @@ export default function WreckGalleryModal(vessel) {
       switchModalContent.flipModalContent()
       resolve()
     })
+  }
+
+  function launchAuthUI() {
+    switchModalContent.toggleTertiaryContent()
+    firebaseAuthUI.start()
+  }
+
+  function hideAuthUI() {
+    switchModalContent.toggleTertiaryContent()
+    firebaseAuthUI.element.style.display = 'none';
   }
 }
 

@@ -11,30 +11,29 @@
   box-shadow: .25rem .25rem .5rem $red-60-30;
   cursor: pointer;
 
-  .frontButtonIcon {
+  .buttonIcon {
     display: block;
     position: absolute;
     top: 0;
     right: 0;
-    width: 100%;
-    padding: 0;
+    width: 4rem;
+    height: 4rem;
     transition: opacity .4s ease;
     pointer-events: none;
   }
 
+  .frontButtonIcon {
+    padding: 0;
+  }
+
   .backfaceButtonIcon {
-    background-color: $gray-80;
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4rem;
-    height: 4rem;
     padding: .5rem;
     opacity: 0;
-    transition: opacity .4s ease;
-    border-radius: 2rem;
-    pointer-events: none;
+  }
+
+  .tertiaryButtonIcon {
+    padding: .5rem;
+    opacity: 0;
   }
 }
 
@@ -46,6 +45,20 @@
   }
 
   .backfaceButtonIcon {
+    opacity: 1;
+  }
+}
+
+.switchModalContentButton.tertiaryContentShows {
+  .frontButtonIcon {
+    opacity: 0;
+  }
+
+  .backfaceButtonIcon {
+    opacity: 0;
+  }
+
+  .tertiaryButtonIcon {
     opacity: 1;
   }
 }
