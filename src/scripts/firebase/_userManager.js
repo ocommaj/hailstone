@@ -29,7 +29,7 @@ function _loginUI(authenticator) {
             iconUrl: googleIcon
           },
           authenticator.TwitterAuthProvider.PROVIDER_ID,
-          //authenticator.FacebookAuthProvider.PROVIDER_ID,
+          authenticator.FacebookAuthProvider.PROVIDER_ID,
           authenticator.EmailAuthProvider.PROVIDER_ID,
         ],
         callbacks: {

@@ -78,7 +78,6 @@ export default function WreckGalleryModal(vessel) {
 
   function hideAuthUI() {
     switchModalContent.toggleTertiaryContent()
-    firebaseAuthUI.element.style.display = 'none';
   }
 }
 
