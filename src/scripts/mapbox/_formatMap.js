@@ -2,25 +2,41 @@ import SunCalc from 'suncalc';
 
 const bounds = [ [151.382659, 7.118231], [152.072039, 7.727652] ];
 
-export const initialConfigs = {
-  zoom: 13.25,
-  center: [151.83, 7.427],
-  pitch: 75,
-  bearing: 125,
+const initialConfigs = {
   maxZoom: 16,
   minZoom: 11,
   maxBounds: bounds,
   style: process.env.MB_STYLE,
+  ...setInitialCamera()
 }
 
 const Config = {
-  initial: initialConfigs,
-  render3D
+  render3D,
+  initial: initialConfigs
 }
 
 export default Config;
 
-export function render3D(map) {
+function setInitialCamera() {
+  const { width, height } = window.screen;
+  if (width > height) {
+    return {
+      zoom: 13.25,
+      center: [151.83, 7.427],
+      pitch: 75,
+      bearing: 125
+    }
+  } else {
+    return {
+      zoom: 12.05,
+      center: [151.80, 7.4],
+      pitch: 75,
+      bearing: 125
+    }
+  }
+}
+
+function render3D(map) {
   addTerrainSource(map);
   addSkyLayer(map);
 }
