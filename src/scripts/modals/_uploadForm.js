@@ -141,7 +141,7 @@ function submitClickHandler(restyleButton) {
   const cameraDetails = modal.querySelector('#inputCameraDetails');
   const diveOperators = modal.querySelector('#inputDiveOperators');
 
-  if (window.user.isAnonymous) {
+  if (!window.user || window.user.isAnonymous) {
     window.launchAuthUI()
     return
   }

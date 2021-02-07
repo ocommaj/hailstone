@@ -24,11 +24,11 @@ export default function FirebaseClient() {
   const userManager = UserManager(authenticator);
   const loginUI = userManager.loginUI();
 
+  userManager.listenForUserChange();
+
   if (!authenticator().currentUser) {
     userManager.anonymousLogin();
   }
-
-  userManager.listenForUserChange();
 
   this.loginUI = loginUI;
   this.uploader = (args) => uploader(queries, args);

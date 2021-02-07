@@ -39,12 +39,16 @@ function _loginUI(authenticator) {
             }
 
             var cred = error.credential;
-            return authenticator().signInWithCredential(cred);
+            return authenticator().signInWithCredential(cred)
           },
         }
     };
 
-  this.start = (containerId) => loginUI.start(containerId, uiConfig);
+  if (loginUI.isPendingRedirect()) {
+    loginUI.start('#firebaseui-auth-container', uiConfig);
+  }
+
+  this.start = () => loginUI.start('#firebaseui-auth-container', uiConfig);
 
 }
 
@@ -70,8 +74,6 @@ function _listenForUserChange(authenticator) {
           return
         }
       }
-    } else {
-      window.user = null;
     }
-  })
+})
 }
