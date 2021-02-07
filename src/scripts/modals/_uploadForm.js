@@ -35,14 +35,13 @@ const diveOperators = {
 export default function UploadForm() {
   const uploader = document.createElement('div');
   uploader.classList.add('modalUploader');
-
+  uploader.classList.add('wrappedModalContent');
 
   uploader.appendChild( SelectFileButton(selectImageInput) );
   uploader.appendChild( TextInput(cameraDetails) );
   uploader.appendChild( TextInput(captionInput) );
   uploader.appendChild( CustomDropdown(diveOperators) );
   uploader.appendChild( SubmitButton(submitButton) );
-  //uploader.appendChild( ProgressBar() );
 
   return uploader;
 }

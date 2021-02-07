@@ -1,7 +1,7 @@
 import { modalAnimations } from '../animations';
-import HeadlineElements from './_modalHeadline';
 import GalleryImage from './_galleryImage';
-import AddImageButton from './_addImageButton';
+import HeadlineElements from './_modalHeadline';
+import ModalContentSwitcher from './_modalContentSwitcher';
 import UploadForm from './_uploadForm';
 
 
@@ -13,11 +13,12 @@ export default function WreckGalleryModal(vessel) {
   const contentWrapper = document.createElement("div");
   const galleryWrapper = document.createElement("div");
   const gallery = document.createElement("div");
-  const switchModalContentButton = new AddImageButton()
+  const switchModalContent = new ModalContentSwitcher()
 
   modal.id = modalId;
   modal.classList.add('modal');
   contentWrapper.classList.add('contentWrapper');
+  galleryWrapper.classList.add('wrappedModalContent');
   galleryWrapper.classList.add('galleryWrapper');
   gallery.classList.add('gallery');
 
@@ -30,7 +31,7 @@ export default function WreckGalleryModal(vessel) {
 
   loadGalleryFiles(id, (config) => gallery.append(GalleryImage(config)));
 
-  modal.appendChild( switchModalContentButton.button )
+  modal.appendChild( switchModalContent.button )
 
   this.id = id;
   this.element = modal;
@@ -59,7 +60,7 @@ export default function WreckGalleryModal(vessel) {
   function refreshModal(docToAdd, resolve) {
     return new Promise(resolve => {
       gallery.append(GalleryImage(docToAdd))
-      switchModalContentButton.flipModalContent()
+      switchModalContent.flipModalContent()
       resolve()
     })
   }

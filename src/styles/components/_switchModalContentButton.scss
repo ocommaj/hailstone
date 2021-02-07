@@ -1,4 +1,4 @@
-.addImageButton {
+.switchModalContentButton {
   position: absolute;
   top: 1.25rem;
   right: 1rem;
@@ -11,7 +11,7 @@
   box-shadow: .25rem .25rem .5rem $red-60-30;
   cursor: pointer;
 
-  .addImageButtonIcon {
+  .frontButtonIcon {
     display: block;
     position: absolute;
     top: 0;
@@ -35,5 +35,17 @@
     transition: opacity .4s ease;
     border-radius: 2rem;
     pointer-events: none;
+  }
+}
+
+.switchModalContentButton.backfaceShows {
+  box-shadow: .25rem .25rem .5rem $gray-90-30;
+
+  .frontButtonIcon {
+    opacity: 0;
+  }
+
+  .backfaceButtonIcon {
+    opacity: 1;
   }
 }

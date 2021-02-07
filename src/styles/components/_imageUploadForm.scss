@@ -1,10 +1,9 @@
 @import './customDropdown';
 
 .modalUploader {
-  width: 100%;
+  background-color: $gray-80-30;
   padding: 1rem;
-  border-radius: .5rem;
-
+  
   input[type=file] {
     font-size: 1rem;
     font-family: 'Cabin Condensed';

@@ -268,7 +268,8 @@
         "maxDepth": "18m",
         "isGreatestHit": false,
         "vesselType": "Aircraft",
-        "wingspan": 25
+        "wingspan": 25,
+        "model": "Mitsubishi G4M3 Type 1"
       }
     },
     {
