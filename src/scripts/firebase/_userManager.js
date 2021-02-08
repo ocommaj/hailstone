@@ -15,6 +15,7 @@ export default function UserManager(authenticator) {
 }
 
 function _loginUI(authenticator) {
+  const elementId = 'firebaseui-auth-container'
   const loginUI = new firebaseui.auth.AuthUI(authenticator());
   var anonymousUser = authenticator().currentUser;
   const uiConfig = {
@@ -33,6 +34,10 @@ function _loginUI(authenticator) {
           authenticator.EmailAuthProvider.PROVIDER_ID,
         ],
         callbacks: {
+          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+              window.hideAuthUI()
+              return false;
+            },
           signInFailure: function(error) {
             if (error.code != 'firebaseui/anonymous-upgrade-merge-conflict') {
               return Promise.resolve();
