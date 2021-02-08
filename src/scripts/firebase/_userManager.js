@@ -23,6 +23,7 @@ function _loginUI(authenticator) {
         signInSuccessUrl: '/', //'localhost:8080',
         signInFlow: 'popup',
         signInOptions: [
+          'apple.com',
           {
             provider: 'google.com',
             providerName: 'Google',
@@ -45,7 +46,7 @@ function _loginUI(authenticator) {
 
             var cred = error.credential;
             return authenticator().signInWithCredential(cred)
-          },
+          }
         }
     };
 
