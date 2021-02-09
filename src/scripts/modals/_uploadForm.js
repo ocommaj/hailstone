@@ -25,6 +25,7 @@ const diveOperators = {
   options: [
     { ref: '', display: '(Optional)' },
     { ref: 'blueLagoon', display: 'Blue Lagoon' },
+    { ref: 'dirtyDozenExpeditions', display: 'Dirty Dozen Expeditions' },
     { ref: 'odyssey', display: 'M/V Odyssey' },
     { ref: 'trukMaster', display: 'M/Y Truk Master' },
     { ref: 'thorfinn', display: 'SS Thorfinn' },

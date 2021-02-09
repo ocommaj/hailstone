@@ -31,7 +31,7 @@
       "type": "Feature",
       "properties": {
         "id": "shinoharaSubmarine",
-        "title": "IJN Shinohara Submarine I-169",
+        "title": "IJN I-169",
         "averageDepth": "35m",
         "maxDepth": "43m",
         "length": 98,
@@ -230,6 +230,7 @@
         "maxDepth": "15m",
         "isGreatestHit": false,
         "vesselType": "Aircraft",
+        "model": "Kawanishi H8K Type 2",
         "wingspan": 38
       }
     },
@@ -249,6 +250,7 @@
         "maxDepth": "6m",
         "isGreatestHit": false,
         "vesselType": "Aircraft",
+        "model":  "Mitsubishi A6M Rei-sen",
         "wingspan": 12
       }
     },
@@ -645,7 +647,7 @@
         "maxDepth": "60m",
         "length": 149,
         "isGreatestHit": true,
-        "vesselType": "Fuel Tanker",
+        "vesselType": "Fuel Tanker"
       }
     }
   ]

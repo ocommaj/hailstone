@@ -37,8 +37,8 @@ function setInitialCamera() {
 }
 
 function render3D(map) {
-  addTerrainSource(map);
-  addSkyLayer(map);
+    addTerrainSource(map);
+    addSkyLayer(map);
 }
 
 function addTerrainSource(map) {

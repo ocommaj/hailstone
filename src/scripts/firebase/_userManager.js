@@ -20,7 +20,7 @@ function _loginUI(authenticator) {
   var anonymousUser = authenticator().currentUser;
   const uiConfig = {
         autoUpgradeAnonymousUsers: true,
-        signInSuccessUrl: '/', //'localhost:8080',
+        signInSuccessUrl: '/',
         signInFlow: 'popup',
         signInOptions: [
           'apple.com',
