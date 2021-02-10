@@ -3,13 +3,17 @@ import { features } from '../../assets/wreckLocations.json';
 const INPUT_ID = "topLevelSearchBar";
 
 export default function SearchBar() {
+  const searchWrapper = document.createElement('div')
   const searchBar = document.createElement('form');
   const searchInput = document.createElement('input');
   const matchContainer = document.createElement('div');
 
   let matches = [];
 
+  searchWrapper.classList.add('searchWrapper');
   searchBar.classList.add('searchBar');
+  searchBar.tabIndex = 0;
+
   matchContainer.classList.add('searchMatchesWrapper');
 
   searchInput.id = INPUT_ID;
@@ -48,11 +52,23 @@ export default function SearchBar() {
         if (currentHighlighted) selectMatchedElement(currentHighlighted);
         break;
     }
+  });
+
+  document.addEventListener('click', (e) => {
+    const wrapperElement = document.querySelector('.searchWrapper');
+    const matchContainer = document.querySelector('.searchMatchesWrapper');
+    const searchInput = document.getElementById('topLevelSearchBar')
+    if (!matchContainer.classList.contains('expanded')) return;
+    if (!wrapperElement.contains(e.target)) {
+      matchContainer.style.opacity = 0;
+      matchContainer.innerHTML = '';
+    }
   })
 
   searchBar.appendChild(searchInput);
   searchBar.appendChild(matchContainer);
-  document.body.appendChild(searchBar);
+  searchWrapper.appendChild(searchBar)
+  document.body.appendChild(searchWrapper);
 
   function doSearchOnInput() {
     matches = searchWrecks(searchInput.value);
@@ -109,8 +125,15 @@ function renderMatchesHTML(matchesFeatures, inContainer) {
     `
   }).join('')
 
-  inContainer.style.opacity = matchesHTML.length ? 1 : 0;
-  inContainer.innerHTML = matchesHTML.length ? matchesHTML : '';
+  if (matchesHTML.length) {
+    inContainer.style.opacity = 1;
+    inContainer.innerHTML = matchesHTML;
+    inContainer.classList.add('expanded')
+  } else {
+    inContainer.style.opacity = 0;
+    inContainer.innerHTML = '';
+    inContainer.classList.remove('expanded')
+  }
   resolve(inContainer)
   })
 }
@@ -131,6 +154,7 @@ function selectMatchedElement(matchedElement) {
   const searchInput = document.getElementById(INPUT_ID);
   const matchesWrapper = matchedElement.parentElement;
   searchInput.value = matchedElement.dataset.wreck_name;
+  searchInput.dataset.wreck_id = matchedElement.dataset.wreck_id;
   matchesWrapper.style.opacity = 0;
   matchesWrapper.innerHTML = '';
 }
