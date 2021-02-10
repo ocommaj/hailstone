@@ -1,4 +1,5 @@
 import { features } from '../../assets/wreckLocations.json';
+import WreckGallery from '../modals';
 
 const INPUT_ID = "topLevelSearchBar";
 
@@ -171,11 +172,25 @@ function flyToSelectedWreck(wreckId) {
   });
 
   const target = { center }
+  const onComplete = () => displayGalleryModal(wreckId, center)
 
   flyMap({})
     .then(() => {
       flyMap({ target, id: wreckId })
-        .then(() => console.log(`map flown. arrived at: ${wreckId}`))
+        .then(() => onComplete())
       })
+}
 
+function displayGalleryModal(wreckId, fromPoint) {
+  const wreck = window.mapCanvas.getWreckAtCenter(wreckId)
+  const modal = new WreckGallery(wreck);
+  const outgoingModal = window.activeModal;
+
+  if (!outgoingModal) {
+    modal.reveal(fromPoint)
+  } else {
+    modal.replace(outgoingModal.element)
+  }
+
+  window.activeModal = modal;
 }

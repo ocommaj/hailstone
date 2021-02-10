@@ -11,17 +11,18 @@ const wreckLabels = [
 
 const eventHandlers = {
   clickHandler,
-  moveHandler: restyleCursor
+  getWreckAtCenter,
+  moveHandler: restyleCursor,
 }
 
 export default eventHandlers;
 
-export function restyleCursor(point, map) {
+function restyleCursor(point, map) {
   const features = map.queryRenderedFeatures(point, { layers: wreckLabels });
   map.getCanvas().style.cursor = features.length ? 'pointer' : '';
 }
 
-export function clickHandler(point, map) {
+function clickHandler(point, map) {
   const activeModal = window.activeModal;
   const features = map.queryRenderedFeatures(point, { layers: wreckLabels });
   if (!features.length && !activeModal) return;
@@ -43,4 +44,17 @@ function showWreckMarkerModal(wreck, replacesModal=null, fromPoint=null) {
   }
 
   window.activeModal = modal;
+}
+
+function getWreckAtCenter(map, id) {
+  const filter = ["==", "id", id];
+  const point = { x: window.width/2, y: window.height/2 }
+  const width = 10;
+  const height = 10;
+  const bounds = [
+    [point.x - width / 2, point.y - height / 2],
+    [point.x + width / 2, point.y + height / 2]
+  ]
+  const features = map.queryRenderedFeatures({ filter, layers: wreckLabels });
+  return features[0].properties;
 }

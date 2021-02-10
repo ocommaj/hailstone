@@ -14,5 +14,6 @@ export default function Map() {
   map.on('click', ({ point }) => mapEvents.clickHandler(point, map));
   map.on('mousemove', ({ point }) => mapEvents.moveHandler(point, map));
 
+  this.getWreckAtCenter = (id) => mapEvents.getWreckAtCenter(map, id);
   this.flyCamera = (target) => flyCamera(map, target);
 }
