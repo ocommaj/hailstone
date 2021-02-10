@@ -54,21 +54,11 @@ export default function SearchBar() {
     }
   });
 
-  document.addEventListener('click', (e) => {
-    const wrapperElement = document.querySelector('.searchWrapper');
-    const matchContainer = document.querySelector('.searchMatchesWrapper');
-    const searchInput = document.getElementById('topLevelSearchBar')
-    if (!matchContainer.classList.contains('expanded')) return;
-    if (!wrapperElement.contains(e.target)) {
-      matchContainer.style.opacity = 0;
-      matchContainer.innerHTML = '';
-    }
-  })
-
   searchBar.appendChild(searchInput);
   searchBar.appendChild(matchContainer);
   searchWrapper.appendChild(searchBar)
   document.body.appendChild(searchWrapper);
+  document.addEventListener('click', clickOutside);
 
   function doSearchOnInput() {
     matches = searchWrecks(searchInput.value);
@@ -81,6 +71,17 @@ export default function SearchBar() {
           })
         })
       });
+  }
+}
+
+function clickOutside(e) {
+  const wrapperElement = document.querySelector('.searchWrapper');
+  const matchContainer = document.querySelector('.searchMatchesWrapper');
+  const searchInput = document.getElementById('topLevelSearchBar')
+  if (!matchContainer.classList.contains('expanded')) return;
+  if (!wrapperElement.contains(e.target)) {
+    matchContainer.style.opacity = 0;
+    matchContainer.innerHTML = '';
   }
 }
 
@@ -157,4 +158,10 @@ function selectMatchedElement(matchedElement) {
   searchInput.dataset.wreck_id = matchedElement.dataset.wreck_id;
   matchesWrapper.style.opacity = 0;
   matchesWrapper.innerHTML = '';
+
+  const flyMap = window.mapCanvas.flyCamera;
+  flyMap({}).then(() => {
+    const nextId = searchInput.dataset.wreck_id;
+    console.log(`map flown. next destination: ${nextId}`)
+  })
 }

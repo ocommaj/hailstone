@@ -4,6 +4,6 @@ import { SearchBar } from './components';
 
 export default function main() {
   window.firebaseClient = new FirebaseClient()
-  Map()
+  window.mapCanvas = new Map()
   SearchBar()
 }
