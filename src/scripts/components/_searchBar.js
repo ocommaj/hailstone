@@ -167,12 +167,14 @@ function selectMatchedElement(matchedElement) {
 
 function flyToSelectedWreck(wreckId) {
   const flyMap = window.mapCanvas.flyCamera;
-  const { geometry: { coordinates: center } } = features.find(ft => {
+  const {
+    properties: wreck,
+    geometry: { coordinates: center } } = features.find(ft => {
     return ft.properties.id === wreckId;
   });
 
   const target = { center }
-  const onComplete = () => displayGalleryModal(wreckId, center)
+  const onComplete = () => displayGalleryModal(wreck, center)
 
   flyMap({})
     .then(() => {
@@ -181,8 +183,7 @@ function flyToSelectedWreck(wreckId) {
       })
 }
 
-function displayGalleryModal(wreckId, fromPoint) {
-  const wreck = window.mapCanvas.getWreckAtCenter(wreckId)
+function displayGalleryModal(wreck, fromPoint) {
   const modal = new WreckGallery(wreck);
   const outgoingModal = window.activeModal;
 

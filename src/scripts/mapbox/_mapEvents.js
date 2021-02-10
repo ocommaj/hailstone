@@ -11,7 +11,6 @@ const wreckLabels = [
 
 const eventHandlers = {
   clickHandler,
-  getWreckAtCenter,
   moveHandler: restyleCursor,
 }
 
@@ -44,17 +43,4 @@ function showWreckMarkerModal(wreck, replacesModal=null, fromPoint=null) {
   }
 
   window.activeModal = modal;
-}
-
-function getWreckAtCenter(map, id) {
-  const filter = ["==", "id", id];
-  const point = { x: window.width/2, y: window.height/2 }
-  const width = 10;
-  const height = 10;
-  const bounds = [
-    [point.x - width / 2, point.y - height / 2],
-    [point.x + width / 2, point.y + height / 2]
-  ]
-  const features = map.queryRenderedFeatures({ filter, layers: wreckLabels });
-  return features[0].properties;
 }
