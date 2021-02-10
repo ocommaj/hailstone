@@ -170,18 +170,12 @@ function flyToSelectedWreck(wreckId) {
     return ft.properties.id === wreckId;
   });
 
-  const target = {
-    center,
-    zoom: 15.5,
-    pitch: 75,
-    bearing: 0,
-    speed: .5,
-    curve: 1,
-  }
+  const target = { center }
 
   flyMap({})
-    .then(() =>
-      flyMap({ nextLocation: target })
-        .then(() => console.log(`map flown. arrived at: ${wreckId}`)))
+    .then(() => {
+      flyMap({ target, id: wreckId })
+        .then(() => console.log(`map flown. arrived at: ${wreckId}`))
+      })
 
 }
