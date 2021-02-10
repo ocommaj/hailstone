@@ -2,101 +2,103 @@
   "type": "FeatureCollection",
   "features": [
     {
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          151.856400,
-          7.385094
-        ]
-      },
       "type": "Feature",
       "properties": {
         "id": "heianMaru",
         "title": "Heian Maru",
         "averageDepth": "15m",
         "maxDepth": "20m",
-        "length": 155,
+        "isMapLabel": false,
         "isGreatestHit": true,
+        "length": 155,
         "vesselType": "Submarine Tender"
+      },
+      "geometry": {
+        "coordinates": [
+          151.855892,
+          7.38646
+        ],
+        "type": "Point"
       }
     },
     {
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          151.840564,
-          7.392414
-        ]
-      },
       "type": "Feature",
       "properties": {
         "id": "shinoharaSubmarine",
         "title": "IJN I-169",
         "averageDepth": "35m",
         "maxDepth": "43m",
+        "isMapLabel": false,
         "length": 98,
-        "isGreatestHit": false,
-        "vesselType": "Type KD6a Submarine"
-      }
-    },
-    {
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          151.820994,
-          7.391818
-        ]
-      },
-      "type": "Feature",
-      "properties": {
-        "id": "yamagiriMaru",
-        "title": "Yamagiri Maru",
-        "averageDepth": "25m",
-        "maxDepth": "33m",
-        "length": 133,
-        "isGreatestHit": false,
-        "vesselType": "Cargo",
-        "cargo": "14\" Shells & building materials"
-      }
-    },
-    {
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          151.848374,
-          7.386626
-        ]
-      },
-      "type": "Feature",
-      "properties": {
-        "id": "kenshoMaru",
-        "title": "Kensho Maru",
-        "averageDepth": "25m",
-        "maxDepth": "33m",
-        "length": 117,
         "isGreatestHit": true,
-        "vesselType": "Cargo",
-        "cargo": "Unladen, under repair"
+        "vesselType": "Type KD6a Submarine"
+      },
+      "geometry": {
+        "coordinates": [
+          151.840564,
+          7.392414
+        ],
+        "type": "Point"
       }
     },
     {
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          151.844255,
-          7.373518
-        ]
+      "type": "Feature",
+      "properties": {
+      "isMapLabel": false,
+      "averageDepth": "25m",
+      "length": 133,
+      "isGreatestHit": true,
+      "vesselType": "Cargo",
+      "title": "Yamagiri Maru",
+      "id": "yamagiriMaru",
+      "cargo": "14\" Shells & building materials",
+      "maxDepth": "33m"
       },
+      "geometry": {
+      "coordinates": [
+        151.820994,
+        7.391818
+      ],
+      "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+      "isMapLabel": false,
+      "averageDepth": "25m",
+      "length": 117,
+      "isGreatestHit": true,
+      "vesselType": "Cargo",
+      "title": "Kensho Maru",
+      "id": "kenshoMaru",
+      "cargo": "Unladen, under repair",
+      "maxDepth": "33m"
+      },
+      "geometry": {
+      "coordinates": [
+        151.844923,
+        7.377923
+      ],
+      "type": "Point"
+      }
+    },
+    {
       "type": "Feature",
       "properties": {
         "id": "kiyozumiMaru",
         "title": "Kiyozumi Maru",
         "averageDepth": "24m",
         "maxDepth": "30m",
-        "length": 138,
-        "isGreatestHit": false,
-        "vesselType": "Cargo",
-        "cargo": "Unladen, under repair"
+        "isMapLabel": false,
+        "length": 138
+      },
+      "geometry": {
+        "coordinates": [
+          151.844855,
+          7.37156
+        ],
+        "type": "Point"
       }
     },
     {

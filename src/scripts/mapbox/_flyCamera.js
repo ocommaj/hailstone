@@ -8,9 +8,9 @@ const originView = {
 }
 
 
-export default function flyCamera(map, { locationId=null }) {
+export default function flyCamera(map, { nextLocation=null }) {
   return new Promise((resolve) => {
-    const flyTarget = !!locationId ? locationId.target : originView;
+    const flyTarget = !!nextLocation ? nextLocation : originView;
     map.flyTo(flyTarget)
     map.on('moveend', resolve)
   })

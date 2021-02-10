@@ -152,16 +152,36 @@ function hoverMatchedElement(e) {
 }
 
 function selectMatchedElement(matchedElement) {
-  const searchInput = document.getElementById(INPUT_ID);
+  const nextId = matchedElement.dataset.wreck_id;
+  const wreckName = matchedElement.dataset.wreck_name;
   const matchesWrapper = matchedElement.parentElement;
-  searchInput.value = matchedElement.dataset.wreck_name;
-  searchInput.dataset.wreck_id = matchedElement.dataset.wreck_id;
+  const searchInput = document.getElementById(INPUT_ID);
+  searchInput.value = wreckName;
+  searchInput.dataset.wreck_id = nextId;
   matchesWrapper.style.opacity = 0;
   matchesWrapper.innerHTML = '';
 
+  flyToSelectedWreck(nextId)
+}
+
+function flyToSelectedWreck(wreckId) {
   const flyMap = window.mapCanvas.flyCamera;
-  flyMap({}).then(() => {
-    const nextId = searchInput.dataset.wreck_id;
-    console.log(`map flown. next destination: ${nextId}`)
-  })
+  const { geometry: { coordinates: center } } = features.find(ft => {
+    return ft.properties.id === wreckId;
+  });
+
+  const target = {
+    center,
+    zoom: 15.5,
+    pitch: 75,
+    bearing: 0,
+    speed: .5,
+    curve: 1,
+  }
+
+  flyMap({})
+    .then(() =>
+      flyMap({ nextLocation: target })
+        .then(() => console.log(`map flown. arrived at: ${wreckId}`)))
+
 }
