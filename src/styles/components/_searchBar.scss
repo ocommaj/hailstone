@@ -1,9 +1,7 @@
 .searchWrapper {
-  position: absolute;
   width: 18rem;
-  top: 1rem;
-  right: 1rem;
   z-index: 150;
+  margin-left: .5rem;
 
   .fas {
     color: #f4f4f4;
@@ -11,6 +9,7 @@
     display: block;
     padding: .25rem;
     padding-left: .5rem;
+    padding-top: .375rem;
     font-size: 1.25rem;
     text-shadow: 1px 1px 2px $gray-90;
   }
@@ -79,14 +78,15 @@
   }
 
   input[type=text] {
+    height: 2rem;
     font-size: 1rem;
     font-family: 'Cabin Condensed';
     background-color: $gray-70;
     color: $gray-10;
     border-radius: .5rem;
     padding: .25rem;
+    padding-top: .375rem;
     padding-left: 2.25rem;
-    border: 0px;
     width: 100%;
     box-shadow: .125rem .125rem .5rem $gray-90-50;
     border: solid 1px rgba(0,0,0,0);

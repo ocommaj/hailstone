@@ -11,6 +11,7 @@ export default function ApplauseButton() {
 
   button.appendChild(buttonIcon);
   button.addEventListener('click', () => clickHandler(button))
+
   return button;
 }
 

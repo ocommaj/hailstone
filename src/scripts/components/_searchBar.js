@@ -10,18 +10,21 @@ export default function SearchBar() {
   const matchContainer = document.createElement('div');
 
   const searchIcon = document.createElement('i');
-  searchIcon.classList.add('fas', 'fa-search-location');
+  searchIcon.classList.add('fas', 'fa-binoculars'); //'fa-search-location'
+  searchIcon.tabIndex = -1;
 
   let matches = [];
 
   searchWrapper.classList.add('searchWrapper');
+  searchWrapper.tabIndex = -1;
   searchBar.classList.add('searchBar');
-  searchBar.tabIndex = 0;
+  searchBar.tabIndex = -1;
 
   matchContainer.classList.add('searchMatchesWrapper');
 
   searchInput.id = INPUT_ID;
   searchInput.type = 'text';
+  searchInput.tabIndex = 0;
   searchInput.autocomplete="off";
   searchInput.placeholder = 'Search for a wreck...';
   searchInput.autofocus = true;
@@ -29,42 +32,18 @@ export default function SearchBar() {
   searchInput.addEventListener('input', doSearchOnInput);
   searchInput.addEventListener('keydown', (e) => {
     if (!matches.length) return;
-
-    const matchedElements = matchContainer.children;
-    const currentHighlighted = matchContainer.querySelector('.highlighted');
-    const currentIdx = [...matchedElements].indexOf(currentHighlighted);
-
-    switch (e.code) {
-      case "ArrowDown":
-        e.preventDefault();
-        const nextOption = matchContainer.children.item(currentIdx+1);
-        if (nextOption) nextOption.classList.toggle('highlighted');
-        if (nextOption && currentHighlighted) {
-          currentHighlighted.classList.toggle('highlighted')
-        }
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        const prevOption = matchContainer.children.item(currentIdx-1);
-        if (prevOption) prevOption.classList.toggle('highlighted');
-        if (prevOption && currentHighlighted) {
-          currentHighlighted.classList.toggle('highlighted')
-        }
-        break;
-      case "Enter":
-      case "Tab":
-        e.preventDefault();
-        if (currentHighlighted) selectMatchedElement(currentHighlighted);
-        break;
-    }
+    keydownHandler(e)
   });
 
   searchBar.appendChild(searchIcon);
   searchBar.appendChild(searchInput);
   searchBar.appendChild(matchContainer);
   searchWrapper.appendChild(searchBar)
-  document.body.appendChild(searchWrapper);
+  //document.body.appendChild(searchWrapper);
+
   document.addEventListener('click', clickOutside);
+
+  return searchWrapper;
 
   function doSearchOnInput() {
     matches = searchWrecks(searchInput.value);
@@ -77,17 +56,6 @@ export default function SearchBar() {
           })
         })
       });
-  }
-}
-
-function clickOutside(e) {
-  const wrapperElement = document.querySelector('.searchWrapper');
-  const matchContainer = document.querySelector('.searchMatchesWrapper');
-  const searchInput = document.getElementById('topLevelSearchBar')
-  if (!matchContainer.classList.contains('expanded')) return;
-  if (!wrapperElement.contains(e.target)) {
-    matchContainer.style.opacity = 0;
-    matchContainer.innerHTML = '';
   }
 }
 
@@ -105,7 +73,6 @@ function searchWrecks(userInput) {
 
 function renderMatchesHTML(matchesFeatures, inContainer) {
   return new Promise(resolve => {
-
 
   const matchesHTML = matchesFeatures.map(feature => {
     let subtext = '';
@@ -199,4 +166,47 @@ function displayGalleryModal(wreck, fromPoint) {
   }
 
   window.activeModal = modal;
+}
+
+function clickOutside(e) {
+  const wrapperElement = document.querySelector('.searchWrapper');
+  const matchContainer = document.querySelector('.searchMatchesWrapper');
+  const searchInput = document.getElementById('topLevelSearchBar')
+  if (!matchContainer.classList.contains('expanded')) return;
+  if (!wrapperElement.contains(e.target)) {
+    matchContainer.style.opacity = 0;
+    matchContainer.innerHTML = '';
+  }
+}
+
+
+function keydownHandler(e) {
+  const matchContainer = document.querySelector('.searchMatchesWrapper');
+  const matchedElements = matchContainer.children;
+  const currentHighlighted = matchContainer.querySelector('.highlighted');
+  const currentIdx = [...matchedElements].indexOf(currentHighlighted);
+
+  switch (e.code) {
+    case "ArrowDown":
+      e.preventDefault();
+      const nextOption = matchContainer.children.item(currentIdx+1);
+      if (nextOption) nextOption.classList.toggle('highlighted');
+      if (nextOption && currentHighlighted) {
+        currentHighlighted.classList.toggle('highlighted')
+      }
+      break;
+    case "ArrowUp":
+      e.preventDefault();
+      const prevOption = matchContainer.children.item(currentIdx-1);
+      if (prevOption) prevOption.classList.toggle('highlighted');
+      if (prevOption && currentHighlighted) {
+        currentHighlighted.classList.toggle('highlighted')
+      }
+      break;
+    case "Enter":
+    case "Tab":
+      e.preventDefault();
+      if (currentHighlighted) selectMatchedElement(currentHighlighted);
+      break;
+  }
 }
