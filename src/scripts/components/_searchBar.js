@@ -9,6 +9,9 @@ export default function SearchBar() {
   const searchInput = document.createElement('input');
   const matchContainer = document.createElement('div');
 
+  const searchIcon = document.createElement('i');
+  searchIcon.classList.add('fas', 'fa-search-location');
+
   let matches = [];
 
   searchWrapper.classList.add('searchWrapper');
@@ -21,6 +24,7 @@ export default function SearchBar() {
   searchInput.type = 'text';
   searchInput.autocomplete="off";
   searchInput.placeholder = 'Search for a wreck...';
+  searchInput.autofocus = true;
 
   searchInput.addEventListener('input', doSearchOnInput);
   searchInput.addEventListener('keydown', (e) => {
@@ -55,6 +59,7 @@ export default function SearchBar() {
     }
   });
 
+  searchBar.appendChild(searchIcon);
   searchBar.appendChild(searchInput);
   searchBar.appendChild(matchContainer);
   searchWrapper.appendChild(searchBar)
