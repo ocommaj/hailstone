@@ -15,25 +15,36 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
 }
 
+const authProviders = {
+  google: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  twitter: firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+  facebook: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+  email: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+}
+
+
 export default function FirebaseClient() {
   firebase.initializeApp(firebaseConfig);
 
   const db = firebase.firestore();
   const queries = FirestoreQueries(db);
-  const authenticator = firebase.auth;
-  const userManager = UserManager(authenticator);
+  const authenticator = firebase.auth();
+  const userManager = UserManager(authenticator, authProviders);
   const loginUI = userManager.loginUI();
 
   userManager.listenForUserChange();
 
-  if (!authenticator().currentUser) {
+  if (!authenticator.currentUser) {
     userManager.anonymousLogin();
   }
 
   this.loginUI = loginUI;
+  this.createUserRecord = queries.createUserRecord;
+  this.queryUserRecord = queries.queryUserRecord;
   this.uploader = (args) => uploader(queries, args);
   this.loadImagesFromDB = (args) => loadImagesFromDB(queries, args);
   this.upvoteImage = (args) => upvoteImage(queries, args);
+
 }
 
 function uploader(

@@ -2,10 +2,10 @@ import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 import googleIcon from '../../assets/icons/google_alt.svg';
 
-export default function UserManager(authenticator) {
+export default function UserManager(authenticator, authProviders) {
   const anonymousLogin = () => _anonymousLogin(authenticator);
   const listenForUserChange = () => _listenForUserChange(authenticator);
-  const loginUI = () => new _loginUI(authenticator);
+  const loginUI = () => new _loginUI(authenticator, authProviders);
 
   return {
     anonymousLogin,
@@ -14,30 +14,46 @@ export default function UserManager(authenticator) {
   }
 }
 
-function _loginUI(authenticator) {
+function _loginUI(authenticator, authProviders) {
   const elementId = 'firebaseui-auth-container'
-  const loginUI = new firebaseui.auth.AuthUI(authenticator());
-  var anonymousUser = authenticator().currentUser;
+  const loginUI = new firebaseui.auth.AuthUI(authenticator);
+  var anonymousUser = authenticator.currentUser;
+
+
   const uiConfig = {
         autoUpgradeAnonymousUsers: true,
         signInSuccessUrl: '/',
         signInFlow: 'popup',
         signInOptions: [
-          'apple.com',
+          /*{
+            provider: 'apple.com',
+            scopes: ['name']
+          },*/
           {
-            provider: 'google.com',
+            provider: authProviders.google,
             providerName: 'Google',
             buttonColor: '#24a148',
-            iconUrl: googleIcon
+            iconUrl: googleIcon,
           },
-          authenticator.TwitterAuthProvider.PROVIDER_ID,
-          authenticator.FacebookAuthProvider.PROVIDER_ID,
-          authenticator.EmailAuthProvider.PROVIDER_ID,
+          authProviders.twitter,
+          authProviders.facebook,
+          authProviders.email,
         ],
         callbacks: {
-          signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-              window.hideAuthUI()
-              return false;
+          signInSuccessWithAuthResult: function(authResult) {
+              console.dir(authResult.additionalUserInfo)
+              console.dir(authResult.user)
+
+              authenticator.updateCurrentUser(authResult.user)
+                .then(() => {
+                  if (authResult.additionalUserInfo.providerId === 'apple.com') {
+                    const displayName = authenticator.currentUser.displayName
+                    console.log(displayName)
+                  }
+                  createUserRecord(authResult)
+                  window.hideAuthUI()
+                  return false;
+                })
             },
           signInFailure: function(error) {
             if (error.code != 'firebaseui/anonymous-upgrade-merge-conflict') {
@@ -45,7 +61,7 @@ function _loginUI(authenticator) {
             }
 
             var cred = error.credential;
-            return authenticator().signInWithCredential(cred)
+            return authenticator.signInWithCredential(cred)
           }
         }
     };
@@ -59,7 +75,7 @@ function _loginUI(authenticator) {
 }
 
 function _anonymousLogin(authenticator) {
-  authenticator().signInAnonymously()
+  authenticator.signInAnonymously()
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
@@ -68,18 +84,105 @@ function _anonymousLogin(authenticator) {
 }
 
 function _listenForUserChange(authenticator) {
-  authenticator().onAuthStateChanged((user) => {
+  authenticator.onIdTokenChanged((user) => {
     if (user) {
       window.user = user;
+      if (user.isAnonymous) {
+        //window.updateUserStatusBar()
+      }
 
       if (!user.isAnonymous) {
-        const containerId = 'firebaseui-auth-container';
-        const container = document.getElementById(containerId);
-        if (container && container.style.display !== 'none') {
-          window.hideAuthUI()
-          return
+        const queryUserRecord = window.firebaseClient.queryUserRecord;
+        queryUserRecord(user.uid)
+          .then((userData) => {
+            window.userData = userData;
+            console.dir(window.userData)
+            //window.updateUserStatusBar(userData)
+          })
         }
       }
-    }
-})
+
+
+      const containerId = 'firebaseui-auth-container';
+      const container = document.getElementById(containerId);
+      if (container && container.style.display !== 'none') {
+        window.hideAuthUI()
+        return
+      }
+    })
+}
+
+function handleAppleSignIn(newUser) {
+
+}
+
+function createUserRecord(newUser) {
+  const createRecord = window.firebaseClient.createUserRecord;
+  const { user: { uid, email, displayName }, additionalUserInfo } = newUser;
+  const { providerId, profile } = additionalUserInfo;
+
+  const userConfig = {
+    uid,
+    providerId,
+    ...parseProfileInfo({ providerId, profile, email, displayName })
+  }
+
+  createRecord(userConfig);
+}
+
+function parseProfileInfo({ providerId, profile, email, displayName }) {
+  const parsers = {
+    'google.com': () => parseGoogleProfile(profile, email),
+    'twitter.com': () => parseTwitterProfile(profile),
+    'facebook.com': () => parseFacebookProfile(profile),
+    'password': () => parseEmailPasswordProfile(email, displayName)
+  }
+
+  const parser = parsers[providerId]
+  return parser()
+}
+
+function parseGoogleProfile(profile, email) {
+  const userData = {
+    email,
+    familyName: profile.family_name,
+    givenName: profile.given_name,
+    pictureURL: profile.picture,
+    displayName: profile.name
+  }
+  return userData;
+}
+
+function parseTwitterProfile(profile) {
+  const userData = {
+    pictureURL: profile.profile_image_url_https,
+    displayName: profile.name,
+  }
+  return userData;
+}
+
+function parseFacebookProfile(profile) {
+  const userData = {
+    email: profile.email,
+    givenName: profile.first_name,
+    familyName: profile.last_name,
+    displayName: profile.name,
+    pictureURL: profile.picture.data.url,
+  }
+  return userData;
+}
+
+function parseAppleProfile(profile) {
+  const userData = {
+    email: profile.email,
+    privateEmail: profile.is_private_email,
+  }
+}
+
+function parseEmailPasswordProfile(email, displayName) {
+  const userData = {
+    email,
+    displayName
+  }
+  return userData
 }

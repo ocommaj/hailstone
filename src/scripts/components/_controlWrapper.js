@@ -3,6 +3,7 @@ export default function ControlWrapper() {
   controlWrapper.classList.add('controlWrapper');
   controlWrapper.id = 'controlWrapper';
   controlWrapper.autofocus = true;
+  controlWrapper.tabIndex = -1;
 
   return controlWrapper
 }

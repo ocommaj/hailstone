@@ -8,14 +8,17 @@ export default function UserStatusBar() {
   wrapperElement.classList.add('userStatusBar');
   wrapperElement.tabIndex = -1;
   userIconButton.classList.add('userIconButton');
+  userIconButton.tabIndex = 1;
   userIcon.classList.add('userIcon');
   buttonLabel.classList.add('buttonLabel');
+  buttonLabel.tabIndex = -1;
+  buttonLabel.id = 'userStatusBarLabel';
 
   userIcon.tabIndex = -1;
   userIcon.type = "image/svg+xml";
   userIcon.data = svgIcon;
 
-  buttonLabel.innerHTML='Login | Signup'
+  //buttonLabel.innerHTML='Login | Signup'
 
   userIconButton.appendChild(userIcon);
   userIconButton.appendChild(buttonLabel);
@@ -34,5 +37,16 @@ export default function UserStatusBar() {
     path.style.fill = '#f4f4f4';
   })
 
-  return wrapperElement;
+  this.element = wrapperElement;
+  this.update = updateUserStatusBar;
+}
+
+function updateUserStatusBar(userData=null) {
+  const label = document.getElementById('userStatusBarLabel');
+
+  if (!userData) {
+    label.innerHTML = 'Login | Signup';
+  } else {
+    label.innerHTML = `${userData.displayName}`
+  }
 }
