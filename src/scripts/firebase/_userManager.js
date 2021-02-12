@@ -88,7 +88,7 @@ function _listenForUserChange(authenticator) {
     if (user) {
       window.user = user;
       if (user.isAnonymous) {
-        //window.updateUserStatusBar()
+        window.updateUserStatusBar()
       }
 
       if (!user.isAnonymous) {
@@ -96,20 +96,16 @@ function _listenForUserChange(authenticator) {
         queryUserRecord(user.uid)
           .then((userData) => {
             window.userData = userData;
-            console.dir(window.userData)
-            //window.updateUserStatusBar(userData)
+            window.updateUserStatusBar(userData);
           })
+        const containerId = 'firebaseui-auth-container';
+        const container = document.getElementById(containerId);
+        if (container && container.style.display !== 'none') {
+          window.hideAuthUI()
         }
       }
-
-
-      const containerId = 'firebaseui-auth-container';
-      const container = document.getElementById(containerId);
-      if (container && container.style.display !== 'none') {
-        window.hideAuthUI()
-        return
-      }
-    })
+    }
+  })
 }
 
 function handleAppleSignIn(newUser) {

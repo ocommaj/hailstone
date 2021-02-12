@@ -3,6 +3,7 @@
 .modalUploader {
   background-color: $gray-80-30;
   padding: 1rem;
+  overflow-y: scroll;
 
   input[type=file] {
     font-size: 1rem;
@@ -118,7 +119,6 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity .2s ease;
-    //transform: translateY(-3rem);
   }
 
   progress[value]::-webkit-progress-bar {
@@ -133,7 +133,6 @@
   progress[value]::-webkit-progress-value {
     background-color: $blue-60;
     border-radius: .5rem;
-    //box-shadow: 0 2px 5px $gray-90-30 inset;
   }
 
   progress[value]::-moz-progress-bar {

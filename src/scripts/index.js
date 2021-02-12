@@ -10,7 +10,7 @@ export default function main() {
   window.mapCanvas = new Map();
 
   const controlWrapper = ControlWrapper()
-  //controlWrapper.appendChild( userStatusBar.element )
+  controlWrapper.appendChild( userStatusBar.element )
   controlWrapper.appendChild( SearchBar() )
   document.body.appendChild(controlWrapper)
 }

@@ -39,9 +39,9 @@ export default function UploadForm() {
   uploader.classList.add('wrappedModalContent');
 
   uploader.appendChild( SelectFileButton(selectImageInput) );
+  uploader.appendChild( CustomDropdown(diveOperators) );
   uploader.appendChild( TextInput(cameraDetails) );
   uploader.appendChild( TextInput(captionInput) );
-  uploader.appendChild( CustomDropdown(diveOperators) );
   uploader.appendChild( SubmitButton(submitButton) );
 
   return uploader;

@@ -1,6 +1,4 @@
 .userStatusBar {
-  //flex-basis: 12rem;
-
   .userIconButton {
     appearance: none;
     -webkit-appearance: none;
@@ -48,6 +46,11 @@
       color: $gray-90;
       fill: $gray-90;
     }
-    //color: $gray-90;
+  }
+}
+
+@media only screen and (max-width: 428px) {
+  .userStatusBar {
+    width: 100%;
   }
 }
