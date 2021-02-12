@@ -10,12 +10,13 @@ export default function SearchBar() {
   const matchContainer = document.createElement('div');
 
   const searchIcon = document.createElement('i');
-  searchIcon.classList.add('fas', 'fa-binoculars'); //'fa-search-location'
+  searchIcon.classList.add('fas', 'fa-binoculars');
   searchIcon.tabIndex = -1;
 
   let matches = [];
 
   searchWrapper.classList.add('searchWrapper');
+  searchWrapper.classList.add('topControlElement');
   searchWrapper.tabIndex = -1;
   searchBar.classList.add('searchBar');
   searchBar.tabIndex = -1;
@@ -39,11 +40,10 @@ export default function SearchBar() {
   searchBar.appendChild(searchInput);
   searchBar.appendChild(matchContainer);
   searchWrapper.appendChild(searchBar)
-  //document.body.appendChild(searchWrapper);
 
   document.addEventListener('click', clickOutside);
 
-  return searchWrapper;
+  this.element = searchWrapper;
 
   function doSearchOnInput() {
     matches = searchWrecks(searchInput.value);

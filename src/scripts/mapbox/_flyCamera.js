@@ -2,7 +2,7 @@ const MAP_ORIGIN = [151.83, 7.35];
 
 const cameraDefaults = {
   center: MAP_ORIGIN,
-  zoom: 15.5,
+  zoom: 15.25,
   pitch: 75,
   bearing: 0,
   speed: 0.5,

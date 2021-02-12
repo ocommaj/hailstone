@@ -1,10 +1,12 @@
 .searchWrapper {
   width: 18rem;
-  z-index: 150;
-  margin-left: .5rem;
+  //z-index: 150;
+  position: relative;
+  display: inline-block;
+  //margin-left: .5rem;
 
   .fas {
-    color: #f4f4f4;
+    color: $gray-10;
     position: absolute;
     display: block;
     padding: .25rem;
@@ -15,9 +17,15 @@
   }
 
   .searchMatchesWrapper {
+    position: absolute;
+    top: 2.5rem;
+    left: 0;
+    right: 0;
+
     opacity: 0;
-    margin-top: .75rem;
     box-shadow: .125rem .125rem .5rem $gray-90-50;
+    border-radius: .5rem;
+    border: 0px solid rgba(0, 0, 0, 0);
     transition: opacity .4s ease;
 
     .matchedElement {
@@ -77,6 +85,10 @@
     }
   }
 
+  .searchBar:focus {
+    outline: none;
+  }
+
   input[type=text] {
     height: 2rem;
     font-size: 1rem;
@@ -103,11 +115,10 @@
   }
 }
 
-@media only screen and (max-width: 428px) {
+/*@media only screen and (max-width: 428px) {
   .searchWrapper {
     width: 100%;
-    margin-left: 0;
-    margin-top: .5rem;
+    //margin-left: 0;
+    //margin-top: .5rem;
   }
-
-}
+}*/

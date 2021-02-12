@@ -6,6 +6,7 @@ export default function UserStatusBar() {
   const userIcon = document.createElement('object');
   const buttonLabel = document.createElement('span')
   wrapperElement.classList.add('userStatusBar');
+  wrapperElement.classList.add('topControlElement');
   wrapperElement.tabIndex = -1;
   userIconButton.classList.add('userIconButton');
   userIconButton.tabIndex = 1;
@@ -17,8 +18,6 @@ export default function UserStatusBar() {
   userIcon.tabIndex = -1;
   userIcon.type = "image/svg+xml";
   userIcon.data = svgIcon;
-
-  //buttonLabel.innerHTML='Login | Signup'
 
   userIconButton.appendChild(userIcon);
   userIconButton.appendChild(buttonLabel);
@@ -37,7 +36,7 @@ export default function UserStatusBar() {
     path.style.fill = '#f4f4f4';
   })
 
-  this.element = wrapperElement;
+  this.userStatusBar = wrapperElement;
   this.update = updateUserStatusBar;
 }
 

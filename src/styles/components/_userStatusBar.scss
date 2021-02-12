@@ -50,6 +50,10 @@
   }
 }
 
+.userStatusBar:focus {
+  outline: none;
+}
+
 @media only screen and (max-width: 428px) {
   .userStatusBar {
     width: 100%;
