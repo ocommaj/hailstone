@@ -146,7 +146,7 @@ function flyToSelectedWreck(wreckId) {
   });
 
   const target = { center }
-  const onComplete = () => displayGalleryModal(wreck, center)
+  const onComplete = () => displayGalleryModal(wreck)
 
   flyMap({})
     .then(() => {
@@ -155,12 +155,17 @@ function flyToSelectedWreck(wreckId) {
       })
 }
 
-function displayGalleryModal(wreck, fromPoint) {
+function displayGalleryModal(wreck) {
   const modal = new WreckGallery(wreck);
   const outgoingModal = window.activeModal;
 
+  const center = [
+    window.innerHeight/2,
+    window.innerHeight/2
+  ]
+
   if (!outgoingModal) {
-    modal.reveal(fromPoint)
+    modal.reveal(center)
   } else {
     modal.replace(outgoingModal.element)
   }
