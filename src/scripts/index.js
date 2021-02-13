@@ -9,5 +9,11 @@ export default function main() {
   window.firebaseClient = new FirebaseClient();
   window.mapCanvas = new Map();
 
+  onResize()
   document.body.appendChild(controlWrapper)
+  window.addEventListener("resize", onResize)
+}
+
+function onResize() {
+  document.body.height = window.innerHeight;
 }
