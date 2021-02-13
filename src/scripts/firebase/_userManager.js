@@ -41,8 +41,8 @@ function _loginUI(authenticator, authProviders) {
         ],
         callbacks: {
           signInSuccessWithAuthResult: function(authResult) {
-              console.dir(authResult.additionalUserInfo)
-              console.dir(authResult.user)
+              //console.dir(authResult.additionalUserInfo)
+              //console.dir(authResult.user)
 
               authenticator.updateCurrentUser(authResult.user)
                 .then(() => {
@@ -88,6 +88,7 @@ function _listenForUserChange(authenticator) {
     if (user) {
       window.user = user;
       if (user.isAnonymous) {
+        window.userData = null;
         window.updateUserStatusBar()
       }
 

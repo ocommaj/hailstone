@@ -1,4 +1,4 @@
-import WreckModal from '../modals';
+import { WreckModal } from '../modals';
 
 const wreckLabels = [
   'wreckLocations',

@@ -1,4 +1,5 @@
-import svgIcon from '../../assets/icons/diveMask.svg'
+import svgIcon from '../../assets/icons/diveMask.svg';
+import { UserModal } from '../modals';
 
 export default function UserStatusBar() {
   const wrapperElement = document.createElement('div');
@@ -39,8 +40,8 @@ export default function UserStatusBar() {
 
   userIconButton.addEventListener('click', clickHandler);
 
-  function clickHandler() {
-    launchUserModal()
+  function clickHandler(e) {
+    launchUserModal(e)
   }
 
   return {
@@ -60,11 +61,18 @@ function updateUserStatusBar() {
   }
 }
 
-function launchUserModal() {
-  const { userData } = window;
-  if (!userData) {
-    console.log('user needs to login')
+function launchUserModal(e) {
+  if (window.activeModal && !!window.activeModal.isUserModal) return;
+  const fromPoint = { x: e.offsetX, y: e.offsetY };
+  const activeModal = window.activeModal;
+  const modal = UserModal();
+
+  if (!activeModal) {
+    modal.reveal(fromPoint)
   } else {
-    console.log(`${userData.displayName} is logged in`)
+    modal.replace(activeModal.element)
   }
+
+  window.activeModal = modal;
+  window.activeModal.isUserModal = true;
 }

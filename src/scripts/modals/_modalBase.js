@@ -24,7 +24,9 @@ export default function ModalBase({ id, tertiaryAuthUI=true }) {
   }
 }
 
-function _revealModal(modal, fromPoint) {
+function _revealModal(modal, calledFromPoint=null) {
+  const center = { x: window.innerWidth/2, y: window.innerHeight/2 }
+  const fromPoint = !!calledFromPoint ? calledFromPoint : center;
   document.body.insertBefore(modal, document.body.firstChild)
   modalAnimations.reveal(modal, fromPoint);
 }

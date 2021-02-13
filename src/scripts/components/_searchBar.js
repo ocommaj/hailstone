@@ -1,5 +1,5 @@
 import { features } from '../../assets/wreckLocations.json';
-import WreckGallery from '../modals';
+import { WreckModal } from '../modals';
 
 const INPUT_ID = "topLevelSearchBar";
 
@@ -157,7 +157,7 @@ function flyToSelectedWreck(wreckId) {
 }
 
 function displayGalleryModal(wreck) {
-  const modal = WreckGallery(wreck);
+  const modal = WreckModal(wreck);
   const outgoingModal = window.activeModal;
 
   const center = [

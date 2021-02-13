@@ -1,2 +1,3 @@
+import UserModal from './_userModal';
 import WreckModal from './_wreckGallery';
-export default WreckModal;
+export { UserModal, WreckModal };
