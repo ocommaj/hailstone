@@ -1,12 +1,11 @@
+import BuoyIcon from './_buoyIcon';
+
 export default function ControlToggler() {
   const button = document.createElement('button');
-  const buttonIcon = document.createElement('i');
+  const buoyIcon = BuoyIcon();
 
   button.classList.add('controlToggler');
-  buttonIcon.classList.add('buttonIcon', 'fas', 'fa-water');
-  buttonIcon.tabIndex = -1;
-
-  button.appendChild(buttonIcon);
+  button.appendChild(buoyIcon)
   button.addEventListener('click', clickHandler);
   button.autofocus = true;
 

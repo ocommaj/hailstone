@@ -1,0 +1,32 @@
+.buoyIcon {
+  pointer-events: none;
+  fill: $gray-20;
+
+  #waveBgMask {
+    fill: $red-80;
+    animation: 2.4s linear infinite alternate waveBob;
+  }
+
+  #waves {
+    animation: 2.4s linear infinite alternate waveBob;
+  }
+
+  #buoyMain {
+    transform-origin: bottom center;
+    transform: rotate(5deg);
+    animation: 2.4s linear infinite alternate buoyBob;
+  }
+}
+
+@keyframes waveBob {
+  100% {
+    transform: translateY(2px);
+  }
+}
+
+@keyframes buoyBob {
+  100% {
+    transform: rotate(-5deg);
+  }
+
+}
