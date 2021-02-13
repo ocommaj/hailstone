@@ -3,8 +3,8 @@ import SearchBar from './_searchBar';
 import UserStatusBar from './_userStatusBar';
 
 export default function ControlWrapper() {
-  const { element: searchBar } = new SearchBar()
-  const { userStatusBar, update: updateUserStatusBar } = new UserStatusBar()
+  const { searchBar } = SearchBar()
+  const { userStatusBar, updateUserStatusBar } = UserStatusBar()
 
   const controlWrapper = document.createElement('div');
   controlWrapper.classList.add('controlWrapper');
@@ -13,12 +13,12 @@ export default function ControlWrapper() {
   controlWrapper.tabIndex = -1;
 
   if ( shouldUseSmallScreenMode() ) {
-    const { switchToggler, element: wrapperToggler } = new ControlToggler()
+    const { switchToggler, element: wrapperToggler } = ControlToggler()
     controlWrapper.appendChild(wrapperToggler);
     controlWrapper.appendChild(searchBar);
     controlWrapper.appendChild(userStatusBar);
 
-    
+
     controlWrapper.classList.add('usingSmallScreenMode');
     controlWrapper.classList.add('collapsed');
     document.addEventListener('click', clickOutside);
@@ -28,8 +28,10 @@ export default function ControlWrapper() {
     controlWrapper.appendChild(searchBar)
   }
 
-  this.controlWrapper = controlWrapper;
-  this.updateUserStatusBar = updateUserStatusBar;
+  return {
+    controlWrapper,
+    updateUserStatusBar
+  }
 }
 
 function shouldUseSmallScreenMode() {

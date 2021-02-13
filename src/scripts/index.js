@@ -3,11 +3,10 @@ import Map from './mapbox';
 import { ControlWrapper } from './components';
 
 export default function main() {
-  const { controlWrapper, updateUserStatusBar } = new ControlWrapper()
+  const { controlWrapper, updateUserStatusBar } = ControlWrapper()
+  document.body.appendChild(controlWrapper);
 
   window.updateUserStatusBar = updateUserStatusBar;
-  window.firebaseClient = new FirebaseClient();
-  window.mapCanvas = new Map();
-
-  document.body.appendChild(controlWrapper)
+  window.firebaseClient = FirebaseClient();
+  window.mapCanvas = Map();
 }

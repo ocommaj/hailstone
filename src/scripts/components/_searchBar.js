@@ -42,8 +42,9 @@ export default function SearchBar() {
   searchWrapper.appendChild(searchBar)
 
   document.addEventListener('click', clickOutside);
-
-  this.element = searchWrapper;
+  return {
+    searchBar: searchWrapper
+  };
 
   function doSearchOnInput() {
     matches = searchWrecks(searchInput.value);

@@ -9,7 +9,6 @@ export default function Map() {
   const { innerWidth, innerHeight } = window;
   container.style.height = `${innerHeight}px`;
 
-
   const map = new mapboxgl.Map({ container, ...config.initial });
 
   map.boxZoom.disable();
@@ -18,5 +17,7 @@ export default function Map() {
   map.on('click', ({ point }) => mapEvents.clickHandler(point, map));
   map.on('mousemove', ({ point }) => mapEvents.moveHandler(point, map));
 
-  this.flyCamera = (target) => flyCamera(map, target);
+  return {
+    flyCamera: (target) => flyCamera(map, target)
+  }
 }

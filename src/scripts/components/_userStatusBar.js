@@ -36,8 +36,10 @@ export default function UserStatusBar() {
     path.style.fill = '#f4f4f4';
   })
 
-  this.userStatusBar = wrapperElement;
-  this.update = updateUserStatusBar;
+  return {
+    updateUserStatusBar,
+    userStatusBar: wrapperElement,
+  }
 }
 
 function updateUserStatusBar(userData=null) {

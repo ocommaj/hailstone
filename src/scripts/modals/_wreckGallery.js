@@ -5,7 +5,6 @@ import HeadlineElements from './_modalHeadline';
 import ModalContentSwitcher from './_modalContentSwitcher';
 import UploadForm from './_uploadForm';
 
-
 export default function WreckGalleryModal(vessel) {
   const { id } = vessel;
   const modalWrapper = document.getElementById("modalWrapper");

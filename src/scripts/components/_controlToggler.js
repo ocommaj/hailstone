@@ -9,10 +9,12 @@ export default function ControlToggler() {
   button.addEventListener('click', clickHandler);
   button.autofocus = true;
 
-  this.element = button;
-  this.switchToggler = toggleControlWrapper;
+  return {
+    element: button,
+    switchToggler: toggleControlWrapper
+  }
 
-  function clickHandler(e) {
+  function clickHandler() {
     toggleControlWrapper()
   }
 

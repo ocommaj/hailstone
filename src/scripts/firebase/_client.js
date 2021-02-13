@@ -31,6 +31,7 @@ export default function FirebaseClient() {
   const authenticator = firebase.auth();
   const userManager = UserManager(authenticator, authProviders);
   const loginUI = userManager.loginUI();
+  const { createUserRecord, queryUserRecord } = queries;
 
   userManager.listenForUserChange();
 
@@ -38,13 +39,14 @@ export default function FirebaseClient() {
     userManager.anonymousLogin();
   }
 
-  this.loginUI = loginUI;
-  this.createUserRecord = queries.createUserRecord;
-  this.queryUserRecord = queries.queryUserRecord;
-  this.uploader = (args) => uploader(queries, args);
-  this.loadImagesFromDB = (args) => loadImagesFromDB(queries, args);
-  this.upvoteImage = (args) => upvoteImage(queries, args);
-
+  return {
+    loginUI,
+    createUserRecord,
+    queryUserRecord,
+    uploader: (args) => uploader(queries, args),
+    loadImagesFromDB: (args) => loadImagesFromDB(queries, args),
+    upvoteImage: (args) => upvoteImage(queries, args)
+  }
 }
 
 function uploader(
