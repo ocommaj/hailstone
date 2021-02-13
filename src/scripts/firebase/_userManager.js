@@ -96,7 +96,7 @@ function _listenForUserChange(authenticator) {
         queryUserRecord(user.uid)
           .then((userData) => {
             window.userData = userData;
-            window.updateUserStatusBar(userData);
+            window.updateUserStatusBar();
           })
         const containerId = 'firebaseui-auth-container';
         const container = document.getElementById(containerId);

@@ -157,7 +157,7 @@ function flyToSelectedWreck(wreckId) {
 }
 
 function displayGalleryModal(wreck) {
-  const modal = new WreckGallery(wreck);
+  const modal = WreckGallery(wreck);
   const outgoingModal = window.activeModal;
 
   const center = [

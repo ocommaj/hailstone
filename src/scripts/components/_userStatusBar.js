@@ -8,6 +8,7 @@ export default function UserStatusBar() {
   wrapperElement.classList.add('userStatusBar');
   wrapperElement.classList.add('topControlElement');
   wrapperElement.tabIndex = -1;
+  userIconButton.id = 'userStatusBarButton';
   userIconButton.classList.add('userIconButton');
   userIconButton.tabIndex = 1;
   userIcon.classList.add('userIcon');
@@ -36,18 +37,34 @@ export default function UserStatusBar() {
     path.style.fill = '#f4f4f4';
   })
 
+  userIconButton.addEventListener('click', clickHandler);
+
+  function clickHandler() {
+    launchUserModal()
+  }
+
   return {
     updateUserStatusBar,
     userStatusBar: wrapperElement,
   }
 }
 
-function updateUserStatusBar(userData=null) {
+function updateUserStatusBar() {
+  const { userData } = window;
   const label = document.getElementById('userStatusBarLabel');
 
   if (!userData) {
     label.innerHTML = 'Login | Signup';
   } else {
     label.innerHTML = `${userData.displayName}`
+  }
+}
+
+function launchUserModal() {
+  const { userData } = window;
+  if (!userData) {
+    console.log('user needs to login')
+  } else {
+    console.log(`${userData.displayName} is logged in`)
   }
 }

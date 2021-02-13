@@ -35,7 +35,7 @@ function clickHandler(point, map) {
 
 function showWreckMarkerModal(wreck, replacesModal=null, fromPoint=null) {
   if (replacesModal && wreck.id === replacesModal.id) return
-  const modal = new WreckModal(wreck);
+  const modal = WreckModal(wreck);
   if (!!replacesModal) {
     modal.replace(replacesModal.element)
   } else {

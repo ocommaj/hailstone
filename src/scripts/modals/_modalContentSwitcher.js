@@ -31,9 +31,11 @@ export default function ModalContentSwitcher() {
   button.appendChild(tertiaryIcon);
   button.addEventListener('click', flipModalContent)
 
-  this.button = button;
-  this.flipModalContent = flipModalContent;
-  this.toggleTertiaryContent = toggleTertiaryContent;
+  return {  
+    contentSwitcher: button,
+    flipContent: flipModalContent,
+    toggleTertiary: toggleTertiaryContent
+  }
 
   function flipModalContent() {
     const activeModal = window.activeModal.element;
