@@ -7,7 +7,10 @@ mapboxgl.accessToken = process.env.MB_TOKEN;
 export default function Map() {
   const container = document.getElementById('mainMap');
   const map = new mapboxgl.Map({ container, ...config.initial });
+  const { innerWidth, innerHeight } = window;
 
+  container.width = innerWidth;
+  container.height = innerHeight;
   map.boxZoom.disable();
 
   map.on('load', () => config.render3D(map));
