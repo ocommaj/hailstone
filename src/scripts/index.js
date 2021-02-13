@@ -3,17 +3,20 @@ import Map from './mapbox';
 import { ControlWrapper } from './components';
 
 export default function main() {
+  //window.addEventListener("resize", onResize)
+  //onResize()
+
   const { controlWrapper, updateUserStatusBar } = new ControlWrapper()
 
   window.updateUserStatusBar = updateUserStatusBar;
   window.firebaseClient = new FirebaseClient();
   window.mapCanvas = new Map();
 
-  onResize()
+
   document.body.appendChild(controlWrapper)
-  window.addEventListener("resize", onResize)
+
 }
 
 function onResize() {
-  document.body.height = window.innerHeight;
+  document.body.height = `${window.innerHeight}px`;
 }
