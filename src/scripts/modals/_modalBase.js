@@ -22,7 +22,6 @@ export default function ModalBase({ id, tertiaryAuthUI=true }) {
       hide: () => _hideAuthUI({ authUI: firebaseAuthUI })
     }
   }
-
 }
 
 function _revealModal(modal, fromPoint) {

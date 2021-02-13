@@ -96,7 +96,7 @@ function loadImageElement({ imgId, imgRecord, domCallback }) {
   const storageRef = firebase.storage().ref(storagePath);
   storageRef.getDownloadURL()
     .then((url) => domCallback({ imgId, url, upvotes }))
-    .catch((error) => console.log(`file does not exist at ${storagePath}`));
+    .catch((error) => console.error(error));
   }
 
 function upvoteImage({ getImageById, upvoteRecord }, { gallery, id }) {
