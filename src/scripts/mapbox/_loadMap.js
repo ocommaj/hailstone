@@ -9,8 +9,10 @@ export default function Map() {
   const map = new mapboxgl.Map({ container, ...config.initial });
   const { innerWidth, innerHeight } = window;
 
-  container.width = innerWidth;
-  container.height = innerHeight;
+  console.log(`innerWidth: ${innerWidth}`)
+  console.log(`innerHeight: ${innerHeight}`)
+  //container.style.width = innerWidth;
+  //container.style.height = innerHeight;
   map.boxZoom.disable();
 
   map.on('load', () => config.render3D(map));
