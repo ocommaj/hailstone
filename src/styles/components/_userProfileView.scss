@@ -35,16 +35,22 @@
 
   .profileViewSectionWrapper {
     margin: .5rem 0;
-    padding: .25rem;
+    padding: .5rem;
     border-radius: .25rem;
     background-color: $gray-60-10;
     display: flex;
-    align-items: center;
+    flex-direction: column;
   }
 
   #displayInfoSectionWrapper {
     height: 6rem;
-    padding-left: .5rem;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  #uploadsSectionWrapper {
+    margin: 0;
+    min-height: 15vh;
   }
 
   .profileViewSectionWrapper:nth-of-type(1) {
@@ -72,14 +78,15 @@
 
   .profileViewLabel {
     color: $gray-40;
-    margin: .5rem 0;
+    margin: 0;
     font-size: 1.25rem;
+    line-height: 1.5rem;
     font-weight: 400;
   }
 
   .profileViewValue {
     color: $gray-10;
-    margin: .5rem 0;
+    margin: .25rem 0;
     overflow: hidden;
     text-overflow:ellipsis;
   }
@@ -87,6 +94,24 @@
   #primaryContactValue {
     font-size: 1.25rem;
     font-weight: 400;
+    line-height: 1.5rem;
+  }
+
+  #nameElementsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: .5rem 0;
+
+    #firstNameWrapper {
+      flex-grow: 0;
+    }
+
+    #lastNameWrapper {
+      flex-grow: 1;
+      margin-left: 1.5rem;
+    }
   }
 
   .bottomButtonsWrapper {
