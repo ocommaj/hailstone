@@ -43,8 +43,9 @@ export default function FirebaseClient() {
     loginUI,
     createUserRecord,
     queryUserRecord,
-    uploader: (args) => uploader(queries, args),
+    signOut: userManager.signOut,
     loadImagesFromDB: (args) => loadImagesFromDB(queries, args),
+    uploader: (args) => uploader(queries, args),
     upvoteImage: (args) => upvoteImage(queries, args)
   }
 }

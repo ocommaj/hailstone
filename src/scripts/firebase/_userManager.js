@@ -6,11 +6,13 @@ export default function UserManager(authenticator, authProviders) {
   const anonymousLogin = () => _anonymousLogin(authenticator);
   const listenForUserChange = () => _listenForUserChange(authenticator);
   const loginUI = () => new _loginUI(authenticator, authProviders);
+  const signOut = () => _signOut(authenticator);
 
   return {
     anonymousLogin,
     listenForUserChange,
-    loginUI
+    loginUI,
+    signOut,
   }
 }
 
@@ -107,6 +109,13 @@ function _listenForUserChange(authenticator) {
         }
       }
     }
+  })
+}
+
+function _signOut(authenticator) {
+  return new Promise((resolve) => {
+      authenticator.signOut().then(() => _anonymousLogin(authenticator))
+      resolve()
   })
 }
 

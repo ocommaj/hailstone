@@ -72,8 +72,7 @@ export default function UserProfileView(userData) {
   logoutButton.classList.add('logoutButton');
   editProfileButton.innerHTML = 'Edit Profile';
   logoutButton.innerHTML = 'Logout';
-
-
+  logoutButton.addEventListener('click', logout);
 
   profileElementsWrapper.appendChild(profileContentElements);
 
@@ -86,4 +85,10 @@ export default function UserProfileView(userData) {
   return {
     userProfileView
   }
+}
+
+function logout() {
+  const { activeModal: { remove }, firebaseClient: { signOut } } = window;
+  window.userData = null;
+  signOut().then(() => remove());
 }
