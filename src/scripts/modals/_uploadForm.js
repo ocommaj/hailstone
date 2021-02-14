@@ -156,6 +156,7 @@ function submitClickHandler(restyleButton) {
     const dbCollection = `wreckGalleries/${wreckId}/images/`;
     const dbFields = {
       storagePath,
+      wreckId,
       imageCaption: imageCaption.value,
       cameraDetails: cameraDetails.value,
       diveOperators: diveOperators.value,

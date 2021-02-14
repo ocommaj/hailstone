@@ -1,18 +1,18 @@
 export default function FirestoreQueries(db) {
-  const upvoteRecord = _upvoteRecord;
   const getImageRecords = (args) => _getImageRecords(db, args);
   const getImageById = (args) => _getImageById(db, args);
   const createImageRecord = (args) => _createImageRecord(db, args);
   const createUserRecord = (args) => _createUserRecord(db, args);
   const queryUserRecord = (uid) => _queryUserRecord(db, uid);
+  const upvoteRecord = (args) => _upvoteRecord(args);
 
-  return {
-    upvoteRecord,
-    getImageRecords,
-    getImageById,
+  return {    
     createImageRecord,
     createUserRecord,
+    getImageById,
+    getImageRecords,
     queryUserRecord,
+    upvoteRecord,
   }
 }
 
@@ -40,32 +40,34 @@ function _getImageById(db, { gallery, id, root='wreckGalleries' }) {
     docRef.get()
       .then(imageDoc => {
         if (imageDoc.exists) {
-          const imgData = imageDoc.data()
-          resolve({ docRef, imgData })
+          const docData = imageDoc.data()
+          resolve({ docRef, docData })
         }
     })
   })
 }
 
-function _upvoteRecord(docRef, docData) {
+function _upvoteRecord({ docRef, docData }) {
   const { upvotes: prevCount } = docData;
   const updatedCount = prevCount+1;
+
   docRef.update({ upvotes: updatedCount })
-    .then(() => console.log('successful update!'))
     .catch((error) => console.error(error))
 }
 
-function _createImageRecord(db, { dbCollection, dbFields }) {
+function _createImageRecord(db, { dbCollection, dbFields, arrayUnion }) {
+  const { wreckId, uploadedBy: uid } = dbFields;
   return new Promise(resolve => {
     db.collection(dbCollection).add({ ...dbFields })
       .then((docRef) => {
         docRef.get().then(doc => {
           const imgId = docRef.id
           const imgRecord = doc.data()
+          const userRef = db.collection('users').doc(uid);
+          userRef.update({ imageIDs: arrayUnion({ wreckId, imgId }) })
           resolve({ imgId, imgRecord })
         })
-      })
-      .catch(error => console.error(error))
+      }).catch(error => console.error(error))
   })
 }
 

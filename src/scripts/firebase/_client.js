@@ -73,11 +73,17 @@ function uploader(
       task.snapshot.ref.getMetadata().then(({ timeCreated }) => {
         dbRecord.dbFields.timeCreated = timeCreated;
         dbRecord.dbFields.uploadedBy = window.user.uid;
+        dbRecord.arrayUnion = arrayUnion;
+
         createImageRecord(dbRecord)
           .then(({ imgId, imgRecord }) => {
             loadImageElement({ imgId, imgRecord, domCallback: onComplete })
           })
        })
+
+       function arrayUnion(appendId) {
+         return firebase.firestore.FieldValue.arrayUnion(appendId)
+       }
     }
   )
 }
@@ -101,6 +107,5 @@ function loadImageElement({ imgId, imgRecord, domCallback }) {
   }
 
 function upvoteImage({ getImageById, upvoteRecord }, { gallery, id }) {
-  getImageById({ gallery, id })
-    .then(({ docRef, imgData }) => upvoteRecord(docRef, imgData));
+  getImageById({ gallery, id }).then((docRecord) => upvoteRecord(docRecord));
 }
