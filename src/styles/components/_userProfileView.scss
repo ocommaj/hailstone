@@ -1,0 +1,145 @@
+.userProfileView {
+  width: 100%;
+  height: 100%;
+  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .profileElementsWrapper {
+    background-color: $gray-80-30;
+    //box-shadow: .125rem .125rem .125rem $gray-90-80;
+    padding: .75rem;
+    flex-grow: 1;
+    align-content: stretch;
+    margin-bottom: .5rem;
+    border-radius: .5rem;
+    overflow-y: scroll;
+  }
+
+  .profileContentElements {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: flex-start;
+  }
+
+  .userProfileHeadline {
+    font-size: 2rem;
+    color: #f4f4f4;
+    margin-left: 0;
+    margin-bottom: .5rem;
+    text-shadow: .125rem .125rem .25rem $gray-90-80;
+    user-select: none;
+  }
+
+  .profileViewSectionWrapper {
+    margin: .5rem 0;
+    padding: .25rem;
+    border-radius: .25rem;
+    background-color: $gray-60-10;
+    display: flex;
+    align-items: center;
+  }
+
+  #displayInfoSectionWrapper {
+    height: 6rem;
+    padding-left: .5rem;
+  }
+
+  .profileViewSectionWrapper:nth-of-type(1) {
+    margin: 0;
+  }
+
+  .profileImageWrapper {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2.5rem;
+    flex-grow: 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow: .125rem .125rem .25rem $gray-90-80;
+  }
+
+  .profileImage {
+    width: inherit;
+  }
+
+  .displayNameWrapper {
+    margin-left: .75rem;
+    max-width: calc(100% - 6rem);
+  }
+
+  .profileViewLabel {
+    color: $gray-40;
+    margin: .5rem 0;
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+  .profileViewValue {
+    color: $gray-10;
+    margin: .5rem 0;
+    overflow: hidden;
+    text-overflow:ellipsis;
+  }
+
+  #primaryContactValue {
+    font-size: 1.25rem;
+    font-weight: 400;
+  }
+
+  /*.testContent {
+    width: 100%;
+    height: 30vh;
+    margin: 0;
+    margin-bottom: .5rem;
+    border-radius: .5rem;
+    background-color: $blue-40;
+  }*/
+
+  .bottomButtonsWrapper {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-content: stretch;
+  }
+
+  button {
+    appearance: none;
+    -webkit-appearance: none;
+
+    outline: none;
+
+    font-size: 1.5rem;
+    font-family: 'Cabin Condensed';
+    color: $gray-10;
+    padding: .5rem;
+    border: solid 1px rgba(0, 0, 0, 0);
+    border-radius: .5rem;
+    box-shadow: .125rem .125rem .5rem $gray-90-80;
+    cursor: pointer;
+
+    transition: background-color 0.7s ease, color 0.7s ease;
+  }
+
+  .editProfileButton {
+    background-color: $blue-60;
+  }
+
+  .editProfileButton:hover {
+    background-color: $blue-80;
+    color: $gray-20;
+  }
+
+  .logoutButton {
+    background-color: $red-60;
+    margin-top: .5rem;
+  }
+
+  .logoutButton:hover {
+    background-color: $red-80;
+    color: $gray-20;
+  }
+}

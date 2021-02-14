@@ -1,6 +1,7 @@
 @import './switchModalContentButton';
 @import './postApplauseButton';
 @import './imageUploadForm';
+@import './userProfileView';
 
 .modal {
   background-color: $gray-90-30;
@@ -11,6 +12,7 @@
     $red-60-30 100%);
   backdrop-filter: blur(1rem);
   -webkit-backdrop-filter: blur(1rem);
+  //box-shadow: .125rem .125rem .125rem $gray-90-80;
   border: solid .2rem $gray-90;
   border-radius: 1rem;
   padding: 1rem .5rem;

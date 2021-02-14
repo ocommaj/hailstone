@@ -1,5 +1,3 @@
-
-
 #firebaseui-auth-container {
   position: absolute;
   z-index: 600;
@@ -55,12 +53,17 @@
     backdrop-filter: blur(1rem);
   }
 
+  .firebaseui-idp-button {
+    transition: background-color 0.4s ease;
+  }
+
   .firebaseui-idp-google > .firebaseui-idp-text {
     color: $gray-10;
   }
 
   .firebaseui-idp-text {
     font-size: 1.25rem;
+    color: $gray-10;
   }
 
   h1 {

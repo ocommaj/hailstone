@@ -3,14 +3,13 @@ import UserProfileView from './_userProfileView';
 
 export default function UserModal() {
   const { userData } = window;
-  const id = !!userData ? `${userData.uid}_profile_modal` : 'login_modal';
+  const id = !!userData ? `${userData.uid}_profile` : 'login';
   const modalConf = { id, tertiaryAuthUI: false };
   const { modal, authUI, reveal, remove, replace } = ModalBase(modalConf);
 
-  let revealUserModal, replaceWithUserModal
-  //let replaceWithUserModal
+  let revealUserModal, replaceWithUserModal;
 
-  if (id === 'login_modal') {
+  if (!userData) {
     modal.appendChild(authUI.element)
     revealUserModal = (fromPoint) => {
       reveal(fromPoint);
@@ -26,21 +25,20 @@ export default function UserModal() {
     const { userProfileView } = UserProfileView(userData);
     modal.appendChild(userProfileView);
     revealUserModal = (fromPoint) => reveal(fromPoint);
-    replaceWithUserModal = () => replace()
+    replaceWithUserModal = (outgoing) => replace(outgoing)
   }
 
-
   return {
-    id,
     remove,
+    id: `${id}_modal`,
     replace: replaceWithUserModal,
     reveal: revealUserModal,
     element: modal,
   }
 
   function hideLogin() {
-    modal.style.display = 'none';
-    window.activeModal = null;
     authUI.hide()
+    document.body.removeChild(modal);
+    window.activeModal = null;
   }
 }
