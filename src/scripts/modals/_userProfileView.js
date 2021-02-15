@@ -174,7 +174,7 @@ function logout() {
 }
 
 function loadImages(uploadRecords, wrapperElement) {
-  if (!uploadRecords.length) return
+  if (!uploadRecords) return
   const { firebaseClient: { loadImagesFromDB } } = window;
   const domCallback = (config) => {
     config.applauseButton=false;
