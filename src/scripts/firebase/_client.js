@@ -88,11 +88,9 @@ function uploader(
   )
 }
 
-async function loadImagesFromDB(
-  { getImageRecords },
-  { gallery, domCallback }
-) {
-  const imageRecords = await getImageRecords({ gallery })
+async function loadImagesFromDB({ getImageRecords }, args) {
+  const { gallery, domCallback, filterIDs } = args;
+  const imageRecords = await getImageRecords({ gallery, filterIDs })
   for (const [imgId, imgRecord] of Object.entries(imageRecords)) {
     loadImageElement({ imgId, imgRecord, domCallback })
   }

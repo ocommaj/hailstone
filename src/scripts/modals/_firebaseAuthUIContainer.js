@@ -7,8 +7,9 @@ export default function FirebaseAuthUIContainer() {
   this.element = firebaseAuthUIContainer;
 
   function startUI() {
+    const { firebaseClient: { loginUI } } = window;
     firebaseAuthUIContainer.style.display = 'flex';
-    window.firebaseClient.loginUI.start();
+    loginUI.start();
   }
 
 }

@@ -1,5 +1,17 @@
+import GalleryImage from '../components/_galleryImage';
+
 export default function UserProfileView(userData) {
-  const { displayName, email, familyName, givenName, pictureURL } = userData;
+  const {
+    displayName,
+    email,
+    familyName,
+    givenName,
+    uploadRecords,
+    pictureURL,
+    providerId
+  } = userData;
+
+  //loadImages(uploadRecords);
 
   const userProfileView = document.createElement('div');
   const profileElementsWrapper = document.createElement('div');
@@ -48,6 +60,12 @@ export default function UserProfileView(userData) {
   const lastNameLabelText = document.createTextNode('Surname:');
   const lastNameValue = document.createElement('h3');
   const lastNameValueText = document.createTextNode(`${familyName}`);
+
+  const uploadSectionLabel = document.createElement('h3');
+  const uploadSectionLabelText = document.createTextNode('Your Posts:');
+  uploadSectionLabel.id = 'uploadSectionLabel';
+  uploadSectionLabel.classList.add('profileViewLabel');
+  uploadSectionLabel.appendChild(uploadSectionLabelText);
 
   nameElementsWrapper.id = 'nameElementsWrapper';
   firstNameWrapper.id = 'firstNameWrapper';
@@ -126,6 +144,9 @@ export default function UserProfileView(userData) {
   profileContentElements.appendChild(detailInfoSectionWrapper);
   profileContentElements.appendChild(uploadsSectionWrapper);
 
+  uploadsSectionWrapper.appendChild(uploadSectionLabel);
+  loadImages(uploadRecords, uploadsSectionWrapper);
+
   bottomButtonsWrapper.classList.add('bottomButtonsWrapper');
   editProfileButton.classList.add('editProfileButton');
   logoutButton.classList.add('logoutButton');
@@ -150,4 +171,33 @@ function logout() {
   const { activeModal: { remove }, firebaseClient: { signOut } } = window;
   window.userData = null;
   signOut().then(() => remove());
+}
+
+function loadImages(uploadRecords, wrapperElement) {
+  if (!uploadRecords.length) return
+  const { firebaseClient: { loadImagesFromDB } } = window;
+  const domCallback = (config) => {
+    config.applauseButton=false;
+    wrapperElement.append(GalleryImage(config))
+  }
+
+  const sortedRecords = sortUploadRecords(uploadRecords);
+  for (const [wreckID, imgIDs] of Object.entries(sortedRecords)) {
+    loadImagesFromDB({
+      domCallback,
+      gallery: wreckID,
+      filterIDs: imgIDs
+    });
+  }
+}
+
+function sortUploadRecords(uploadRecords) {
+  return uploadRecords.reduce((accumulator, record) => {
+    if (!accumulator[record.wreckId]) {
+      accumulator[record.wreckId] = [record.imgId];
+    } else {
+      accumulator[record.wreckId].push(record.imgId);
+    }
+    return accumulator;
+  }, {})
 }

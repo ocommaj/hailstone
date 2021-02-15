@@ -1,4 +1,4 @@
-import GalleryImage from './_galleryImage';
+import GalleryImage from '../components/_galleryImage';
 
 export default function GalleryContent(id) {
   const contentWrapper = document.createElement("div");
@@ -24,5 +24,6 @@ function updateGallery(gallery, fileToAdd) {
 }
 
 function loadGalleryFiles(galleryId, domCallback) {
-  window.firebaseClient.loadImagesFromDB({ domCallback, gallery: galleryId })
+  const { firebaseClient: { loadImagesFromDB} } = window;
+  loadImagesFromDB({ domCallback, gallery: galleryId });
 }

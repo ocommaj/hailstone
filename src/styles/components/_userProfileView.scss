@@ -15,6 +15,7 @@
     margin-bottom: .5rem;
     border-radius: .5rem;
     overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .profileContentElements {
@@ -50,7 +51,13 @@
 
   #uploadsSectionWrapper {
     margin: 0;
+    margin-bottom: .5rem;
     min-height: 15vh;
+
+    .modalGalleryImgWrapper {
+      margin-bottom: 0;
+      margin-top: .5rem;
+    }
   }
 
   .profileViewSectionWrapper:nth-of-type(1) {

@@ -1,6 +1,11 @@
 import ApplauseButton from './_applauseButton';
 
-export default function GalleryImage({ url, imgId=null, upvotes=null }) {
+export default function GalleryImage({
+  url,
+  imgId=null,
+  upvotes=null,
+  applauseButton=true,
+}) {
   const galleryImg = document.createElement('div');
   const img = document.createElement('img');
   galleryImg.classList.add('modalGalleryImgWrapper');
@@ -10,7 +15,7 @@ export default function GalleryImage({ url, imgId=null, upvotes=null }) {
   if (imgId !== null) galleryImg.dataset.imgId = imgId;
   if (upvotes !== null) galleryImg.dataset.upvotes = upvotes;
   galleryImg.appendChild(img);
-  galleryImg.appendChild( ApplauseButton() )
+  if (!!applauseButton) galleryImg.appendChild( ApplauseButton() )
 
   img.addEventListener('load', () => {
     img.style.visibility = 'visible';
