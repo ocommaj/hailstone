@@ -1,5 +1,6 @@
 import maskIcon from '../../../assets/icons/diveMask.svg';
 import GalleryImage from '../../components/_galleryImage';
+import ProfileModalButtons from './_profileButtons';
 
 export default function UserProfileView(userData) {
   const {
@@ -14,6 +15,7 @@ export default function UserProfileView(userData) {
   } = userData;
 
   const primaryContact = providerId === 'twitter.com' ? username : email;
+  const { profileModalButtonsWrapper } = ProfileModalButtons();
 
   const userProfileView = document.createElement('div');
   const profileElementsWrapper = document.createElement('div');
@@ -157,16 +159,6 @@ export default function UserProfileView(userData) {
   detailInfoSectionWrapper.appendChild(primaryContactValueInputWrapper);
   detailInfoSectionWrapper.appendChild(nameElementsWrapper);
 
-  const bottomButtonsWrapper = document.createElement('div');
-  const topButtonWrapper = document.createElement('div');
-  const editProfileButton = document.createElement('button');
-  const submitEditsButton = document.createElement('button');
-  const logoutButton = document.createElement('button');
-
-  editProfileButton.id = 'userProfileViewEditorButton';
-  submitEditsButton.id = 'userProfileViewSubmitEditsButton';
-  logoutButton.id = 'userProfileViewLogoutButton';
-
   const headline = document.createElement('h2');
   headline.classList.add('userProfileHeadline');
   headline.innerHTML = "Profile Information";
@@ -176,7 +168,6 @@ export default function UserProfileView(userData) {
   profileElementsWrapper.tabIndex = -1;
   profileContentElements.tabIndex = -1;
   displayInfoSectionWrapper.tabIndex = -1;
-  bottomButtonsWrapper.tabIndex = -1;
 
   userProfileView.classList.add('userProfileView');
   profileElementsWrapper.classList.add('profileElementsWrapper');
@@ -201,132 +192,19 @@ export default function UserProfileView(userData) {
     profileImage.style.padding = '.5rem';
   })
 
+  loadImages(uploadRecords, uploadsSectionWrapper);
+
   displayInfoSectionWrapper.appendChild(profileImageWrapper);
   displayInfoSectionWrapper.appendChild(displayNameWrapper);
   profileContentElements.appendChild(displayInfoSectionWrapper);
   profileContentElements.appendChild(detailInfoSectionWrapper);
   profileContentElements.appendChild(uploadsSectionWrapper);
-
   uploadsSectionWrapper.appendChild(uploadSectionLabel);
-  loadImages(uploadRecords, uploadsSectionWrapper);
-
-  bottomButtonsWrapper.classList.add('bottomButtonsWrapper');
-  topButtonWrapper.classList.add('stackedButtonsWrapper');
-  editProfileButton.classList.add('editProfileButton');
-  submitEditsButton.classList.add('editProfileButton');
-  logoutButton.classList.add('logoutButton');
-  editProfileButton.innerHTML = 'Edit Profile';
-  submitEditsButton.innerHTML = 'Save Changes';
-  editProfileButton.addEventListener('click', toggleEditMode);
-  submitEditsButton.addEventListener('click', submitEdits);
-  logoutButton.innerHTML = 'Logout';
-  logoutButton.addEventListener('click', logout);
-
   profileElementsWrapper.appendChild(profileContentElements);
-
-
-  topButtonWrapper.appendChild(editProfileButton);
-  topButtonWrapper.appendChild(submitEditsButton);
-
-  bottomButtonsWrapper.appendChild(topButtonWrapper);
-  bottomButtonsWrapper.appendChild(logoutButton);
-
   userProfileView.appendChild(profileElementsWrapper);
-  userProfileView.appendChild(bottomButtonsWrapper);
+  userProfileView.appendChild(profileModalButtonsWrapper);
 
-  return {
-    userProfileView
-  }
-}
-
-function toggleEditMode() {
-  const profileView = document.querySelector('.userProfileView');
-  profileView.classList.toggle('editorMode');
-  const editorShows = profileView.classList.contains('editorMode');
-  if (editorShows) focusOnEditor()
-  toggleLogoutCancelButton(editorShows)
-}
-
-function focusOnEditor(inputId=null) {
-  const toFocus = !!inputId ? inputId : 'displayNameInput';
-  const focusElement = document.getElementById(toFocus);
-  focusElement.focus();
-}
-
-function toggleEditSubmitButton({ editorShows=true }) {
-  const editBtn = document.getElementById('userProfileViewEditorButton');
-  if (!!editorShows) {
-    editBtn.innerHTML = 'Save Changes';
-    editBtn.removeEventListener('click', toggleEditMode);
-    editBtn.addEventListener('click', submitChanges);
-  } else {
-    editBtn.innerHTML = 'Edit Profile';
-    editBtn.removeEventListener('click', submitChanges);
-    editBtn.addEventListener('click', toggleEditMode);
-  }
-}
-
-function toggleLogoutCancelButton(editorShows=true) {
-  const logoutBtn = document.getElementById('userProfileViewLogoutButton');
-  if (!!editorShows) {
-    logoutBtn.innerHTML = 'Cancel';
-    logoutBtn.removeEventListener('click', logout);
-    logoutBtn.addEventListener('click', cancelEdit);
-  } else {
-    logoutBtn.innerHTML = 'Logout';
-    logoutBtn.removeEventListener('click', cancelEdit);
-    logoutBtn.addEventListener('click', logout);
-  }
-}
-
-function cancelEdit() {
-  toggleEditMode()
-  revertButtonToLogoutMode()
-}
-
-function revertButtonToLogoutMode() {
-  const logoutBtn = document.getElementById('userProfileViewLogoutButton');
-  logoutBtn.innerHTML = 'Logout';
-  logoutBtn.removeEventListener('click', cancelEdit);
-  logoutBtn.addEventListener('click', logout);
-}
-
-function logout() {
-  const { activeModal: { remove }, firebaseClient: { signOut } } = window;
-  window.userData = null;
-  signOut().then(() => remove());
-}
-
-function submitEdits() {
-  submitChanges().then(() => toggleEditMode())
-}
-
-function submitChanges() {
-  return new Promise(resolve => {
-  const { user: { uid }, firebaseClient: { updateUserRecord } } = window;
-  const displayNameEditor = document.getElementById('displayNameInput');
-  const firstNameEditor = document.getElementById('firstNameInput');
-  const lastNameEditor = document.getElementById('familyNameInput');
-
-  const displayNameValue = document.getElementById('displayNameValue');
-  const firstNameValue = document.getElementById('firstNameValue');
-  const lastNameValue = document.getElementById('lastNameValue');
-
-  const updatedValues = {
-    displayName: displayNameEditor.value,
-    givenName: firstNameEditor.value,
-    familyName: lastNameEditor.value,
-  }
-
-  updateUserRecord({ uid, userData: updatedValues })
-    .then((updatedData) => {
-      window.userData = updatedData;
-      displayNameValue.innerHTML = updatedData.displayName;
-      firstNameValue.innerHTML = updatedData.givenName;
-      lastNameValue.innerHTML = updatedData.familyName;
-      resolve()
-    })
-  })
+  return { userProfileView }
 }
 
 function loadImages(uploadRecords, wrapperElement) {
