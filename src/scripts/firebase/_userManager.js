@@ -40,15 +40,11 @@ function _loginUI(authenticator, authProviders) {
         ],
         callbacks: {
           signInSuccessWithAuthResult: function(authResult) {
-              console.dir(authResult.additionalUserInfo)
-              console.dir(authResult.user)
+              //console.dir(authResult.additionalUserInfo)
+              //console.dir(authResult.user)
 
               authenticator.updateCurrentUser(authResult.user)
                 .then(() => {
-                  if (authResult.additionalUserInfo.providerId === 'apple.com') {
-                    const displayName = authenticator.currentUser.displayName
-                    console.log(displayName)
-                  }
                   createUserRecord(authResult)
                   window.hideAuthUI()
                   return false;
@@ -130,7 +126,7 @@ function createUserRecord(newUser) {
     ...parseProfileInfo({ providerId, profile, email, displayName })
   }
 
-  if (username) { userConfig.username = username }
+  if (username) { userConfig.username = `@${username}` }
 
   createRecord(userConfig);
 }

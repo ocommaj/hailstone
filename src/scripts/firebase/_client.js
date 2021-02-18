@@ -31,7 +31,7 @@ export default function FirebaseClient() {
   const authenticator = firebase.auth();
   const userManager = UserManager(authenticator, authProviders);
   const loginUI = userManager.loginUI();
-  const { createUserRecord, queryUserRecord } = queries;
+  const { createUserRecord, queryUserRecord, updateUserRecord } = queries;
 
   userManager.listenForUserChange();
 
@@ -43,6 +43,7 @@ export default function FirebaseClient() {
     loginUI,
     createUserRecord,
     queryUserRecord,
+    updateUserRecord,
     signOut: userManager.signOut,
     loadImagesFromDB: (args) => loadImagesFromDB(queries, args),
     uploader: (args) => uploader(queries, args),

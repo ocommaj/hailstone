@@ -1,5 +1,5 @@
 import ModalBase from './_modalBase';
-import UserProfileView from './_userProfileView';
+import UserProfileView from './UserProfile';
 
 export default function UserModal() {
   const { userData } = window;

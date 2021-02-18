@@ -4,6 +4,7 @@ export default function FirestoreQueries(db) {
   const createImageRecord = (args) => _createImageRecord(db, args);
   const createUserRecord = (args) => _createUserRecord(db, args);
   const queryUserRecord = (uid) => _queryUserRecord(db, uid);
+  const updateUserRecord = (args) => _updateUserRecord(db, args);
   const upvoteRecord = (args) => _upvoteRecord(args);
 
   return {
@@ -12,6 +13,7 @@ export default function FirestoreQueries(db) {
     getImageById,
     getImageRecords,
     queryUserRecord,
+    updateUserRecord,
     upvoteRecord,
   }
 }
@@ -94,6 +96,16 @@ function _queryUserRecord(db, uid) {
         if (userDoc.exists) {
           resolve(userDoc.data())
         }
+      })
+  })
+}
+
+function _updateUserRecord(db, { uid, userData }) {
+  return new Promise(resolve => {
+    db.collection('users/').doc(uid).set({ ...userData }, { merge: true })
+      .then(() => {
+        _queryUserRecord(db, uid)
+          .then((userData) => resolve(userData))
       })
   })
 }
