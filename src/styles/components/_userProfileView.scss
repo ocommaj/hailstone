@@ -52,7 +52,7 @@
   #uploadsSectionWrapper {
     margin: 0;
     margin-bottom: .5rem;
-    min-height: 15vh;
+    min-height: 25vh;
 
     .modalGalleryImgWrapper {
       margin-bottom: 0;
@@ -72,6 +72,7 @@
     position: relative;
     overflow: hidden;
     box-shadow: .125rem .125rem .125rem $gray-90-80;
+    background-color: $gray-70;
   }
 
   .profileImage {
@@ -117,8 +118,12 @@
 
     #lastNameWrapper {
       flex-grow: 1;
-      margin-left: 1.5rem;
+      margin-left: 2rem;
     }
+  }
+
+  #uploadSectionAltText {
+    opacity: .8;
   }
 
   .bottomButtonsWrapper {

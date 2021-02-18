@@ -1,3 +1,4 @@
+import maskIcon from '../../assets/icons/diveMask.svg';
 import GalleryImage from '../components/_galleryImage';
 
 export default function UserProfileView(userData) {
@@ -8,10 +9,13 @@ export default function UserProfileView(userData) {
     givenName,
     uploadRecords,
     pictureURL,
-    providerId
+    providerId,
+    username
   } = userData;
 
-  //loadImages(uploadRecords);
+  const primaryContact =  providerId === 'twitter.com'
+    ? `@${username}`
+    : email;
 
   const userProfileView = document.createElement('div');
   const profileElementsWrapper = document.createElement('div');
@@ -28,7 +32,6 @@ export default function UserProfileView(userData) {
   const displayNameLabel = document.createElement('h3');
   const displayNameLabelText = document.createTextNode('Display Name:');
   const displayNameValue = document.createElement('h3');
-  const displayNameValueText = document.createTextNode(`${displayName}`);
 
   displayNameWrapper.classList.add('displayNameWrapper');
   displayNameLabel.id = 'displayNameLabel';
@@ -37,7 +40,7 @@ export default function UserProfileView(userData) {
   displayNameValue.classList.add('profileViewValue');
 
   displayNameLabel.appendChild(displayNameLabelText);
-  displayNameValue.appendChild(displayNameValueText);
+  displayNameValue.innerHTML = `${displayName}`
 
   displayNameWrapper.appendChild(displayNameLabel);
   displayNameWrapper.appendChild(displayNameValue);
@@ -45,7 +48,6 @@ export default function UserProfileView(userData) {
   const primaryContactLabel = document.createElement('h3');
   const primaryContactLabelText = document.createTextNode('Primary Contact:');
   const primaryContactValue = document.createElement('h3');
-  const primaryContactValueText = document.createTextNode(`${email}`);
 
   const nameElementsWrapper = document.createElement('div');
   const firstNameWrapper = document.createElement('div');
@@ -54,15 +56,13 @@ export default function UserProfileView(userData) {
   const firstNameLabel = document.createElement('h3');
   const firstNameLabelText = document.createTextNode('First Name:');
   const firstNameValue = document.createElement('h3');
-  const firstNameValueText = document.createTextNode(`${givenName}`);
 
   const lastNameLabel = document.createElement('h3');
-  const lastNameLabelText = document.createTextNode('Surname:');
+  const lastNameLabelText = document.createTextNode('Family Name:');
   const lastNameValue = document.createElement('h3');
-  const lastNameValueText = document.createTextNode(`${familyName}`);
 
   const uploadSectionLabel = document.createElement('h3');
-  const uploadSectionLabelText = document.createTextNode('Your Posts:');
+  const uploadSectionLabelText = document.createTextNode('Your Photos:');
   uploadSectionLabel.id = 'uploadSectionLabel';
   uploadSectionLabel.classList.add('profileViewLabel');
   uploadSectionLabel.appendChild(uploadSectionLabelText);
@@ -82,10 +82,10 @@ export default function UserProfileView(userData) {
   lastNameValue.classList.add('profileViewValue');
 
   firstNameLabel.appendChild(firstNameLabelText);
-  firstNameValue.appendChild(firstNameValueText);
+  firstNameValue.innerHTML = `${givenName}`;
 
   lastNameLabel.appendChild(lastNameLabelText);
-  lastNameValue.appendChild(lastNameValueText);
+  lastNameValue.innerHTML = `${familyName}`;
 
   firstNameWrapper.appendChild(firstNameLabel);
   firstNameWrapper.appendChild(firstNameValue);
@@ -103,7 +103,7 @@ export default function UserProfileView(userData) {
   primaryContactValue.classList.add('profileViewValue');
 
   primaryContactLabel.appendChild(primaryContactLabelText);
-  primaryContactValue.appendChild(primaryContactValueText);
+  primaryContactValue.innerHTML = `${primaryContact}`;
 
   detailInfoSectionWrapper.appendChild(primaryContactLabel);
   detailInfoSectionWrapper.appendChild(primaryContactValue);
@@ -136,7 +136,16 @@ export default function UserProfileView(userData) {
   profileImageWrapper.classList.add('profileImageWrapper');
   profileImage.classList.add('profileImage');
   profileImageWrapper.appendChild(profileImage);
-  profileImage.src = pictureURL;
+  profileImage.alt = 'profile image';
+  profileImage.src = !!pictureURL ? pictureURL : maskIcon;
+  if (!pictureURL) {
+    profileImage.style.padding = '.5rem';
+  }
+
+  profileImage.addEventListener('error', () => {
+    profileImage.src = maskIcon;
+    profileImage.style.padding = '.5rem';
+  })
 
   displayInfoSectionWrapper.appendChild(profileImageWrapper);
   displayInfoSectionWrapper.appendChild(displayNameWrapper);
@@ -174,7 +183,10 @@ function logout() {
 }
 
 function loadImages(uploadRecords, wrapperElement) {
-  if (!uploadRecords) return
+  if (!uploadRecords) {
+    wrapperElement.appendChild(altText())
+    return
+  }
   const { firebaseClient: { loadImagesFromDB } } = window;
   const domCallback = (config) => {
     config.applauseButton=false;
@@ -188,6 +200,16 @@ function loadImages(uploadRecords, wrapperElement) {
       gallery: wreckID,
       filterIDs: imgIDs
     });
+  }
+
+  function altText() {
+    const uploadSectionAltText = document.createElement('h3');
+    const uploadSectionAltTextValue = document
+      .createTextNode('Photos you post will appear here.');
+    uploadSectionAltText.id = 'uploadSectionAltText';
+    uploadSectionAltText.classList.add('profileViewValue');
+    uploadSectionAltText.appendChild(uploadSectionAltTextValue);
+    return uploadSectionAltText;
   }
 }
 

@@ -27,10 +27,7 @@ function _loginUI(authenticator, authProviders) {
         signInSuccessUrl: '/',
         signInFlow: 'popup',
         signInOptions: [
-          /*{
-            provider: 'apple.com',
-            scopes: ['name']
-          },*/
+          //'apple.com',
           {
             provider: authProviders.google,
             providerName: 'Google',
@@ -43,8 +40,8 @@ function _loginUI(authenticator, authProviders) {
         ],
         callbacks: {
           signInSuccessWithAuthResult: function(authResult) {
-              //console.dir(authResult.additionalUserInfo)
-              //console.dir(authResult.user)
+              console.dir(authResult.additionalUserInfo)
+              console.dir(authResult.user)
 
               authenticator.updateCurrentUser(authResult.user)
                 .then(() => {
@@ -100,7 +97,6 @@ function _listenForUserChange(authenticator) {
           .then((userData) => {
             window.userData = userData;
             window.updateUserStatusBar();
-            //console.dir(window.userData)
           })
         const containerId = 'firebaseui-auth-container';
         const container = document.getElementById(containerId);
@@ -126,13 +122,15 @@ function handleAppleSignIn(newUser) {
 function createUserRecord(newUser) {
   const createRecord = window.firebaseClient.createUserRecord;
   const { user: { uid, email, displayName }, additionalUserInfo } = newUser;
-  const { providerId, profile } = additionalUserInfo;
+  const { providerId, profile, username } = additionalUserInfo;
 
   const userConfig = {
     uid,
     providerId,
     ...parseProfileInfo({ providerId, profile, email, displayName })
   }
+
+  if (username) { userConfig.username = username }
 
   createRecord(userConfig);
 }
@@ -161,9 +159,13 @@ function parseGoogleProfile(profile, email) {
 }
 
 function parseTwitterProfile(profile) {
+  const displayName = profile.name;
+  const { givenName, familyName } = splitFullName(displayName);
   const userData = {
+    displayName,
+    givenName,
+    familyName,
     pictureURL: profile.profile_image_url_https,
-    displayName: profile.name,
   }
   return userData;
 }
@@ -187,9 +189,19 @@ function parseAppleProfile(profile) {
 }
 
 function parseEmailPasswordProfile(email, displayName) {
+  const { givenName, familyName } = splitFullName(displayName);
   const userData = {
     email,
+    givenName,
+    familyName,
     displayName
   }
   return userData
+
+
+}
+
+function splitFullName(fullName) {
+  const split = fullName.split(' ');
+  return { givenName: split[0], familyName: split[1] }
 }
