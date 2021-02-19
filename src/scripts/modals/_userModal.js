@@ -4,7 +4,7 @@ import UserProfileView from './UserProfile';
 export default function UserModal() {
   const { userData } = window;
   const id = !!userData ? `${userData.uid}_profile` : 'login';
-  const modalConf = { id, tertiaryAuthUI: false };
+  const modalConf = { id, tertiaryAuth: false };
   const { modal, authUI, reveal, remove, replace } = ModalBase(modalConf);
 
   let revealUserModal, replaceWithUserModal;
@@ -30,7 +30,7 @@ export default function UserModal() {
 
   return {
     remove,
-    id: `${id}_modal`,
+    id: modal.id,
     replace: replaceWithUserModal,
     reveal: revealUserModal,
     element: modal,

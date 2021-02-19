@@ -1,0 +1,27 @@
+#siteInfo_modal {
+  h1 {
+    padding-left: 0;
+  }
+
+  p {
+    color: $gray-10;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  ul,li {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.siteInfoContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: scroll;
+}

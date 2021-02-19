@@ -1,26 +1,32 @@
 import { modalAnimations } from '../animations';
 import FirebaseAuthUIContainer from './_firebaseAuthUIContainer';
 
-export default function ModalBase({ id, tertiaryAuthUI=true }) {
+export default function ModalBase({ id, hasAuthUI=true, tertiaryAuth=true }) {
   const modal = document.createElement("div");
   modal.id = `${id}_modal`;
   modal.classList.add('modal');
 
-  const firebaseAuthUI = new FirebaseAuthUIContainer();
-  if (!!tertiaryAuthUI) {
-    firebaseAuthUI.element.classList.add('tertiaryContent')
-  }
+  let authUI;
 
-  return {
-    modal,
-    reveal: (fromPoint) => _revealModal(modal, fromPoint),
-    remove: () => _removeModal(modal),
-    replace: (outgoing) => _replaceModal(modal, outgoing),
-    authUI: {
+  if (!!hasAuthUI) {
+    const firebaseAuthUI = new FirebaseAuthUIContainer();
+    if (!!tertiaryAuth) {
+      firebaseAuthUI.element.classList.add('tertiaryContent')
+    }
+
+    authUI = {
       element: firebaseAuthUI.element,
       launch: () => _launchAuthUI({ authUI: firebaseAuthUI }),
       hide: () => _hideAuthUI({ authUI: firebaseAuthUI })
     }
+  }
+
+  return {
+    modal,
+    authUI,
+    reveal: (fromPoint) => _revealModal(modal, fromPoint),
+    remove: () => _removeModal(modal),
+    replace: (outgoing) => _replaceModal(modal, outgoing),
   }
 }
 
