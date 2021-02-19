@@ -83,12 +83,27 @@ export default function DisplayInfoSection({ displayName, pictureURL }) {
 }
 
 function handleFileInput(e) {
+  const {
+    userData,
+    user: { uid },
+    firebaseClient: { uploadProfileImage }
+  } = window;
   const imgElement = document.querySelector('.profileImage')
   const fileInput = e.target;
   if (e.target.validity.valid) {
     const userFile = fileInput.files[0];
     if (validateFileSize(userFile)) {
+      const pathRoot = 'publicAssets/userProfileImages';
+      const storagePath = `${pathRoot}/${uid}/${userFile.name}`;
+      imgElement.style.padding = 0;
       imgElement.src = URL.createObjectURL(userFile);
+      uploadProfileImage({ storagePath, userFile })
+        .then(() => {
+          //userData.pictureURL = storagePath;
+          userData.hasAppStorageProfilePicture = true;
+          userData.appStorageProfilePicturePath = storagePath;
+          console.dir(userData)
+        })
     }
   }
 }
