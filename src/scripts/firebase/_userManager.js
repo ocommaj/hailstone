@@ -35,7 +35,7 @@ function _loginUI(authenticator, authProviders) {
             iconUrl: googleIcon,
           },
           authProviders.twitter,
-          //authProviders.facebook,
+          authProviders.facebook,
           authProviders.email,
         ],
         callbacks: {
