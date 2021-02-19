@@ -1,6 +1,6 @@
-export default function DetailInfoSection({
-  familyName, givenName, primaryContact
-}) {
+export default DetailInfoSection;
+
+function DetailInfoSection({ familyName, givenName, primaryContact }) {
   const detailInfoSectionWrapper = document.createElement('div');
   detailInfoSectionWrapper.classList.add('profileViewSectionWrapper');
 

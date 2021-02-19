@@ -82,7 +82,9 @@
   }
 
   .profileImage {
-    width: inherit;
+    max-width: 100%;
+    height: inherit;
+    object-fit: cover;
   }
 
   .displayNameWrapper {
