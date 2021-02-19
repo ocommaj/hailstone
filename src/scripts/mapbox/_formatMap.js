@@ -1,6 +1,20 @@
 import SunCalc from 'suncalc';
+import { features } from '../../assets/wreckLocations.json';
 
 const bounds = [ [151.382659, 7.118231], [152.072039, 7.727652] ];
+const centerDefaults = {
+  wide: {
+    center: [151.83, 7.427],
+    zoom: 13.25,
+    bearing: 125,
+  },
+  narrow: {
+    center: [151.80, 7.4],
+    zoom: 12.05,
+    bearing: 125,
+  },
+  zoomedIn: 15,
+}
 
 const initialConfigs = {
   maxZoom: 16,
@@ -10,30 +24,38 @@ const initialConfigs = {
   ...setInitialCamera()
 }
 
-const Config = {
-  render3D,
-  initial: initialConfigs
-}
+const Config = { render3D, initial: initialConfigs }
 
 export default Config;
 
 function setInitialCamera() {
-  const { width, height } = window.screen;
-  if (width > height) {
-    return {
-      zoom: 13.25,
-      center: [151.83, 7.427],
-      pitch: 75,
-      bearing: 125
+  const { center, zoom, bearing } = getCenter()
+  return {
+    center,
+    zoom,
+    bearing,
+    pitch: 75,
+  }
+
+  function getCenter() {
+    const { screen: { width, height }, location: { search } } = window;
+    const queryParams  = new URLSearchParams(search);
+    if (queryParams.has('vesselId')) {
+      const queriedVessel = queryParams.get('vesselId');
+      return lookupVesselLocation(queriedVessel);
+    } else {
+      return (width > height) ? centerDefaults.wide : centerDefaults.narrow;
     }
-  } else {
-    return {
-      zoom: 12.05,
-      center: [151.80, 7.4],
-      pitch: 75,
-      bearing: 125
+
+    function lookupVesselLocation(vesselId) {
+      const vessel = features.filter(ft => ft.properties.id === vesselId);
+      const center = vessel[0].geometry.coordinates;
+      const zoom = centerDefaults.zoomedIn;
+      const bearing = 0;
+      return { center, zoom, bearing }
     }
   }
+
 }
 
 function render3D(map) {
