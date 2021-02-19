@@ -1,13 +1,13 @@
 import { SiteInfoModal } from '../modals';
 
 export default function urlQueryListener() {
-  console.log(`location: ${window.location}`)
   const queryParams  = new URLSearchParams(window.location.search)
 
   if (queryParams.has('lookup')) {
     const queriedValue = queryParams.get('lookup');
-    console.log(`queriedValue: ${queriedValue}`);
-    if (queriedValue === 'tos') launchSiteInfoModal();
+    if (queriedValue === 'tos' || queriedValue === 'privacy') {
+      launchSiteInfoModal();
+    }
   }
 }
 
