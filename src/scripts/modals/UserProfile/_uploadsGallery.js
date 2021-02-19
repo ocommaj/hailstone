@@ -1,6 +1,7 @@
 import GalleryImage from '../../components/_galleryImage';
 
-export default function UploadsGallery({ uploadRecords }) {
+export default function UploadsGallery(userData) {
+  const { uploadRecords } = userData;
   const uploadsSectionWrapper = document.createElement('div');
   uploadsSectionWrapper.id = 'uploadsSectionWrapper';
   uploadsSectionWrapper.classList.add('profileViewSectionWrapper');

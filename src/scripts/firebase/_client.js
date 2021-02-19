@@ -44,6 +44,7 @@ export default function FirebaseClient() {
     createUserRecord,
     queryUserRecord,
     updateUserRecord,
+    getProfileImage,
     uploadProfileImage,
     signOut: userManager.signOut,
     loadImagesFromDB: (args) => loadImagesFromDB(queries, args),
@@ -91,11 +92,20 @@ function uploader(
 }
 
 function uploadProfileImage({ storagePath, userFile }) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const storageRef = firebase.storage().ref(storagePath)
-    storageRef.put(userFile).then((snapshot) => {
-      resolve()
-    })
+    storageRef.put(userFile)
+      .then((snapshot) => resolve())
+      .catch((error) => reject(error))
+  })
+}
+
+function getProfileImage({ storagePath }) {
+  return new Promise((resolve, reject) => {
+  const storageRef = firebase.storage().ref(storagePath);
+  storageRef.getDownloadURL()
+    .then((url) => resolve(url))
+    .catch((error) => reject(error))
   })
 }
 

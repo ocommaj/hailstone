@@ -1,6 +1,9 @@
 export default DetailInfoSection;
 
-function DetailInfoSection({ familyName, givenName, primaryContact }) {
+function DetailInfoSection(userData) {
+  const { familyName, givenName, email, providerId, username } = userData;
+  const primaryContact = providerId === 'twitter.com' ? username : email;
+  
   const detailInfoSectionWrapper = document.createElement('div');
   detailInfoSectionWrapper.classList.add('profileViewSectionWrapper');
 

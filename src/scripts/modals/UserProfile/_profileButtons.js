@@ -73,28 +73,33 @@ function submitEdits() {
 
 function submitChanges() {
   return new Promise(resolve => {
-  const { user: { uid }, firebaseClient: { updateUserRecord } } = window;
-  const displayNameEditor = document.getElementById('displayNameInput');
-  const firstNameEditor = document.getElementById('firstNameInput');
-  const lastNameEditor = document.getElementById('familyNameInput');
+    const { userData, firebaseClient: { updateUserRecord } } = window;
+    const { uid, appHostedPictureURL } = userData;
+    const displayNameEditor = document.getElementById('displayNameInput');
+    const firstNameEditor = document.getElementById('firstNameInput');
+    const lastNameEditor = document.getElementById('familyNameInput');
 
-  const displayNameValue = document.getElementById('displayNameValue');
-  const firstNameValue = document.getElementById('firstNameValue');
-  const lastNameValue = document.getElementById('lastNameValue');
+    const displayNameValue = document.getElementById('displayNameValue');
+    const firstNameValue = document.getElementById('firstNameValue');
+    const lastNameValue = document.getElementById('lastNameValue');
 
-  const updatedValues = {
-    displayName: displayNameEditor.value,
-    givenName: firstNameEditor.value,
-    familyName: lastNameEditor.value,
-  }
+    const updatedValues = {
+      displayName: displayNameEditor.value,
+      givenName: firstNameEditor.value,
+      familyName: lastNameEditor.value,
+    }
 
-  updateUserRecord({ uid, userData: updatedValues })
-    .then((updatedData) => {
-      window.userData = updatedData;
-      displayNameValue.innerHTML = updatedData.displayName;
-      firstNameValue.innerHTML = updatedData.givenName;
-      lastNameValue.innerHTML = updatedData.familyName;
-      resolve()
-    })
+    if (!!appHostedPictureURL) {
+      updatedValues.appHostedPictureURL = appHostedPictureURL;
+    }
+
+    updateUserRecord({ uid, userData: updatedValues })
+      .then((updatedData) => {
+        window.userData = updatedData;
+        displayNameValue.innerHTML = updatedData.displayName;
+        firstNameValue.innerHTML = updatedData.givenName;
+        lastNameValue.innerHTML = updatedData.familyName;
+        resolve()
+      })
   })
 }

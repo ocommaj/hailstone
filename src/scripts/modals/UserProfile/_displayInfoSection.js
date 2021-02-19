@@ -1,6 +1,8 @@
 import maskIcon from '../../../assets/icons/diveMask.svg';
 
-export default function DisplayInfoSection({ displayName, pictureURL }) {
+export default function DisplayInfoSection(userData) {
+  const { displayName } = userData;
+
   const displayInfoSection = document.createElement('div');
   displayInfoSection.classList.add('profileViewSectionWrapper');
   displayInfoSection.id = 'displayInfoSectionWrapper';
@@ -37,7 +39,7 @@ export default function DisplayInfoSection({ displayName, pictureURL }) {
   displayNameWrapper.appendChild(displayNameValueInputWrapper);
 
   const profileImageWrapper = document.createElement('div');
-  const profileImage = document.createElement('img');
+  const { profileImage } = ProfileImage(userData);
 
   const editImageButton = document.createElement('button');
   const hiddenFileInput = document.createElement('input');
@@ -59,27 +61,55 @@ export default function DisplayInfoSection({ displayName, pictureURL }) {
   })
 
   profileImageWrapper.classList.add('profileImageWrapper');
-  profileImage.classList.add('profileImage');
+
   profileImageWrapper.appendChild(profileImage);
-  profileImage.alt = 'profile image';
-  profileImage.src = !!pictureURL ? pictureURL : maskIcon;
-  if (!pictureURL) {
-    profileImage.style.padding = '.5rem';
-  }
 
   editImageButton.innerHTML = `<i class="fas fa-plus"></i>`;
   profileImageWrapper.appendChild(editImageButton);
-
-  profileImage.addEventListener('error', () => {
-    profileImage.src = maskIcon;
-    profileImage.style.padding = '.5rem';
-  })
 
   displayInfoSection.appendChild(profileImageWrapper);
   displayInfoSection.appendChild(displayNameWrapper);
 
 
   return { displayInfoSection }
+}
+
+function ProfileImage({ pictureURL, appHostedPictureURL }) {
+  const profileImage = document.createElement('img');
+  profileImage.classList.add('profileImage');
+  profileImage.alt = 'Profile picture';
+
+  profileImage.addEventListener('error', showFallbackIcon)
+
+  if (!pictureURL && !appHostedPictureURL) {
+    showFallbackIcon();
+    return { profileImage }
+  }
+
+  if (!!appHostedPictureURL) {
+    showAppHostedProfilePic()
+    return { profileImage }
+  }
+
+  else {
+    profileImage.src = pictureURL;
+    return { profileImage }
+  }
+
+  function showFallbackIcon() {
+    profileImage.src = maskIcon;
+    profileImage.style.padding = '.5rem';
+  }
+
+  function showAppHostedProfilePic() {
+    const { firebaseClient: { getProfileImage } } = window;
+    getProfileImage({ storagePath: appHostedPictureURL })
+      .then((url) => { profileImage.src = url })
+      .catch((error) => {
+        console.error(error)
+        showFallbackIcon()
+      })
+  }
 }
 
 function handleFileInput(e) {
@@ -98,11 +128,11 @@ function handleFileInput(e) {
       imgElement.style.padding = 0;
       imgElement.src = URL.createObjectURL(userFile);
       uploadProfileImage({ storagePath, userFile })
-        .then(() => {
-          //userData.pictureURL = storagePath;
-          userData.hasAppStorageProfilePicture = true;
-          userData.appStorageProfilePicturePath = storagePath;
-          console.dir(userData)
+        .then(() => { userData.appHostedPictureURL = storagePath })
+        .catch((error) => {
+          console.error(error);
+          imgElement.style.padding = '.5rem';
+          imgElement.src = maskIcon;
         })
     }
   }
