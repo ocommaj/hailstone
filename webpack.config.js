@@ -6,11 +6,11 @@ const CompressionPlugin = require("compression-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: [
+  /*entry: [
     './src/scripts/mapbox/index.js',
      './src/scripts/firebase/index.js',
      './src/index.js'
-   ],
+   ],*/
   mode: 'production',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -50,17 +50,9 @@ module.exports = {
     ],
   },
   optimization: {
+    minimize: true,
     moduleIds: 'deterministic',
     runtimeChunk: 'single',
-    splitChunks: {
-    			cacheGroups: {
-    				vendor: {
-    					test: /[\\/]node_modules[\\/]/,
-    					name: 'vendors',
-    					chunks: 'all'
-    				}
-    			}
-    		},
   },
   plugins: [
     new CleanWebpackPlugin(),
