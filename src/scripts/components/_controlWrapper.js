@@ -6,12 +6,11 @@ export default function ControlWrapper() {
   const { searchBar } = SearchBar()
   const { userStatusBar, updateUserStatusBar } = UserStatusBar()
 
-  const controlWrapper = document.createElement('div');
+  const controlWrapper = document.createElement('main');
   controlWrapper.classList.add('controlWrapper');
   controlWrapper.id = 'controlWrapper';
   controlWrapper.autofocus = true;
-  controlWrapper.tabIndex = -1;
-
+  
   if ( shouldUseSmallScreenMode() ) {
     const { switchToggler, element: wrapperToggler } = ControlToggler()
     controlWrapper.appendChild(wrapperToggler);

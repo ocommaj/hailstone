@@ -1,5 +1,5 @@
+import wreckData from '../../assets/wreckLocations.json';
 import SunCalc from 'suncalc';
-import { features } from '../../assets/wreckLocations.json';
 
 const bounds = [ [151.382659, 7.118231], [152.072039, 7.727652] ];
 const centerDefaults = {
@@ -24,9 +24,15 @@ const initialConfigs = {
   ...setInitialCamera()
 }
 
-const Config = { render3D, initial: initialConfigs }
+const Config = { updateLoaded, render3D, initial: initialConfigs }
 
 export default Config;
+
+function updateLoaded(map) {
+  render3D(map)
+  updateMapboxLinkElements()
+  //addAriaRoles()
+}
 
 function setInitialCamera() {
   const { center, zoom, bearing } = getCenter()
@@ -48,6 +54,7 @@ function setInitialCamera() {
     }
 
     function lookupVesselLocation(vesselId) {
+      const { features } = wreckData;
       const vessel = features.filter(ft => ft.properties.id === vesselId);
       const center = vessel[0].geometry.coordinates;
       const zoom = centerDefaults.zoomedIn;
@@ -102,5 +109,28 @@ function addSkyLayer(map) {
     const sunAzimuth = 180 + (sunPos.azimuth * 180) / Math.PI;
     const sunAltitude = 90 - (sunPos.altitude * 180) / Math.PI;
     return [sunAzimuth, sunAltitude];
+  }
+}
+
+function addAriaRoles() {
+  const mbCtrlList = document.querySelector('.mapboxgl-ctrl-attrib-inner');
+  [...mbCtrlList.children].forEach((aTagElem) => {
+    aTagElem.setAttribute('role', 'listitem')
+  })
+}
+
+function updateMapboxLinkElements() {
+  const mbCtrlList = document.querySelector('.mapboxgl-ctrl-attrib-inner');
+  [...mbCtrlList.children].forEach((aTagElem) => {
+    addAriaRole(aTagElem)
+    makeExternalLinkSafer(aTagElem)
+  })
+
+  function addAriaRole(element) {
+    element.setAttribute('role', 'listitem')
+  }
+
+  function makeExternalLinkSafer(element) {
+    element.setAttribute('rel', 'noreferrer')
   }
 }

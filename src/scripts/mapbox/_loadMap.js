@@ -18,7 +18,7 @@ export default async function Map() {
 
   map.boxZoom.disable();
 
-  map.on('load', () => config.render3D(map));
+  map.on('load', () => config.updateLoaded(map));
   map.on('click', ({ point }) => mapEvents.clickHandler(point, map));
   map.on('mousemove', ({ point }) => mapEvents.moveHandler(point, map));
 

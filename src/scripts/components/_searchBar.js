@@ -1,4 +1,3 @@
-import { features } from '../../assets/wreckLocations.json';
 import { WreckModal } from '../modals';
 
 const INPUT_ID = "topLevelSearchBar";
@@ -18,12 +17,11 @@ export default function SearchBar() {
 
   searchWrapper.classList.add('searchWrapper');
   searchWrapper.classList.add('topControlElement');
-  searchWrapper.tabIndex = -1;
-  searchWrapper.autofocus = true;
   searchBar.classList.add('searchBar');
-  searchBar.tabIndex = -1;
+  //searchBar.autofocus = true;
   hiddenLabel.innerHTML = 'Search for a wreck';
   hiddenLabel.htmlFor = INPUT_ID;
+  hiddenLabel.id = `${INPUT_ID}Label`
 
   matchContainer.classList.add('searchMatchesWrapper');
 
@@ -33,6 +31,7 @@ export default function SearchBar() {
   searchInput.autocomplete="off";
   searchInput.placeholder = 'Search for a wreck...';
   searchInput.autofocus = true;
+  searchInput.setAttribute('aria-labelledby', `${INPUT_ID}Label`)
 
   searchInput.addEventListener('input', doSearchOnInput);
   searchInput.addEventListener('keydown', (e) => {
@@ -66,8 +65,9 @@ export default function SearchBar() {
 }
 
 function searchWrecks(userInput) {
+  const features = window.wreckFeatures;
   if (!userInput.length) return []
-  const matches = features.filter(feature => {
+  const matches = [ ...features].filter(feature => {
     const regex = userInput.length < 3
       ? new RegExp(`^${userInput}`, 'gi')
       : new RegExp(`${userInput}`, 'gi');
@@ -144,19 +144,19 @@ function selectMatchedElement(matchedElement) {
 }
 
 function flyToSelectedWreck(wreckId) {
+  const { wreckFeatures: features, mapCanvas: { flyCamera } } = window;
   const flyMap = window.mapCanvas.flyCamera;
   const {
     properties: wreck,
-    geometry: { coordinates: center } } = features.find(ft => {
-    return ft.properties.id === wreckId;
-  });
+    geometry: { coordinates: center }
+  } = features.find(feature => feature.properties.id === wreckId);
 
   const target = { center }
   const onComplete = () => displayGalleryModal(wreck)
 
-  flyMap({})
+  flyCamera({})
     .then(() => {
-      flyMap({ target, id: wreckId })
+      flyCamera({ target, id: wreckId })
         .then(() => onComplete())
       })
 }

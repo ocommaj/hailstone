@@ -1,9 +1,8 @@
 .searchWrapper {
   width: 18rem;
-  //z-index: 150;
   position: relative;
   display: inline-block;
-  //margin-left: .5rem;
+  outline: none;
 
   .fas {
     color: $gray-10;

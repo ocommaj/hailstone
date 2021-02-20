@@ -17,11 +17,10 @@ export default function UserStatusBar() {
   buttonLabel.tabIndex = -1;
   buttonLabel.id = 'userStatusBarLabel';
 
-  userIcon.alt = 'User icon';
+  userIcon.innerHTML = 'User Icon'
   userIcon.tabIndex = -1;
   userIcon.type = "image/svg+xml";
   userIcon.data = svgIcon;
-
 
   userIconButton.appendChild(userIcon);
   userIconButton.appendChild(buttonLabel);
