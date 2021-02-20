@@ -8,6 +8,7 @@ export default function SearchBar() {
   const searchBar = document.createElement('form');
   const searchInput = document.createElement('input');
   const matchContainer = document.createElement('div');
+  const hiddenLabel = document.createElement('label');
 
   const searchIcon = document.createElement('i');
   searchIcon.classList.add('fas', 'fa-binoculars');
@@ -18,8 +19,11 @@ export default function SearchBar() {
   searchWrapper.classList.add('searchWrapper');
   searchWrapper.classList.add('topControlElement');
   searchWrapper.tabIndex = -1;
+  searchWrapper.autofocus = true;
   searchBar.classList.add('searchBar');
   searchBar.tabIndex = -1;
+  hiddenLabel.innerHTML = 'Search for a wreck';
+  hiddenLabel.htmlFor = INPUT_ID;
 
   matchContainer.classList.add('searchMatchesWrapper');
 
@@ -36,6 +40,7 @@ export default function SearchBar() {
     keydownHandler(e)
   });
 
+  searchBar.appendChild(hiddenLabel);
   searchBar.appendChild(searchIcon);
   searchBar.appendChild(searchInput);
   searchBar.appendChild(matchContainer);

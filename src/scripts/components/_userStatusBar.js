@@ -11,15 +11,17 @@ export default function UserStatusBar() {
   wrapperElement.tabIndex = -1;
   userIconButton.id = 'userStatusBarButton';
   userIconButton.classList.add('userIconButton');
-  userIconButton.tabIndex = 1;
+  userIconButton.tabIndex = 0;
   userIcon.classList.add('userIcon');
   buttonLabel.classList.add('buttonLabel');
   buttonLabel.tabIndex = -1;
   buttonLabel.id = 'userStatusBarLabel';
 
+  userIcon.alt = 'User icon';
   userIcon.tabIndex = -1;
   userIcon.type = "image/svg+xml";
   userIcon.data = svgIcon;
+
 
   userIconButton.appendChild(userIcon);
   userIconButton.appendChild(buttonLabel);

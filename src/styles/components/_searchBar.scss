@@ -113,6 +113,10 @@
     outline: none;
     border: solid 1px $gray-20;
   }
+
+  label {
+    display: none;
+  }
 }
 
 /*@media only screen and (max-width: 428px) {
