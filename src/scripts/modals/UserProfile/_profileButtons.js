@@ -77,7 +77,7 @@ function submitChanges() {
     const { uid, appHostedPictureURL } = userData;
     const displayNameEditor = document.getElementById('displayNameInput');
     const firstNameEditor = document.getElementById('firstNameInput');
-    const lastNameEditor = document.getElementById('familyNameInput');
+    const lastNameEditor = document.getElementById('lastNameInput');
 
     const displayNameValue = document.getElementById('displayNameValue');
     const firstNameValue = document.getElementById('firstNameValue');
