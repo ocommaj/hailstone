@@ -1,19 +1,18 @@
 import wreckData from '../assets/wreckLocations.json';
-import FirebaseClient from './firebase';
-import Map from './mapbox';
-import { ControlWrapper } from './components';
-import urlQueryListener from './controllers';
 
 window.wreckFeatures = wreckData.features;
 
-export default function main() {
+export default async function main() {
+  const { default: FirebaseClient } = await import('./firebase')
+  const { default: Map } = await import('./mapbox');
+  const { default: urlQueryListener } = await import('./controllers');
+  const { ControlWrapper } = await import('./components');
   const { controlWrapper, updateUserStatusBar } = ControlWrapper()
 
   document.body.appendChild(controlWrapper);
-
   window.updateUserStatusBar = updateUserStatusBar;
-  window.firebaseClient = FirebaseClient();
 
+  FirebaseClient();
   Map();
   urlQueryListener();
 }

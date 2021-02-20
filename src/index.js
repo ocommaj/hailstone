@@ -1,5 +1,4 @@
-import './styles/main.scss';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import main from './scripts';
+import('./styles/main.scss');
+import('mapbox-gl/dist/mapbox-gl.css');
 
-main();
+import('./scripts').then(({ default: main }) => main());

@@ -13,9 +13,39 @@ module.exports = {
    ],*/
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
+    path: path.resolve(__dirname, 'dist'),
   },
+  optimization: {
+    minimize: true,
+    moduleIds: 'deterministic',
+    //runtimeChunk: 'single',
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new CompressionPlugin({
+      filename: "[path][base].br",
+      algorithm: "brotliCompress",
+      test: /\.(js|css|html|svg)$/,
+      algorithm: "brotliCompress",
+      compressionOptions: {
+        params: {
+          [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
+        },
+      },
+      threshold: 10240,
+      minRatio: 0.8,
+      deleteOriginalAssets: false,
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: './index.html',
+      favicon: './src/assets/icons/favicon/fav.ico'
+    }),
+    new Dotenv({
+      systemvars: true
+    }),
+  ],
   module: {
     rules: [
       {
@@ -49,34 +79,4 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    minimize: true,
-    moduleIds: 'deterministic',
-    runtimeChunk: 'single',
-  },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new CompressionPlugin({
-      filename: "[path][base].br",
-      algorithm: "brotliCompress",
-      test: /\.(js|css|html|svg)$/,
-      algorithm: "brotliCompress",
-      compressionOptions: {
-        params: {
-          [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
-        },
-      },
-      threshold: 10240,
-      minRatio: 0.8,
-      deleteOriginalAssets: false,
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
-      favicon: './src/assets/icons/favicon/fav.ico'
-    }),
-    new Dotenv({
-      systemvars: true
-    }),
-  ],
 };

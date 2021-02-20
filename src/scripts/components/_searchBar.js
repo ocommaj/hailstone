@@ -18,7 +18,6 @@ export default function SearchBar() {
   searchWrapper.classList.add('searchWrapper');
   searchWrapper.classList.add('topControlElement');
   searchBar.classList.add('searchBar');
-  //searchBar.autofocus = true;
   hiddenLabel.innerHTML = 'Search for a wreck';
   hiddenLabel.htmlFor = INPUT_ID;
   hiddenLabel.id = `${INPUT_ID}Label`
