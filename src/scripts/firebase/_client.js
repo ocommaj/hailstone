@@ -1,4 +1,4 @@
-import firebase from 'firebase/app';
+import /* webpackPreload: true */ firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
@@ -21,7 +21,6 @@ const authProviders = {
   facebook: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
   email: firebase.auth.EmailAuthProvider.PROVIDER_ID,
 }
-
 
 export default function FirebaseClient() {
   firebase.initializeApp(firebaseConfig);

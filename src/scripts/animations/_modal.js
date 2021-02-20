@@ -9,8 +9,8 @@ const tlDefaults = {
 
 const animations = {
   reveal,
-  collapse,
-  replace
+  replace,
+  collapse
 }
 
 export default animations;

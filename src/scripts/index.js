@@ -9,7 +9,8 @@ export default function main() {
 
   window.updateUserStatusBar = updateUserStatusBar;
   window.firebaseClient = FirebaseClient();
-  window.mapCanvas = Map();
+
+  Map();
 
   urlQueryListener()
 }
