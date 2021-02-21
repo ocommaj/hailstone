@@ -1,4 +1,5 @@
 import maskIcon from '../../../assets/icons/diveMask.svg';
+import plusIcon from '../../../assets/icons/plus-solid.svg';
 
 const ONE_MB = 1048576;
 
@@ -57,10 +58,18 @@ function ProfileImage({ pictureURL, appHostedPictureURL }) {
 
 function EditImageButton(inputClickHandler) {
   const editImageButton = document.createElement('button');
+  const buttonIcon = document.createElement('object');
 
   editImageButton.id = 'editImageButton';
   editImageButton.classList.add('editImageButton');
-  editImageButton.innerHTML = `<i class="fas fa-plus"></i>`;
+
+  buttonIcon.id = 'editImageButtonIcon';
+  buttonIcon.innerHTML = 'User Icon';
+  buttonIcon.tabIndex = -1;
+  buttonIcon.type = "image/svg+xml";
+  buttonIcon.data = plusIcon;
+
+  editImageButton.appendChild(buttonIcon);
 
   editImageButton.addEventListener('click', inputClickHandler)
 

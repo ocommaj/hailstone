@@ -17,7 +17,7 @@ export default function UserStatusBar() {
   buttonLabel.tabIndex = -1;
   buttonLabel.id = 'userStatusBarLabel';
 
-  userIcon.innerHTML = 'User Icon'
+  userIcon.innerHTML = 'User Icon';
   userIcon.tabIndex = -1;
   userIcon.type = "image/svg+xml";
   userIcon.data = svgIcon;

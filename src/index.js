@@ -1,4 +1,5 @@
-import('./styles/main.scss');
-import('mapbox-gl/dist/mapbox-gl.css');
+import(/* webpackPrefetch: true */'./styles/main.scss');
+import(/* webpackPrefetch: true */'mapbox-gl/dist/mapbox-gl.css');
 
-import('./scripts').then(({ default: main }) => main());
+import(/* webpackPreload: true */'./scripts')
+  .then(({ default: main }) => main());

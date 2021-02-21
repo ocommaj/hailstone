@@ -6,7 +6,7 @@ export default async function Map() {
   const container = document.getElementById('mainMap');
   const {
     default: mapboxgl
-  } = await import('mapbox-gl/dist/mapbox-gl')
+  } = await import(/* webpackPrefetch: true */ 'mapbox-gl/dist/mapbox-gl')
 
   mapboxgl.accessToken = process.env.MB_TOKEN;
 

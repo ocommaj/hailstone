@@ -1,3 +1,4 @@
+import svgIcon from '../../assets/icons/binoculars.svg';
 import { WreckModal } from '../modals';
 
 const INPUT_ID = "topLevelSearchBar";
@@ -9,9 +10,12 @@ export default function SearchBar() {
   const matchContainer = document.createElement('div');
   const hiddenLabel = document.createElement('label');
 
-  const searchIcon = document.createElement('i');
-  searchIcon.classList.add('fas', 'fa-binoculars');
+  const searchIcon = document.createElement('object');
+  searchIcon.id = 'searchIcon';
+  searchIcon.innerHTML = 'Search Icon';
   searchIcon.tabIndex = -1;
+  searchIcon.type = "image/svg+xml";
+  searchIcon.data = svgIcon;
 
   let matches = [];
 
