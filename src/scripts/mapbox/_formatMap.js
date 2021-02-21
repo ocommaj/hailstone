@@ -65,18 +65,7 @@ function setInitialCamera() {
 }
 
 function render3D(map) {
-    addTerrainSource(map);
     addSkyLayer(map);
-}
-
-function addTerrainSource(map) {
-    map.addSource('mapbox-dem', {
-        type: 'raster-dem',
-        url: 'mapbox://mapbox.mapbox-terrain-dem-v1',
-        tileSize: 512,
-        maxzoom: 16,
-    })
-    map.setTerrain({ source: 'mapbox-dem', exaggeration: 1.5 });
 }
 
 function addSkyLayer(map) {
