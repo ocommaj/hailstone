@@ -65,8 +65,8 @@ module.exports = {
           [zlib.constants.BROTLI_PARAM_QUALITY]: 11,
         },
       },
-      threshold: 1040,
-      minRatio: 0.8,
+      threshold: 10240,
+      minRatio: Infinity,
       deleteOriginalAssets: false,
     }),
     new HtmlWebpackPlugin({

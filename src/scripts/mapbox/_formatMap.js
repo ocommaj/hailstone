@@ -29,9 +29,8 @@ const Config = { updateLoaded, render3D, initial: initialConfigs }
 export default Config;
 
 function updateLoaded(map) {
-  render3D(map)
-  updateMapboxLinkElements()
-  //addAriaRoles()
+  render3D(map);
+  updateMapboxLinkElements();
 }
 
 function setInitialCamera() {
