@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .userStatusBar {
   .userIconButton {
     appearance: none;
@@ -27,8 +29,8 @@
     }
 
     .buttonLabel {
-      font-family: 'Cabin Condensed';
-      font-size: 1rem;
+      font-family: $primary-font-family;
+      font-size: $base-size;
       margin-left: .5rem;
       color: $gray-10;
       pointer-events: none;

@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 .buoyIcon {
   pointer-events: none;
   fill: $gray-20;

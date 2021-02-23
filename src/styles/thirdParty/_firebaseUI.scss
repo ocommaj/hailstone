@@ -1,3 +1,5 @@
+@use '../abstracts' as *;
+
 #firebaseui-auth-container {
   position: absolute;
   z-index: 600;
@@ -14,7 +16,7 @@
   display: flex;
 
   * {
-    font-family: 'Cabin Condensed'
+    font-family: $primary-font-family;
   }
 
   .firebaseui-container {
@@ -75,7 +77,7 @@
   }
 
   .firebaseui-idp-text {
-    font-size: 1.25rem;
+    font-size: $base-h3-size;
     color: $gray-10;
   }
 
@@ -86,7 +88,7 @@
 
   label {
     color: $gray-20;
-    font-size: 1rem;
+    font-size: $base-size;
   }
 
   input {

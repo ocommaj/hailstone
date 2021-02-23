@@ -1,5 +1,5 @@
-@import './thirdParty/includeMedia';
-@import './abstracts/colors';
+@use 'abstracts' as *;
+
 @import './base/resets';
 @import './thirdParty/mapboxOverrides';
 @import './thirdParty/firebaseUI';
@@ -10,7 +10,7 @@ body {
   background-color: $gray-90;
   position: relative;
   width: 100vw;
-  font-family: 'Cabin Condensed', 'sans-serif';
+  font-family: $primary-font-family;
   overflow: hidden;
 }
 
@@ -21,24 +21,21 @@ body {
 }
 
 h1 {
-  font-family: 'Big Shoulders Stencil Text', 'Helvetica', 'sans-serif';
+  font-family: $display-font-family;
+  font-size: $base-h1-size;
+  color: $base-h1-color;
 }
 
 h2, h3 {
-  font-family: 'Cabin Condensed', 'sans-serif';
-}
-
-h1 {
-  font-size: 2.5rem;
-  color: $gray-20;
+  font-family: $primary-font-family;
 }
 
 h2 {
-  font-size: 1.5rem;
-  color: $gray-40;
+  font-size: $base-h2-size;
+  color: $base-h2-color;
 }
 
 h3 {
-  font-size: 1.25rem;
-  color: $gray-30;
+  font-size: $base-h3-size;
+  color: $base-h3-color;
 }
