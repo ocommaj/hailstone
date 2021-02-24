@@ -18,6 +18,7 @@ export default function UserProfileView(userData) {
   profileElementsWrapper.tabIndex = -1;
   profileContentElements.tabIndex = -1;
 
+  userProfileView.id = 'userProfileView';
   userProfileView.classList.add('userProfileView');
   profileElementsWrapper.classList.add('profileElementsWrapper');
   profileContentElements.classList.add('profileContentElements');

@@ -4,16 +4,18 @@ import plusIcon from '../../../assets/icons/plus-solid.svg';
 const ONE_MB = 1048576;
 
 export default function ProfilePicture(userData) {
-  const profileImageWrapper = document.createElement('div');
-  profileImageWrapper.classList.add('profileImageWrapper');
+  const profileImageWrapper = document.createElement('button');
+  profileImageWrapper.classList.add('profileImageWrapperButton');
 
   const { profileImage } = ProfileImage(userData);
   const { hiddenFileInput, inputProxyClickHandler } = HiddenFileInput();
-  const { editImageButton } = EditImageButton(inputProxyClickHandler);
+  const { buttonIcon } = ButtonIcon(inputProxyClickHandler);
 
-  profileImageWrapper.appendChild(profileImage);
-  profileImageWrapper.appendChild(editImageButton);
+  profileImageWrapper.addEventListener('click', inputProxyClickHandler);
+
   profileImageWrapper.appendChild(hiddenFileInput);
+  profileImageWrapper.appendChild(profileImage);
+  profileImageWrapper.appendChild(buttonIcon);
 
   return { profilePicture: profileImageWrapper }
 }
@@ -56,24 +58,16 @@ function ProfileImage({ pictureURL, appHostedPictureURL }) {
   }
 }
 
-function EditImageButton(inputClickHandler) {
-  const editImageButton = document.createElement('button');
+function ButtonIcon() {
   const buttonIcon = document.createElement('object');
-
-  editImageButton.id = 'editImageButton';
-  editImageButton.classList.add('editImageButton');
-
+  buttonIcon.classList.add('wrappedButtonIcon');
   buttonIcon.id = 'editImageButtonIcon';
   buttonIcon.innerHTML = 'User Icon';
   buttonIcon.tabIndex = -1;
   buttonIcon.type = "image/svg+xml";
   buttonIcon.data = plusIcon;
 
-  editImageButton.appendChild(buttonIcon);
-
-  editImageButton.addEventListener('click', inputClickHandler)
-
-  return { editImageButton }
+  return { buttonIcon }
 }
 
 function HiddenFileInput() {
@@ -87,7 +81,12 @@ function HiddenFileInput() {
 
   hiddenFileInput.addEventListener('change', handleFileInput)
 
-  const inputProxyClickHandler = () => hiddenFileInput.click()
+  const inputProxyClickHandler = () => {
+    const userProfileView = document.getElementById('userProfileView');
+    if (userProfileView.classList.contains('editorMode')) {
+       hiddenFileInput.click();
+     }
+  }
 
   return { hiddenFileInput, inputProxyClickHandler }
 

@@ -1,15 +1,14 @@
-@use './colors';
+@use 'variables';
+@use 'colors';
 
 $display-font-family: 'Big Shoulders Stencil Text', 'Helvetica', 'sans-serif';
 $primary-font-family: 'Cabin Condensed', 'Helvetica', 'sans-serif';
 
-$base-display-font-family-size: 2.5rem;
-
-$base-h1-size: 2.5rem;
-$base-up-3: 1.75rem;
-$base-h2-size: 1.5rem;
-$base-h3-size: 1.25rem;
-$base-size: 1rem;
+$base-h1-size: variables.$base-up-6;
+$base-up-3: variables.$base-up-3;
+$base-h2-size: variables.$base-up-2;
+$base-h3-size: variables.$base-up-1;
+$base-size: variables.$base-size;
 
 $base-h1-color: colors.$gray-20;
 $base-h2-color: colors.$gray-40;

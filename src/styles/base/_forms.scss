@@ -1,0 +1,13 @@
+@use '../abstracts' as *;
+
+button {
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+
+  font-size: $base-h2-size;
+  font-family: $primary-font-family;
+  color: $gray-10;
+
+  cursor: pointer;
+}
