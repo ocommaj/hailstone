@@ -1,0 +1,41 @@
+@use '../abstracts' as *;
+
+@mixin button-base {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: $primary-font-family;
+  font-size: $base-h2-size;
+  padding: .5rem 1rem;
+  outline: none;
+
+  border: solid 1px rgba($gray-20, 0);
+  border-radius: .5rem;
+
+  color: $gray-10;
+  transition: color .4s ease, background-color .4s ease;
+
+  cursor: pointer;
+
+  &:focus {
+    border-color: rgba($gray-20, 1);
+  }
+}
+
+@mixin button-base-gray {
+  @include button-base;
+  background-color: $gray-70;
+
+  &:hover {
+    background-color: $gray-80;
+  }
+}
+
+@mixin button-base-blue {
+  @include button-base;
+  background-color: $blue-60;
+
+  &:hover {
+    color: $gray-20;
+    background-color: $blue-80;
+  }
+}

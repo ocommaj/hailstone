@@ -1,9 +1,98 @@
 @use '../abstracts' as *;
+@use '../utils' as *;
 
 button {
-  font-size: $base-h2-size;
+  @include button-base-gray;
+}
+
+input[type=file] {
+  font-size: $base-size;
   font-family: $primary-font-family;
   color: $gray-10;
+  width: 100%;
 
-  cursor: pointer;
+  $buttons: file-selector-button, -webkit-file-upload-button;
+
+  @each $button in $buttons {
+    &::#{$button} {
+      @include button-base-blue;
+    }
+  }
+}
+
+input[type=text] {
+  font-size: $base-size;
+  font-family: $primary-font-family;
+  background-color: $gray-70;
+  color: $gray-10;
+  border-radius: .5rem;
+  padding: .25rem;
+  padding-left: .5rem;
+  width: 100%;
+  box-shadow: .125rem .125rem .5rem $gray-90-50;
+  border: solid 1px rgba($gray-20,0);
+  outline: none;
+
+  &:focus, &:focus-visible {
+    border-color: rgba($gray-20, 1);
+  }
+}
+
+textarea {
+  width: 100%;
+  height: 5rem;
+  background-color: $gray-70;
+  color: $gray-10;
+  border-radius: .5rem;
+  border: solid 1px rgba($gray-20,0);
+  padding: .25rem;
+  padding-left: .5rem;
+  font-family: $primary-font-family;
+  font-size: $base-size;
+  outline: none;
+  resize: none;
+  box-shadow: .125rem .125rem .5rem $gray-90-50;
+
+  &:focus {
+    border-color: rgba($gray-20,1);
+  }
+}
+
+progress[value] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height:100%;
+  border: none;
+  border-radius: .5rem;
+  background-color: $gray-60;
+  box-shadow: 0 2px 5px $gray-90-30 inset;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+progress[value]::-webkit-progress-bar {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: .5rem;
+  box-shadow: 0 2px 5px $gray-90-30 inset;
+}
+
+progress[value]::-webkit-progress-value {
+  background-color: $blue-60;
+  border-radius: .5rem;
+}
+
+progress[value]::-moz-progress-bar {
+  background-color: $blue-60;
+  border-radius: .5rem;
 }
