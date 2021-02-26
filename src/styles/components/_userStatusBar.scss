@@ -1,60 +1,46 @@
 @use '../abstracts' as *;
+@use '../utils' as *;
 
-.userStatusBar {
-  .userIconButton {
-    appearance: none;
-    -webkit-appearance: none;
+.userIconButton {
+  @include button-base-gray;
 
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 
-    width: 100%;
+  padding: 0 1rem;
+  box-shadow: .125rem .125rem .5rem $gray-90-50;
+
+  transition: background-color 0.7s ease;
+
+  * {
+    transition: color 0.7s ease, fill 0.7s ease;
+  }
+
+  .userIcon {
+    width: 2rem;
     height: 2rem;
-    border-radius: .75rem;
-    border: solid 1px rgba(0,0,0,0);
-    background-color: $gray-70;
-    box-shadow: .125rem .125rem .5rem $gray-90-50;
-    cursor: pointer;
-
-    transition: background-color 0.7s ease;
-
-    * {
-      transition: color 0.7s ease, fill 0.7s ease;
-    }
-
-    .userIcon {
-      width: 2rem;
-      height: 2rem;
-    }
-
-    .buttonLabel {
-      font-family: $primary-font-family;
-      font-size: $base-size;
-      margin-left: .5rem;
-      color: $gray-10;
-      pointer-events: none;
-    }
   }
 
-  .userIconButton:focus {
-    outline: none;
-    border: solid 1px $gray-20;
-  }
-
-  .userIconButton:hover {
-    background-color: $gray-30;
-
-    * {
-      color: $gray-90;
-      fill: $gray-90;
-    }
+  .buttonLabel {
+    font-family: $primary-font-family;
+    font-size: $base-size;
+    margin-left: .5rem;
+    color: $gray-10;
+    pointer-events: none;
   }
 }
 
-.userStatusBar:focus {
-  outline: none;
+.userIconButton:hover {
+  background-color: $gray-30;
+
+  * {
+    color: $gray-90;
+    fill: $gray-90;
+  }
 }
+
+
 
 @media only screen and (max-width: 428px) {
   .userStatusBar {

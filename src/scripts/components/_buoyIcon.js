@@ -1,5 +1,5 @@
 export default function BuoyIcon() {
-  const icon = document.createElement('div')
+  const icon = document.createElement('object')
   icon.classList.add('buoyIcon')
   icon.tabIndex = -1;
   icon.innerHTML = `

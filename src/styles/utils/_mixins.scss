@@ -12,12 +12,16 @@
   border-radius: .5rem;
 
   color: $gray-10;
-  transition: color .4s ease, background-color .4s ease;
+  transition: color .7s ease, background-color .7s ease;
 
   cursor: pointer;
 
   &:focus {
     border-color: rgba($gray-20, 1);
+  }
+
+  * {
+    transition: color .7s ease, fill  .7s ease;
   }
 }
 

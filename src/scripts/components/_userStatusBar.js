@@ -2,14 +2,12 @@ import svgIcon from '../../assets/icons/diveMask.svg';
 import { UserModal } from '../modals';
 
 export default function UserStatusBar() {
-  const wrapperElement = document.createElement('div');
   const userIconButton = document.createElement('button');
   const userIcon = document.createElement('object');
   const buttonLabel = document.createElement('span')
-  wrapperElement.classList.add('userStatusBar');
-  wrapperElement.classList.add('topControlElement');
-  wrapperElement.tabIndex = -1;
+
   userIconButton.id = 'userStatusBarButton';
+  userIconButton.classList.add('topControlElement');
   userIconButton.classList.add('userIconButton');
   userIconButton.tabIndex = 0;
   userIcon.classList.add('userIcon');
@@ -24,7 +22,6 @@ export default function UserStatusBar() {
 
   userIconButton.appendChild(userIcon);
   userIconButton.appendChild(buttonLabel);
-  wrapperElement.appendChild(userIconButton);
 
   userIconButton.addEventListener('mouseover', () => {
     const svgDoc = userIcon.contentDocument;
@@ -47,7 +44,7 @@ export default function UserStatusBar() {
 
   return {
     updateUserStatusBar,
-    userStatusBar: wrapperElement,
+    userStatusBar: userIconButton
   }
 }
 

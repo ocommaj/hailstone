@@ -1,15 +1,14 @@
 @use '../abstracts' as *;
+@use '../utils' as *;
 @use 'buoyIcon';
 
 .controlToggler {
-  appearance: none;
-  -webkit-appearance: none;
+  @include button-base;
 
   position: absolute;
   top: 0;
   left: 0;
 
-  // opacity & z-index toggle to 1 & 99 on parent .collapsed
   opacity: 0;
   z-index: 99;
 
@@ -18,16 +17,9 @@
   margin: 0;
   padding: .5rem;
   border-radius: 2rem;
-  border: solid 1px rgba(0,0,0,0);
   box-shadow: .125rem .125rem .5rem $red-60-30;
-  outline: none;
-  cursor: pointer;
 
   background-color: $red-80;
 
   transition: opacity 0.7s ease;
-}
-
-.controlToggler:focus {
-  border: solid 1px $gray-20;
 }
