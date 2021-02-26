@@ -58,6 +58,10 @@ textarea {
   }
 }
 
+label {
+  display: none;
+}
+
 progress[value] {
   appearance: none;
   -webkit-appearance: none;

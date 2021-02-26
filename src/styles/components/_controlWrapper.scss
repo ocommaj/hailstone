@@ -1,6 +1,6 @@
-@import './controlToggler';
-@import './searchBar';
-@import './userStatusBar';
+@use 'controlToggler';
+@use 'searchBar';
+@use 'userStatusBar';
 
 .controlWrapper {
   position: absolute;
