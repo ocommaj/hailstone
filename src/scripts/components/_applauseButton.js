@@ -1,23 +1,38 @@
 import svgIcon from '../../assets/icons/shaka.svg';
+import { upvoteAnimation } from '../animations';
 
 export default function ApplauseButton() {
-  const button = document.createElement("button");
+  const applauseButton = document.createElement("button");
   const buttonIcon = document.createElement("object");
+  const { runUpvoteAnimation, graphic: upvoteGraphic } = UpvoteGraphic();
 
-  button.classList.add("postApplauseButton");
+  applauseButton.classList.add("postApplauseButton");
   buttonIcon.classList.add("postApplauseButtonIcon");
   buttonIcon.type = "image/svg+xml";
   buttonIcon.data = svgIcon;
 
-  button.appendChild(buttonIcon);
-  button.addEventListener('click', () => clickHandler(button))
+  applauseButton.appendChild(buttonIcon);
+  applauseButton.addEventListener('click', (e) => clickHandler(e, runUpvoteAnimation))
 
-  return button;
+  return { applauseButton, upvoteGraphic };
 }
 
-function clickHandler(onButton) {
+function UpvoteGraphic() {
+  const graphic = document.createElement('span');
+  graphic.classList.add('upvoteGraphic');
+  graphic.innerHTML = '+1';
+
+  const runUpvoteAnimation = () => upvoteAnimation.run({ graphic }).play()
+
+  return { graphic, runUpvoteAnimation }
+}
+
+function clickHandler(e, upvoteAnimation) {
+  const onButton = e.target;
+
   upvote()
   clickStyler()
+  upvoteAnimation()
 
   function upvote() {
     const { id: galleryId } = window.activeModal;

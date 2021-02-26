@@ -1,5 +1,3 @@
-import { gsap } from 'gsap';
-
 const REM_VALUE = 16;
 
 const tlDefaults = {
@@ -7,17 +5,17 @@ const tlDefaults = {
   duration: .8
 }
 
-const animations = {
-  reveal,
-  replace,
-  collapse
+export default function animations(gsap) {
+  return {
+    reveal: (args) => _reveal(gsap, args),
+    replace: (args) => _replace(gsap, args),
+    collapse: (args) => _collapse(gsap, args)
+  }
 }
 
-export default animations;
-
-function reveal(element, fromPoint) {
+function _reveal(gsap, { modal, fromPoint }) {
   const { x, y } = fromPoint;
-  const { top, bottom, right, left } = element.getBoundingClientRect();
+  const { top, bottom, right, left } = modal.getBoundingClientRect();
   const deltaX = x - left;
   const deltaY = y - top;
 
@@ -26,19 +24,19 @@ function reveal(element, fromPoint) {
   const offset = REM_VALUE * offsetCount
 
   const tl = gsap.timeline({ defaults: tlDefaults })
-    .from(element, { x: deltaX, y: deltaY, width: 0 })
-    .to(element, { height: windowHeight - offset, opacity: 1 }, '<')
-    .from(element.children, { opacity: 0 });
+    .from(modal, { x: deltaX, y: deltaY, width: 0 })
+    .to(modal, { height: windowHeight - offset, opacity: 1 }, '<')
+    .from(modal.children, { opacity: 0 });
 }
 
-function collapse(element, onComplete) {
+function _collapse(gsap, { modal, onComplete }) {
   const tl = gsap.timeline({ onComplete, defaults: tlDefaults })
-    .to(element.children, { opacity: 0, duration: .4 })
-    .to(element, { height: 0 }, '<.3' )
-    .to(element, { opacity: 0, duration: .6 }, '<');
+    .to(modal.children, { opacity: 0, duration: .4 })
+    .to(modal, { height: 0 }, '<.3' )
+    .to(modal, { opacity: 0, duration: .6 }, '<');
 }
 
-function replace(incoming, outgoing) {
+function _replace(gsap, { incoming, outgoing }) {
   const windowHeight = window.innerHeight;
   const offsetCount = windowHeight < 720 ? 3 : 6;
   const offset = REM_VALUE * offsetCount

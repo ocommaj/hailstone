@@ -59,3 +59,12 @@
     transform: rotateZ(-15deg) rotateY(0deg);
   }
 }
+
+.upvoteGraphic {
+  position: absolute;
+  bottom: $base-up-2;
+  right: $base-up-2;
+  color: rgba($gray-10, 0);
+  background: none;
+  user-select: none;
+}

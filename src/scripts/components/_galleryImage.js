@@ -15,7 +15,11 @@ export default function GalleryImage({
   if (imgId !== null) galleryImg.dataset.imgId = imgId;
   if (upvotes !== null) galleryImg.dataset.upvotes = upvotes;
   galleryImg.appendChild(img);
-  if (!!applauseButton) galleryImg.appendChild( ApplauseButton() )
+  if (!!applauseButton) {
+    const { applauseButton, upvoteGraphic } = ApplauseButton()
+    galleryImg.appendChild(applauseButton)
+    galleryImg.appendChild(upvoteGraphic)
+  }
 
   img.addEventListener('load', () => {
     img.style.visibility = 'visible';

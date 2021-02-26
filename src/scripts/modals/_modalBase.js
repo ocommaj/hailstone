@@ -34,19 +34,20 @@ function _revealModal(modal, calledFromPoint=null) {
   const center = { x: window.innerWidth/2, y: window.innerHeight/2 }
   const fromPoint = !!calledFromPoint ? calledFromPoint : center;
   document.body.insertBefore(modal, document.body.firstChild)
-  modalAnimations.reveal(modal, fromPoint);
+  modalAnimations.reveal({ modal, fromPoint });
 }
 
 function _removeModal(modal) {
-  modalAnimations.collapse(modal, () => {
+  modalAnimations.collapse({ modal, onComplete: () => {
     document.body.removeChild(modal);
     window.activeModal = null;
+    }
   })
 }
 
 function _replaceModal(modal, outgoing) {
   document.body.insertBefore(modal, document.body.firstChild)
-  modalAnimations.replace(modal, outgoing)
+  modalAnimations.replace({ incoming: modal, outgoing })
 }
 
 function _launchAuthUI({ authUI }) {

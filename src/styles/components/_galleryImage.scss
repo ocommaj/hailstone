@@ -1,0 +1,43 @@
+@use '../abstracts' as *;
+@use 'postApplauseButton';
+
+.modalGalleryImg {
+  max-width: 100%;
+  display: block;
+  
+  background-color: $gray-90;
+  pointer-events: none;
+  transition: opacity .4s ease;
+  visibility: hidden;
+}
+
+.modalGalleryImgWrapper {
+  overflow: hidden;
+  position: relative;
+  background-color: $gray-90;
+  height: auto;
+  box-shadow: -.125rem .125rem .5rem $gray-90-30;
+  border-radius: .5rem;
+  border: solid 2px $gray-90;
+  margin: 0;
+  padding: 0;
+  margin-bottom: .5rem;
+}
+
+.modalGalleryImgWrapper:last-child() {
+  margin-bottom: 0;
+}
+
+.modalGalleryImgWrapper .postApplauseButton {
+  opacity: 0;
+}
+
+.modalGalleryImgWrapper:hover .postApplauseButton {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 428px) {
+  .modalGalleryImgWrapper .postApplauseButton {
+    opacity: 1;
+  }
+}
