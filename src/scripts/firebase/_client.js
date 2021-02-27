@@ -45,6 +45,7 @@ export default function FirebaseClient() {
     updateUserRecord,
     getProfileImage,
     uploadProfileImage,
+    upvoteImage,
     signOut: userManager.signOut,
     loadImagesFromDB: (args) => loadImagesFromDB(queries, args),
     uploader: (args) => uploader(queries, args),
@@ -124,6 +125,12 @@ function loadImageElement({ imgId, imgRecord, domCallback }) {
     .catch((error) => console.error(error));
   }
 
-function upvoteImage({ getImageById, upvoteRecord }, { gallery, id }) {
+function upvoteImage({ addToUserUpvotes, getImageById, upvoteRecord }, args) {
+  const { gallery, id, uid } = args;
   getImageById({ gallery, id }).then((docRecord) => upvoteRecord(docRecord));
+  addToUserUpvotes({ arrayUnion, uid, imgId: id})
+
+  function arrayUnion(appendId) {
+    return firebase.firestore.FieldValue.arrayUnion(appendId)
+  }
 }

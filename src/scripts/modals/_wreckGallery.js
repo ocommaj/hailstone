@@ -25,6 +25,7 @@ export default function WreckGalleryModal(vessel) {
 
   return {
     id,
+    launchAuthUI,
     refreshModal,
     reveal,
     remove,

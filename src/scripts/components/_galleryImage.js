@@ -1,11 +1,7 @@
 import ApplauseButton from './_applauseButton';
 
-export default function GalleryImage({
-  url,
-  imgId=null,
-  upvotes=null,
-  applauseButton=true,
-}) {
+export default function GalleryImage({ file, applauseButton=true }) {
+  const { url, imgId=null, upvotes=null } = file;
   const galleryImg = document.createElement('div');
   const img = document.createElement('img');
   galleryImg.classList.add('modalGalleryImgWrapper');

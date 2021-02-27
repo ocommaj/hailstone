@@ -25,9 +25,8 @@ function loadImages(uploadRecords, wrapperElement) {
     return
   }
   const { firebaseClient: { loadImagesFromDB } } = window;
-  const domCallback = (config) => {
-    config.applauseButton=false;
-    wrapperElement.append(GalleryImage(config))
+  const domCallback = (file) => {
+    wrapperElement.append(GalleryImage({file, applauseButton: false }))
   }
 
   const sortedRecords = sortUploadRecords(uploadRecords);

@@ -1,4 +1,5 @@
 export default function FirestoreQueries(db) {
+  const addToUserUpvotes = (args) => _addToUserUpvotes(db, args);
   const getImageRecords = (args) => _getImageRecords(db, args);
   const getImageById = (args) => _getImageById(db, args);
   const createImageRecord = (args) => _createImageRecord(db, args);
@@ -8,6 +9,7 @@ export default function FirestoreQueries(db) {
   const upvoteRecord = (args) => _upvoteRecord(args);
 
   return {
+    addToUserUpvotes,
     createImageRecord,
     createUserRecord,
     getImageById,
@@ -98,6 +100,11 @@ function _queryUserRecord(db, uid) {
         }
       })
   })
+}
+
+function _addToUserUpvotes(db, { uid, imgId, arrayUnion }) {
+  const userRef = db.collection('users/').doc(uid);
+  userRef.update({ upvotedImages: arrayUnion(imgId) })
 }
 
 function _updateUserRecord(db, { uid, userData }) {

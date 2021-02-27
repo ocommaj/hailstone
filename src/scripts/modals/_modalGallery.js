@@ -1,6 +1,8 @@
 import GalleryImage from '../components/_galleryImage';
 
 export default function GalleryContent(id) {
+  const { user: { isAnonymous } } = window;
+
   const contentWrapper = document.createElement("div");
   const galleryContent = document.createElement("div");
   contentWrapper.classList.add('wrappedModalContent');
@@ -8,7 +10,20 @@ export default function GalleryContent(id) {
   galleryContent.classList.add('gallery');
   contentWrapper.appendChild(galleryContent);
 
-  loadGalleryFiles(id, (file) => galleryContent.append(GalleryImage(file)) );
+  loadGalleryFiles(id, (file) => {
+    let upvotedImages;
+    const { userData } = window;
+    const { imgId } = file;
+    if (userData) {
+      upvotedImages = userData.upvotedImages || null;
+    }
+    let applauseButton = true;
+    if (!isAnonymous && !!upvotedImages) {
+       if (upvotedImages.includes(imgId)) applauseButton = false;
+      }
+
+    galleryContent.append( GalleryImage({ applauseButton, file }) )
+  });
 
   return {
     gallery: contentWrapper,

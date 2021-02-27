@@ -29,15 +29,21 @@ function UpvoteGraphic() {
 
 function clickHandler(e, upvoteAnimation) {
   const onButton = e.target;
+  const { user: { uid, isAnonymous }, activeModal: { launchAuthUI } } = window;
 
-  upvote()
   clickStyler()
-  upvoteAnimation()
+
+  if (isAnonymous) {
+    launchAuthUI()
+  } else {
+    upvote()
+    upvoteAnimation()
+  }
 
   function upvote() {
     const { id: galleryId } = window.activeModal;
     const { imgId } = onButton.parentElement.dataset;
-    window.firebaseClient.upvoteImage({ gallery: galleryId, id: imgId })
+    window.firebaseClient.upvoteImage({ uid, gallery: galleryId, id: imgId });
   }
 
   function clickStyler() {

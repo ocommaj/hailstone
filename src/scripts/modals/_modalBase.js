@@ -24,9 +24,9 @@ export default function ModalBase({ id, hasAuthUI=true, tertiaryAuth=true }) {
   return {
     modal,
     authUI,
-    reveal: (fromPoint) => _revealModal(modal, fromPoint),
     remove: () => _removeModal(modal),
     replace: (outgoing) => _replaceModal(modal, outgoing),
+    reveal: (fromPoint) => _revealModal(modal, fromPoint),
   }
 }
 
