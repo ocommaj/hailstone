@@ -88,12 +88,9 @@ function _listenForUserChange(authenticator) {
       }
 
       if (!user.isAnonymous) {
-        const queryUserRecord = window.firebaseClient.queryUserRecord;
+        const { queryUserRecord } = window.firebaseClient;
         queryUserRecord(user.uid)
-          .then((userData) => {
-            window.userData = userData;
-            window.updateUserStatusBar();
-          })
+
         const containerId = 'firebaseui-auth-container';
         const container = document.getElementById(containerId);
         if (container && container.style.display !== 'none') {

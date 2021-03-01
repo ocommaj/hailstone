@@ -11,23 +11,27 @@ export default function GalleryContent(id) {
   contentWrapper.appendChild(galleryContent);
 
   loadGalleryFiles(id, (file) => {
-    let upvotedImages;
-    const { userData } = window;
-    const { imgId } = file;
-    if (userData) {
-      upvotedImages = userData.upvotedImages || null;
-    }
-    let applauseButton = true;
-    if (!isAnonymous && !!upvotedImages) {
-       if (upvotedImages.includes(imgId)) applauseButton = false;
-      }
-
+    const applauseButton = includeApplauseButton(file);
     galleryContent.append( GalleryImage({ applauseButton, file }) )
   });
 
   return {
     gallery: contentWrapper,
     updateGallery: (fileToAdd) => updateGallery(galleryContent, fileToAdd),
+  }
+}
+
+function includeApplauseButton(file) {
+  const { userData } = window;
+  const { imgId } = file;
+  if (!userData) return true;
+  const upvotedImages = userData.upvotedImages;
+
+  if (!upvotedImages) return true;
+  if (upvotedImages.includes(imgId)) {
+    return false;
+  } else {
+    return true
   }
 }
 

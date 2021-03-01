@@ -94,8 +94,8 @@ function submitChanges() {
     }
 
     updateUserRecord({ uid, userData: updatedValues })
-      .then((updatedData) => {
-        window.userData = updatedData;
+      .then(() => {
+        const { userData: updatedData } = window;
         displayNameValue.innerHTML = updatedData.displayName;
         firstNameValue.innerHTML = updatedData.givenName;
         lastNameValue.innerHTML = updatedData.familyName;

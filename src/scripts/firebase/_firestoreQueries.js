@@ -93,11 +93,14 @@ function _createUserRecord(db, userConfig) {
 
 function _queryUserRecord(db, uid) {
   return new Promise(resolve => {
-    db.collection('users/').doc(uid).get()
-      .then(userDoc => {
-        if (userDoc.exists) {
-          resolve(userDoc.data())
-        }
+    db.collection('users/').doc(uid)
+      .onSnapshot((userDoc) => {
+        window.userData = userDoc.data();
+        window.updateUserStatusBar();
+        resolve()
+      }, (error) => {
+        window.userData = null;
+        window.updateUserStatusBar()
       })
   })
 }
@@ -110,9 +113,6 @@ function _addToUserUpvotes(db, { uid, imgId, arrayUnion }) {
 function _updateUserRecord(db, { uid, userData }) {
   return new Promise(resolve => {
     db.collection('users/').doc(uid).set({ ...userData }, { merge: true })
-      .then(() => {
-        _queryUserRecord(db, uid)
-          .then((userData) => resolve(userData))
-      })
+      .then(() => _queryUserRecord(db, uid).then(() => resolve()) )
   })
 }
