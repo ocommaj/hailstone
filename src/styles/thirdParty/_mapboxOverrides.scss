@@ -14,3 +14,12 @@
 .mapboxgl-canvas {
   outline: none;
 }
+
+@media (max-width: 350px) {
+  .mapboxgl-ctrl-bottom-right {
+    * {
+      display: none;
+    }
+  }
+  //.mapboxgl-ctrl.mapboxgl-ctrl-attrib
+}
