@@ -34,17 +34,20 @@ function updateLoaded(map) {
 }
 
 function setInitialCamera() {
-  const { center, zoom, bearing } = getCenter()
+  const { center, zoom, bearing, pitch } = getCenter()
   return {
     center,
     zoom,
     bearing,
-    pitch: 75,
+    pitch: pitch || 75,
   }
 
   function getCenter() {
     const { screen: { width, height }, location: { search } } = window;
     const queryParams  = new URLSearchParams(search);
+    if (queryParams.get('lookup') === 'smallPreview') {
+      return smallPreviewLocation()
+    }
     if (queryParams.has('vesselId')) {
       const queriedVessel = queryParams.get('vesselId');
       return lookupVesselLocation(queriedVessel);
@@ -59,6 +62,15 @@ function setInitialCamera() {
       const zoom = centerDefaults.zoomedIn;
       const bearing = 0;
       return { center, zoom, bearing }
+    }
+  }
+
+  function smallPreviewLocation() {
+    return {
+      center: [151.825, 7.45],
+      zoom: 14,
+      bearing: 110,
+      pitch: 80
     }
   }
 
