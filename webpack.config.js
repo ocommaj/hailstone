@@ -72,7 +72,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: './index.html',
-      favicon: './src/assets/icons/favicon/fav.ico'
+      favicon: './src/assets/icons/favicon/fav.ico',
+      meta: {
+        "og:image": "https://github.com/ocommaj/hailstone/blob/main/src/assets/hailstonePreview.jpg?raw=true"
+      }
     }),
     new Dotenv({
       systemvars: true
